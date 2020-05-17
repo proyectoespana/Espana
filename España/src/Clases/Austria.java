@@ -24,6 +24,106 @@ public class Austria extends Europa {
 	}
 
 
+	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
+		Productos newProduct;
+
+		switch (producto) {
+		case Hierro:
+			if(this.recoleccionHierro.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
+				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
+
+				newProduct= new MateriasPrimas(recoleccionHierro);
+
+				newProduct.setCantidad(cantidad);
+
+				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
+			}
+			break;
+		case Arroz:
+			if(this.recoleccionArroz.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
+				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
+
+				newProduct= new Alimentos(recoleccionArroz);
+
+				newProduct.setCantidad(cantidad);
+
+				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
+			}
+			break;
+		case Algodon:
+			if(this.recoleccionAlgodon.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
+				this.recoleccionAlgodon.setCantidad(this.recoleccionAlgodon.getCantidad()-cantidad);
+
+				newProduct= new MateriasPrimas(recoleccionAlgodon);
+
+				newProduct.setCantidad(cantidad);
+
+				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("Este reino no produce " + producto);
+		}
+	}
+
+	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
+		Mercancia mercancia;
+		Productos newProduct;
+
+		switch (producto) {
+		case Hierro:
+			if(this.recoleccionHierro.getCantidad()>cantidad) {
+
+				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
+				newProduct= new MateriasPrimas(recoleccionHierro);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia(nombre, totalkg);
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+			break;
+		case Arroz:
+			if(this.recoleccionArroz.getCantidad()>cantidad) {
+
+				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
+				newProduct= new Alimentos(recoleccionArroz);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia(nombre, totalkg);
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+
+			break;
+		case Algodon:
+
+			if(this.recoleccionAlgodon.getCantidad()>cantidad) {
+
+				this.recoleccionAlgodon.setCantidad(this.recoleccionAlgodon.getCantidad()-cantidad);
+				newProduct= new MateriasPrimas(recoleccionAlgodon);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia(nombre, totalkg);
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("Este reino no produce " + producto);
+		}
+
+	}
+	
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString() + "/ Produccion de de : "+this.recoleccionAlgodon.toString();
 	}

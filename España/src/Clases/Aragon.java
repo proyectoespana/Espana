@@ -21,6 +21,78 @@ public class Aragon extends Europa {
 		this.recoleccionTrigo=a.getRecoleccionTrigo();
 		this.recoleccionUvas=a.getRecoleccionUvas();
 	}
+	
+	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
+		Productos newProduct;
+
+		switch (producto) {
+		case Trigo:
+			if(this.recoleccionTrigo.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
+				this.recoleccionTrigo.setCantidad(this.recoleccionTrigo.getCantidad()-cantidad);
+
+				newProduct= new Alimentos(recoleccionTrigo);
+
+				newProduct.setCantidad(cantidad);
+
+				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
+			}
+			break;
+		case Uvas:
+			if(this.recoleccionUvas.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
+				this.recoleccionUvas.setCantidad(this.recoleccionUvas.getCantidad()-cantidad);
+
+				newProduct= new Alimentos(recoleccionUvas);
+
+				newProduct.setCantidad(cantidad);
+
+				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("Este reino no produce " + producto);
+		}
+	}
+
+	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
+		Mercancia mercancia;
+		Productos newProduct;
+
+		switch (producto) {
+		case Trigo:
+			if(this.recoleccionTrigo.getCantidad()>cantidad) {
+
+				this.recoleccionTrigo.setCantidad(this.recoleccionTrigo.getCantidad()-cantidad);
+				newProduct= new Alimentos(recoleccionTrigo);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia(nombre, totalkg);
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+			break;
+		case Uvas:
+			if(this.recoleccionUvas.getCantidad()>cantidad) {
+
+				this.recoleccionUvas.setCantidad(this.recoleccionUvas.getCantidad()-cantidad);
+				newProduct= new Alimentos(recoleccionUvas);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia(nombre, totalkg);
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("Este reino no produce " + producto);
+		}
+
+	}
 
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() ;
