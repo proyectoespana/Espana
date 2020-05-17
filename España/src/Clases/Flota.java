@@ -6,20 +6,31 @@ public class Flota {
 	private String nombre;
 	private int numeroBarcos;
 	private ArrayList<String>arrayMercancias;
-	private int nivelSeguridad;
-	private int perdidas;
+	private boolean Seguridad;
+	private int pesoMaximo;
 	private int diasIda;
+	private double precio;
 
-	public Flota(String nombre,int numeroBarcos,ArrayList<String>arrayMercancias,int nivelSeguridad,int perdidas,int diasIda) {
+	public Flota(String nombre,int numeroBarcos,ArrayList<String>arrayMercancias,boolean seguridad,int diasIda) {
 		this.nombre=nombre;
 		this.numeroBarcos=numeroBarcos;
 		this.arrayMercancias=arrayMercancias;
-		this.nivelSeguridad=nivelSeguridad;
-		this.perdidas=perdidas;
+		this.Seguridad = seguridad;
 		this.diasIda=diasIda;
+		this.pesoMaximo=numeroBarcos*700000;
+		this.precio=calcularPrecio();
 	}
-
-
+	
+	protected double calcularPrecio() {
+		double precio;
+		if(this.Seguridad==true) {
+			precio=this.numeroBarcos*(100*(this.diasIda*100));
+			return precio;
+		}else {
+			precio=this.numeroBarcos*(50*(this.diasIda*100));
+			return precio;
+		}
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -45,20 +56,20 @@ public class Flota {
 		this.arrayMercancias = arrayMercancias;
 	}
 
-	public int getNivelSeguridad() {
-		return nivelSeguridad;
+	public boolean isSeguridad() {
+		return Seguridad;
 	}
 
-	public void setNivelSeguridad(int nivelSeguridad) {
-		this.nivelSeguridad = nivelSeguridad;
+	public void setSeguridad(boolean seguridad) {
+		Seguridad = seguridad;
 	}
 
-	public int getPerdidas() {
-		return perdidas;
+	public int getPesoMaximo() {
+		return pesoMaximo;
 	}
 
-	public void setPerdidas(int perdidas) {
-		this.perdidas = perdidas;
+	public void setPesoMaximo(int pesoMaximo) {
+		this.pesoMaximo = pesoMaximo;
 	}
 
 	public int getDiasIda() {
@@ -69,9 +80,19 @@ public class Flota {
 		this.diasIda = diasIda;
 	}
 
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
 	@Override
 	public String toString() {
 		return "Flota [nombre=" + nombre + ", numeroBarcos=" + numeroBarcos + ", arrayMercancias=" + arrayMercancias
-				+ ", nivelSeguridad=" + nivelSeguridad + ", perdidas=" + perdidas + ", diasIda=" + diasIda + "]";
+				+ ", Seguridad=" + Seguridad + ", pesoMaximo=" + pesoMaximo + ", diasIda=" + diasIda + ", precio="
+				+ precio + "]";
 	}
+
 }
