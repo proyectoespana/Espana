@@ -64,6 +64,10 @@ public class ReinoCompleto {
 		}
 	}
 	
+	public void verMercancias(Reinos zona) {
+		zona.verMercancias();
+	}
+	
 	public void verProduccionMensual(Reinos zona) {
 		
 		 zona.verProduccionMensual();

@@ -10,17 +10,10 @@ public class Main {
 	public static Alimentos maiz;
 	
 	public static void crearReinoCompleto() {
-		
+			
 	}
-	
-	public static void crearAlimentos(){
-		
-	}
-	
-	public static void crearAlimentos1(){
-		
-	}
-		public static void main(String[] args) throws Exception {
+
+	public static void main(String[] args) throws Exception {
 
 		HashMap<Integer,Flota> mercader = new HashMap<Integer, Flota>();
 

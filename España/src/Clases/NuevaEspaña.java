@@ -44,6 +44,7 @@ public class NuevaEspaña extends Virreinatos {
 	public Alimentos getRecoleccionMaiz() {
 		return recoleccionMaiz;
 	}
+	
 
 	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
 		Productos newProduct;
@@ -54,7 +55,7 @@ public class NuevaEspaña extends Virreinatos {
 				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
 
 				newProduct= new Alimentos(recoleccionMaiz);
-
+				
 				newProduct.setCantidad(cantidad);
 
 				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
