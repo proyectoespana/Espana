@@ -35,7 +35,20 @@ public class Mercancia {
     
     public void añadirProducto(Productos producto) {
     	this.arrayProductos.put(this.arrayProductos.size()+1, producto);
-    	this.setTotalkg(this.totalkg-producto.getCantidad());
+    	calcularPeso();
+    }
+    
+    public void calcularPeso() {
+    	Iterator iterator = this.arrayProductos.keySet().iterator();
+    	Productos producto;
+    	int pesoT=0;
+    	
+    	while(iterator.hasNext()) {
+    		producto=(Productos) iterator.next();
+    		
+    		pesoT=pesoT+producto.getCantidad();
+    	}
+    	this.setTotalkg(pesoT);
     }
  
     public String getNombre() {

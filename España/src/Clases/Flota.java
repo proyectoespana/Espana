@@ -1,5 +1,6 @@
 package Clases;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Flota {
 
@@ -9,16 +10,17 @@ public class Flota {
 	private boolean Seguridad;
 	private int pesoMaximo;
 	private int diasIda;
+	private int pesoTodasMercancias;
 	private double precio;
 
-	public Flota(String nombre,int numeroBarcos,ArrayList<String>arrayMercancias,boolean seguridad,int diasIda) {
+	public Flota(String nombre,int numeroBarcos,boolean seguridad,int diasIda,ArrayList<String>arrayMercancias) throws Exception {
 		this.nombre=nombre;
 		this.numeroBarcos=numeroBarcos;
-		this.arrayMercancias=arrayMercancias;
 		this.Seguridad = seguridad;
 		this.diasIda=diasIda;
 		this.pesoMaximo=numeroBarcos*700000;
 		this.precio=calcularPrecio();
+		añadirMercancia(arrayMercancias);
 	}
 	
 	protected double calcularPrecio() {
@@ -30,6 +32,32 @@ public class Flota {
 			precio=this.numeroBarcos*(50*(this.diasIda*100));
 			return precio;
 		}
+	}
+	
+	public void añadirMercancia(ArrayList<String>arrayMercancias) throws Exception {
+		if(calcularPesoMercancias()==true) {
+			this.arrayMercancias=arrayMercancias;
+		}
+	}
+	
+	public boolean calcularPesoMercancias() throws Exception {
+		Iterator iterador = this.arrayMercancias.iterator();
+		Mercancia mercancia;
+		int pesoTodasMercancias=0;
+		
+		while(iterador.hasNext()) {
+			mercancia=(Mercancia) iterador.next();
+			
+			pesoTodasMercancias=pesoTodasMercancias+mercancia.getTotalkg();
+		}
+		
+		if(pesoTodasMercancias<this.pesoMaximo) {
+			this.setPesoTodasMercancias(pesoTodasMercancias);
+			return true;
+		}else {
+			throw new Exception("Esta flota no esta capacitada para tanto peso");
+		}
+		
 	}
 
 	public String getNombre() {
@@ -80,6 +108,14 @@ public class Flota {
 		this.diasIda = diasIda;
 	}
 
+	public int getPesoTodasMercancias() {
+		return pesoTodasMercancias;
+	}
+
+	public void setPesoTodasMercancias(int pesoTodasMercancias) {
+		this.pesoTodasMercancias = pesoTodasMercancias;
+	}
+
 	public double getPrecio() {
 		return precio;
 	}
@@ -90,9 +126,8 @@ public class Flota {
 
 	@Override
 	public String toString() {
-		return "Flota [nombre=" + nombre + ", numeroBarcos=" + numeroBarcos + ", arrayMercancias=" + arrayMercancias
-				+ ", Seguridad=" + Seguridad + ", pesoMaximo=" + pesoMaximo + ", diasIda=" + diasIda + ", precio="
-				+ precio + "]";
+		return "Flota nombre "+this.nombre+" numero barcos"+this.numeroBarcos+" con un total de "+this.arrayMercancias.size();
 	}
+
 
 }
