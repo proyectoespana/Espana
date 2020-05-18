@@ -10,7 +10,18 @@ public class NuevaEspaña extends Virreinatos {
 	private MateriasPrimas recoleccionOro;
 	private Alimentos recoleccionCacao;
 	private Alimentos recoleccionTomate;
-
+	
+	/**
+	 * 
+	 * @param nombre         parametro donde se introduce el nombre del Reino
+	 * @param continente	parametro donde se introduce el continente al que pertenece	
+	 * @param poblacion		parametro donde se introduce el numero de poblacion de cada Reino
+	 * @param maiz			parametro  donde se introduce el tipo de Alimento que produce ese Reino
+	 * @param cacao			parametro  donde se introduce el tipo de Alimento que produce ese Reino
+	 * @param tomate		parametro  donde se introduce el tipo de Alimento que produce ese Reino
+	 * @param oro			parametro  donde se introduce el tipo de Alimento que produce ese Reino
+	 * @throws Exception	Excepcion se produce si en el metodo calcularProduccion se introduce un producto que no esta en la lista
+	 */
 	public NuevaEspaña(String nombre,String continente, int poblacion,Alimentos maiz,Alimentos cacao,Alimentos tomate,MateriasPrimas oro) throws Exception {
 		super(nombre,continente, poblacion, 4717,
 				7353, 9020, 4290, 0);
@@ -23,7 +34,7 @@ public class NuevaEspaña extends Virreinatos {
 		this.recoleccionTomate=tomate;
 		calcularProduccionMensual(tomate);
 
-		//meter los calualar produccion de los productos
+		
 	}
 
 	public NuevaEspaña(NuevaEspaña obj) {

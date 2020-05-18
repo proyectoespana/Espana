@@ -30,7 +30,7 @@ public abstract class Reinos extends Territorio{
 
 
 	/**
-	 * Metodo encargado de introduccir la cantidad de kg que produce una zona mensualmente
+	 * Metodo que se encarga de calcular la cantidad kg que se produce en un determinado lugar  dependiendo de su nombre
 	 * @param product
 	 * @throws Exception 
 	 */
@@ -44,6 +44,10 @@ public abstract class Reinos extends Territorio{
 
 		switch (product.getNombre()) {
 		case Patata: 
+			/**
+			 * La formula de los alimentos se basa en un numero de kg determinado que asumimos que una persona corriente consume de media al mes
+			 *  de un determinado producto * el numero de personas de su pais determinado + un numero aleatorio con el que se podrá comerciar con el resto de Países.
+			 */
 			product.setCantidad((4*this.poblacion)+random);
 			break;
 		case Tomate:

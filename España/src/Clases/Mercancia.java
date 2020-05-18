@@ -7,7 +7,7 @@ public class Mercancia {
 	private String nombre;
 	private Productos producto;
 	private int totalkg;
-
+	
 	public Mercancia(String nombre) {
 		this.nombre="Mercancia de "+nombre;
 		this.producto = null;

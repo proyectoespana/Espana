@@ -10,6 +10,7 @@ public class Flota {
 	private int destino;
 	private int pesoTodasMercancias;
 	private boolean disponible;
+	
 
 	public Flota(String nombre){
 		this.nombre=nombre;
@@ -21,7 +22,7 @@ public class Flota {
 	}
 
 	/**
-	 * Metodo encargado de meter el Array de mercancias dentro de flota
+	 * Metodo encargado de meter una mercancia determinada dentro de flota
 	 * @param arrayMercancias
 	 * @throws Exception
 	 */

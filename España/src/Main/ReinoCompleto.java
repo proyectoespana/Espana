@@ -12,6 +12,11 @@ import Clases.Plata;
 import Clases.Reinos;
 import Clases.Territorio;
 import Clases.Virreinatos;
+/**
+ * 
+ * @author Grupo
+ *
+ */
 
 public class ReinoCompleto {
 
@@ -23,6 +28,18 @@ public class ReinoCompleto {
 	private Aragon aragon;
 	private Borgoña borgoña;
 	private Austria austria;
+	
+	/**
+	 * 
+	 * @param nuevaEspaña se introduce el objeto de nueva España preciamente creado
+	 * @param nuevaGranda  se introduce el objeto de nueva Granada preciamente creado
+	 * @param peru se introduce el objeto de Peru preciamente creado
+	 * @param plata se introduce el objeto de Plata preciamente creado
+	 * @param castilla se introduce el objeto de Castilla preciamente creado
+	 * @param aragon se introduce el objeto de Aragon preciamente creado
+	 * @param borgoña se introduce el objeto de Borgoña preciamente creado
+	 * @param astria se introduce el objeto de Austria  preciamente creado
+	 */
 
 	public ReinoCompleto(NuevaEspaña nuevaEspaña,NuevaGranada nuevaGranda ,Peru peru,Plata plata,Castilla castilla,Aragon aragon,Borgoña borgoña,Austria astria) {
 		this.nuevaEspaña= nuevaEspaña;
@@ -47,7 +64,7 @@ public class ReinoCompleto {
 
 		if(reino.getFlota().isDisponible()) {
 			pesoDisponibleFlota=reino.getFlota().añadirMercancia(reino.getMercancia().get(idMercancia));
-			
+
 
 			return "La flota todavia puede transportar "+pesoDisponibleFlota;
 		}else {
@@ -127,7 +144,12 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
-
+	/**
+	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 
+	 * @param zona  se introduce el Reino en cuestion del que queremos saber sus distancias 
+	 * @return
+	 * @throws Exception
+	 */
 	public String verDistancias(Reinos zona) throws Exception {
 
 		if(zona instanceof Virreinatos) {
@@ -141,7 +163,7 @@ public class ReinoCompleto {
 			throw new Exception();
 		}
 	}
-	
+
 	public NuevaEspaña getNuevaEspaña() {
 		return nuevaEspaña;
 	}
