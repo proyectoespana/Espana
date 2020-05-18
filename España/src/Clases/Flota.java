@@ -1,63 +1,70 @@
 package Clases;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 public class Flota {
 
 	private String nombre;
-	private int numeroBarcos;
-	private ArrayList<String>arrayMercancias;
-	private boolean Seguridad;
+	private LinkedHashMap <Integer,Mercancia>arrayMercancias;
 	private int pesoMaximo;
-	private int diasIda;
+	private String destino;
 	private int pesoTodasMercancias;
-	private double precio;
 
-	public Flota(String nombre,int numeroBarcos,boolean seguridad,int diasIda,ArrayList<String>arrayMercancias) throws Exception {
+	public Flota(String nombre){
 		this.nombre=nombre;
-		this.numeroBarcos=numeroBarcos;
-		this.Seguridad = seguridad;
-		this.diasIda=diasIda;
-		this.pesoMaximo=numeroBarcos*700000;
-		this.precio=calcularPrecio();
-		añadirMercancia(arrayMercancias);
+		this.arrayMercancias= new LinkedHashMap<Integer, Mercancia>();
+		this.pesoMaximo=700000;
+		this.destino= null;
+		this.pesoTodasMercancias=0;
 	}
-	
-	protected double calcularPrecio() {
-		double precio;
-		if(this.Seguridad==true) {
-			precio=this.numeroBarcos*(100*(this.diasIda*100));
-			return precio;
-		}else {
-			precio=this.numeroBarcos*(50*(this.diasIda*100));
-			return precio;
+
+	/**
+	 * Metodo encargado de meter el Array de mercancias dentro de flota
+	 * @param arrayMercancias
+	 * @throws Exception
+	 */
+	public int añadirMercancia(Mercancia mercancia) throws Exception {
+		int pesoDisponible;
+
+		pesoDisponible=calcularPesoMercancias();
+		if(pesoDisponible>mercancia.getTotalkg()) {
+			this.arrayMercancias.put(this.arrayMercancias.size()+1, mercancia);
 		}
+		return pesoDisponible-mercancia.getTotalkg();
 	}
-	
-	public void añadirMercancia(ArrayList<String>arrayMercancias) throws Exception {
-		if(calcularPesoMercancias()==true) {
-			this.arrayMercancias=arrayMercancias;
-		}
-	}
-	
-	public boolean calcularPesoMercancias() throws Exception {
-		Iterator iterador = this.arrayMercancias.iterator();
-		Mercancia mercancia;
+
+	/**
+	 * Se encarga de recorrer todas las mercancias almacenas para comprobar la cantidad de peso disponible
+	 * @return
+	 * @throws Exception
+	 */
+	protected int calcularPesoMercancias() throws Exception {
+		Iterator iterador = this.arrayMercancias.keySet().iterator();
+		int idMercancias;
 		int pesoTodasMercancias=0;
-		
+
 		while(iterador.hasNext()) {
-			mercancia=(Mercancia) iterador.next();
-			
-			pesoTodasMercancias=pesoTodasMercancias+mercancia.getTotalkg();
+
+			idMercancias=(int) iterador.next();
+
+			pesoTodasMercancias=pesoTodasMercancias+this.arrayMercancias.get(idMercancias).getTotalkg();
+
 		}
-		
-		if(pesoTodasMercancias<this.pesoMaximo) {
-			this.setPesoTodasMercancias(pesoTodasMercancias);
-			return true;
-		}else {
-			throw new Exception("Esta flota no esta capacitada para tanto peso");
+		this.setPesoTodasMercancias(pesoTodasMercancias);
+
+		return this.pesoMaximo-pesoTodasMercancias;
+	}
+
+	public void verMercancias() {
+		Iterator iterador = this.arrayMercancias.keySet().iterator();
+		int idmerca;
+
+		while(iterador.hasNext()) {
+			idmerca=(int) iterador.next();
+
+			System.out.println(this.nombre+" almacena "+this.arrayMercancias.get(idmerca).toString());
+
 		}
-		
 	}
 
 	public String getNombre() {
@@ -68,28 +75,12 @@ public class Flota {
 		this.nombre = nombre;
 	}
 
-	public int getNumeroBarcos() {
-		return numeroBarcos;
-	}
-
-	public void setNumeroBarcos(int numeroBarcos) {
-		this.numeroBarcos = numeroBarcos;
-	}
-
-	public ArrayList<String> getArrayMercancias() {
+	public LinkedHashMap<Integer, Mercancia> getArrayMercancias() {
 		return arrayMercancias;
 	}
 
-	public void setArrayMercancias(ArrayList<String> arrayMercancias) {
+	public void setArrayMercancias(LinkedHashMap<Integer, Mercancia> arrayMercancias) {
 		this.arrayMercancias = arrayMercancias;
-	}
-
-	public boolean isSeguridad() {
-		return Seguridad;
-	}
-
-	public void setSeguridad(boolean seguridad) {
-		Seguridad = seguridad;
 	}
 
 	public int getPesoMaximo() {
@@ -100,12 +91,12 @@ public class Flota {
 		this.pesoMaximo = pesoMaximo;
 	}
 
-	public int getDiasIda() {
-		return diasIda;
+	public String getDestino() {
+		return destino;
 	}
 
-	public void setDiasIda(int diasIda) {
-		this.diasIda = diasIda;
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
 	public int getPesoTodasMercancias() {
@@ -116,17 +107,9 @@ public class Flota {
 		this.pesoTodasMercancias = pesoTodasMercancias;
 	}
 
-	public double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-
 	@Override
 	public String toString() {
-		return "Flota nombre "+this.nombre+" numero barcos"+this.numeroBarcos+" con un total de "+this.arrayMercancias.size();
+		return "Flota nombre "+this.nombre+" con un total de "+this.arrayMercancias.size();
 	}
 
 

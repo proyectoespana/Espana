@@ -1,5 +1,4 @@
 package Clases;
-import java.util.HashMap;
 
 public class Plata extends Virreinatos {
 
@@ -8,8 +7,8 @@ public class Plata extends Virreinatos {
 	private MateriasPrimas recoleccionCafe;
 	private Alimentos recoleccionPatata;
 
-	public Plata(String nombre,String continente,  HashMap<Integer,Flota> flota, int poblacion, double dinero,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe,Alimentos patata) throws Exception {
-		super(nombre,continente, flota, poblacion, dinero, 4190, 0, 10927, 4707, 7353);
+	public Plata(String nombre,String continente, int poblacion,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe,Alimentos patata) throws Exception {
+		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353);
 		this.recoleccionPlata = plata;
 		calcularProduccionMensual(plata);
 		this.recoleccionTabaco = tabaco;
@@ -27,69 +26,8 @@ public class Plata extends Virreinatos {
 		this.recoleccionCafe = plata.getRecoleccionCafe();
 		this.recoleccionPatata = plata.getRecoleccionPatata();
 	}
-	
-	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
-		Productos newProduct;
 
-		switch (producto) {
-		case Plata:
-			if(this.recoleccionPlata.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionPlata.setCantidad(this.recoleccionPlata.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionPlata);
-				
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Tabaco:
-			if(this.recoleccionTabaco.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionTabaco.setCantidad(this.recoleccionTabaco.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionTabaco);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Cafe:
-			if(this.recoleccionCafe.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionCafe.setCantidad(this.recoleccionCafe.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionCafe);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Patata:
-			if(this.recoleccionPatata.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionPatata.setCantidad(this.recoleccionPatata.getCantidad()-cantidad);
-
-				newProduct= new Alimentos(recoleccionPatata);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		default:
-			throw new IllegalArgumentException("Este reino no produce " + producto);
-		}
-	}
-
-	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
+	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
 
@@ -100,7 +38,7 @@ public class Plata extends Virreinatos {
 				this.recoleccionPlata.setCantidad(this.recoleccionPlata.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionPlata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Plata");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -113,7 +51,7 @@ public class Plata extends Virreinatos {
 				this.recoleccionTabaco.setCantidad(this.recoleccionTabaco.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionTabaco);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Tabaco");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -128,7 +66,7 @@ public class Plata extends Virreinatos {
 				this.recoleccionCafe.setCantidad(this.recoleccionCafe.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionCafe);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Cafe");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -142,7 +80,7 @@ public class Plata extends Virreinatos {
 				this.recoleccionPatata.setCantidad(this.recoleccionPatata.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionPatata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Patata");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {

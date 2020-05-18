@@ -1,5 +1,4 @@
 package Clases;
-import java.util.HashMap;
 
 public abstract class Virreinatos extends Reinos {
 	
@@ -9,8 +8,8 @@ public abstract class Virreinatos extends Reinos {
 	private int distanciaNuevaGranada;
 	private int distanciaNuevaEspaña;
 
-	public Virreinatos(String nombre, String continente,  HashMap<Integer,Flota> flota, int poblacion, double dinero,int peru,int plata,int castilla,int granada,int nuevaEspaña) {
-		super(nombre, continente, flota, poblacion, dinero);
+	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña) {
+		super(nombre, continente, poblacion);
 		this.distanciaPeru=peru;
 		this.distanciaPlata=plata;
 		this.distanciaCastilla=castilla;
@@ -32,6 +31,7 @@ public abstract class Virreinatos extends Reinos {
 		return "Distancias respecto : Castilla "+this.distanciaCastilla+" km / Nueva España : "+this.distanciaNuevaEspaña+" km / NuevaGranada : " +this.distanciaNuevaGranada+" km/  Peru :"+this.distanciaPeru+" km/ Plata : "+this.distanciaPlata+" km ";
 	}
 
+	//getSeter
 	public int getDistanciaPeru() {
 		return distanciaPeru;
 	}

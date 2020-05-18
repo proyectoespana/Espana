@@ -1,5 +1,4 @@
 package Clases;
-import java.util.HashMap;
 
 public class Borgoña extends Europa{
 
@@ -8,8 +7,8 @@ public class Borgoña extends Europa{
 
 
 
-        public Borgoña(String nombre,String continente, HashMap<Integer,Flota> flota,int poblacion,double dinero,String territorio,MateriasPrimas hierro,Alimentos arroz) throws Exception {
-            super(nombre,continente, flota, poblacion, dinero ,territorio, 1566, 1147, 0, 1776, 9210);
+        public Borgoña(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,Alimentos arroz) throws Exception {
+            super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210);
             this.recoleccionHierro=hierro;
             calcularProduccionMensual(hierro);
             this.recoleccionArroz=arroz;
@@ -21,43 +20,8 @@ public class Borgoña extends Europa{
             this.recoleccionArroz=a.getRecoleccionArroz();
             this.recoleccionHierro=a.getRecoleccionHierro();
         }
-        
-        public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
-    		Productos newProduct;
 
-    		switch (producto) {
-    		case Hierro:
-    			if(this.recoleccionHierro.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-    				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
-
-    				newProduct= new MateriasPrimas(recoleccionHierro);
-
-    				newProduct.setCantidad(cantidad);
-
-    				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-    			}else {
-    				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-    			}
-    			break;
-    		case Arroz:
-    			if(this.recoleccionArroz.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-    				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
-
-    				newProduct= new Alimentos(recoleccionArroz);
-
-    				newProduct.setCantidad(cantidad);
-
-    				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-    			}else {
-    				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-    			}
-    			break;
-    		default:
-    			throw new IllegalArgumentException("Este reino no produce " + producto);
-    		}
-    	}
-
-    	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
+    	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
     		Mercancia mercancia;
     		Productos newProduct;
 
@@ -68,7 +32,7 @@ public class Borgoña extends Europa{
     				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
     				newProduct= new MateriasPrimas(recoleccionHierro);
     				newProduct.setCantidad(cantidad);
-    				mercancia= new Mercancia(nombre, totalkg);
+    				mercancia= new Mercancia("Hierro");
     				mercancia.añadirProducto(newProduct);
     				this.getMercancia().put(this.getMercancia().size(), mercancia);	
     			}else {
@@ -81,7 +45,7 @@ public class Borgoña extends Europa{
     				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
     				newProduct= new Alimentos(recoleccionArroz);
     				newProduct.setCantidad(cantidad);
-    				mercancia= new Mercancia(nombre, totalkg);
+    				mercancia= new Mercancia("Arroz");
     				mercancia.añadirProducto(newProduct);
     				this.getMercancia().put(this.getMercancia().size(), mercancia);	
     			}else {

@@ -8,18 +8,15 @@ public abstract class Reinos extends Territorio{
 
 	private int poblacion;
 	private LinkedHashMap <Integer,Mercancia> importacionMercancia;
-	private LinkedHashMap <Integer,Mercancia> exportacionMercancia;
 	private LinkedHashMap <Integer,Mercancia> mercancia;
 	private double dineroTotal;
 	private boolean sublevaciones;
 
-	public Reinos(String nombre, String continente, HashMap<Integer,Flota>flota,int poblacion,double dinero) {
-		super(nombre, continente,flota);
+	public Reinos(String nombre, String continente,int poblacion) {
+		super(nombre, continente);
 		this.poblacion= poblacion;
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
-		this.exportacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
-		this.dineroTotal=dinero;
 		this.sublevaciones=false;
 	}
 
@@ -27,7 +24,6 @@ public abstract class Reinos extends Territorio{
 		super(obj);
 		this.poblacion=obj.getPoblacion();
 		this.importacionMercancia=obj.getImportacionMercancia();
-		this.exportacionMercancia=obj.getExportacionMercancia();
 		this.dineroTotal=obj.getDineroTotal();
 		this.sublevaciones=obj.isSublevaciones();
 	}
@@ -94,18 +90,6 @@ public abstract class Reinos extends Territorio{
 		}
 	}
 
-	/**
-	 * Metodo para ver las expotaciones de cada zona
-	 */
-	public void verMercanciasExportacion() {
-		Iterator iterador = this.exportacionMercancia.keySet().iterator();
-		int key;
-
-		while(iterador.hasNext()) {
-			key=(int) iterador.next();
-			System.out.println("Exportacion numero "+key+ " contenido "+this.exportacionMercancia.get(key));
-		}
-	}
 
 	/**
 	 * Metodo para ver las importaciones de cada zona
@@ -156,6 +140,11 @@ public abstract class Reinos extends Territorio{
 	
 	//getter
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	public int getPoblacion() {
 		return poblacion;
 	}
@@ -170,14 +159,6 @@ public abstract class Reinos extends Territorio{
 
 	public void setImportacionMercancia(LinkedHashMap<Integer, Mercancia> importacionMercancia) {
 		this.importacionMercancia = importacionMercancia;
-	}
-
-	public LinkedHashMap<Integer, Mercancia> getExportacionMercancia() {
-		return exportacionMercancia;
-	}
-
-	public void setExportacionMercancia(LinkedHashMap<Integer, Mercancia> exportacionMercancia) {
-		this.exportacionMercancia = exportacionMercancia;
 	}
 
 	public LinkedHashMap<Integer, Mercancia> getMercancia() {
@@ -202,11 +183,6 @@ public abstract class Reinos extends Territorio{
 
 	public void setSublevaciones(boolean sublevaciones) {
 		this.sublevaciones = sublevaciones;
-	}
-
-	@Override
-	public String toString() {
-		return super.toString();
 	}
 
 }

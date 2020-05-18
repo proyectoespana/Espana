@@ -1,5 +1,4 @@
 package Clases;
-import java.util.HashMap;
 
 public class Austria extends Europa {
 
@@ -9,8 +8,8 @@ public class Austria extends Europa {
 
 
 
-	public Austria(String nombre,String continente, HashMap<Integer,Flota> flota,int poblacion,double dinero,String territorio,MateriasPrimas hierro,MateriasPrimas algodon,Alimentos arroz) {
-		super(nombre,continente, flota, poblacion, dinero,territorio,1785, 0, 1147, 2382, 10145);
+	public Austria(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,MateriasPrimas algodon,Alimentos arroz) {
+		super(nombre,continente, poblacion,territorio,1785, 0, 1147, 2382, 10145);
 		this.recoleccionHierro=hierro;
 		this.recoleccionArroz=arroz;
 		this.recoleccionAlgodon=algodon;
@@ -21,55 +20,6 @@ public class Austria extends Europa {
 		this.recoleccionArroz=a.getRecoleccionArroz();
 		this.recoleccionHierro=a.getRecoleccionHierro();
 		this.recoleccionAlgodon=a.getRecoleccionAlgodon();
-	}
-
-
-	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
-		Productos newProduct;
-
-		switch (producto) {
-		case Hierro:
-			if(this.recoleccionHierro.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionHierro);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Arroz:
-			if(this.recoleccionArroz.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
-
-				newProduct= new Alimentos(recoleccionArroz);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Algodon:
-			if(this.recoleccionAlgodon.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionAlgodon.setCantidad(this.recoleccionAlgodon.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionAlgodon);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		default:
-			throw new IllegalArgumentException("Este reino no produce " + producto);
-		}
 	}
 
 	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
@@ -83,7 +33,7 @@ public class Austria extends Europa {
 				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionHierro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Hierro");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -96,7 +46,7 @@ public class Austria extends Europa {
 				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionArroz);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Arroz");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -111,7 +61,7 @@ public class Austria extends Europa {
 				this.recoleccionAlgodon.setCantidad(this.recoleccionAlgodon.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionAlgodon);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Algodon");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {

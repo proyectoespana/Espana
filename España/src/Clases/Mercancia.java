@@ -5,53 +5,51 @@ import java.util.TreeMap;
 public class Mercancia {
 
 	private String nombre;
-    private TreeMap<Integer,Productos>arrayProductos;
-    private int totalkg;
-    private boolean saqueo;
-    private  Territorio destino;
+	private Productos producto;
+	private int totalkg;
 
-    public Mercancia(String nombre,int totalkg) {
-        this.nombre=nombre;
-        this.arrayProductos= new TreeMap<Integer, Productos>();
-        this.totalkg=totalkg;
-        this.saqueo=false;
-        this.destino=null;
-    }
-    
-    public void verProductos() {
-    	Iterator iterador = this.arrayProductos.keySet().iterator();
-    	int id;
-    	
-    	while(iterador.hasNext()) {
-    		id=(int) iterador.next();
-    		
-    		System.out.println("Mercancia numero "+id+" con contenido "+this.arrayProductos.get(id).toString());
-    	}
-    }
-    
-    public void enviarDestino(Territorio destino) {
-    	
-    }
-    
-    public void añadirProducto(Productos producto) {
-    	this.arrayProductos.put(this.arrayProductos.size()+1, producto);
-    	calcularPeso();
-    }
-    
-    public void calcularPeso() {
-    	Iterator iterator = this.arrayProductos.keySet().iterator();
-    	Productos producto;
-    	int pesoT=0;
-    	
-    	while(iterator.hasNext()) {
-    		producto=(Productos) iterator.next();
-    		
-    		pesoT=pesoT+producto.getCantidad();
-    	}
-    	this.setTotalkg(pesoT);
-    }
- 
-    public String getNombre() {
+	public Mercancia(String nombre) {
+		this.nombre="Mercancia de "+nombre;
+		this.producto = null;
+		this.totalkg=0;
+	}
+
+//	public void verProductos() {
+//		Iterator iterador = this.arrayProductos.keySet().iterator();
+//		int id;
+//
+//		while(iterador.hasNext()) {
+//			id=(int) iterador.next();
+//
+//			System.out.println("Mercancia numero "+id+" con contenido "+this.arrayProductos.get(id).toString());
+//		}
+//	}
+
+	public void añadirProducto(Productos producto) {
+		this.producto= producto;
+		this.totalkg=producto.getCantidad();
+	}
+
+//	public void calcularPeso() {
+//		Iterator iterator = this.arrayProductos.keySet().iterator();
+//		Productos producto;
+//		int pesoT=0;
+//
+//		while(iterator.hasNext()) {
+//			producto=(Productos) iterator.next();
+//
+//			pesoT=pesoT+producto.getCantidad();
+//		}
+//		this.setTotalkg(pesoT);
+//	}
+
+
+	@Override
+	public String toString() {
+		return nombre+" con un contenido disponible de "+totalkg+" kg y un contenido de "+producto.getNombre();
+	}
+
+	public String getNombre() {
 		return nombre;
 	}
 
@@ -59,12 +57,12 @@ public class Mercancia {
 		this.nombre = nombre;
 	}
 
-	public TreeMap<Integer, Productos> getArrayProductos() {
-		return arrayProductos;
+	public Productos getProducto() {
+		return producto;
 	}
 
-	public void setArrayProductos(TreeMap<Integer, Productos> arrayProductos) {
-		this.arrayProductos = arrayProductos;
+	public void setProducto(Productos producto) {
+		this.producto = producto;
 	}
 
 	public int getTotalkg() {
@@ -75,25 +73,4 @@ public class Mercancia {
 		this.totalkg = totalkg;
 	}
 
-	public boolean isSaqueo() {
-		return saqueo;
-	}
-
-	public void setSaqueo(boolean saqueo) {
-		this.saqueo = saqueo;
-	}
-
-	public Territorio getDestino() {
-		return destino;
-	}
-
-	public void setDestino(Territorio destino) {
-		this.destino = destino;
-	}
-
-	@Override
-    public String toString() {
-        return "Merca nombre : "+nombre+" con un contenido disponible de "+totalkg+" kg y un contenido de "+arrayProductos.size()+" productos";
-    }
-	
 }

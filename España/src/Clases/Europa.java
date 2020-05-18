@@ -1,5 +1,4 @@
 package Clases;
-import java.util.HashMap;
 
 public abstract class Europa extends Reinos {
 	
@@ -11,9 +10,8 @@ public abstract class Europa extends Reinos {
 	private int distanciaCastilla;
 	private int distanciaNuevaEsapaña;
 	
-	public Europa(String nombre,String continente, HashMap<Integer,Flota> flota, int poblacion, double dinero,
-			String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña) {
-		super(nombre,continente, flota, poblacion,dinero);
+	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña) {
+		super(nombre,continente, poblacion);
 		this.territorio=territorio;
 		this.guerra=false;
 		this.distanciaAragon=aragon;

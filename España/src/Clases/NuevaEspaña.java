@@ -1,5 +1,5 @@
 package Clases;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class NuevaEspaña extends Virreinatos {
@@ -11,8 +11,8 @@ public class NuevaEspaña extends Virreinatos {
 	private Alimentos recoleccionCacao;
 	private Alimentos recoleccionTomate;
 
-	public NuevaEspaña(String nombre,String continente,  HashMap<Integer,Flota> flota, int poblacion, double dinero,Alimentos maiz,Alimentos cacao,Alimentos tomate,MateriasPrimas oro) throws Exception {
-		super(nombre,continente, flota, poblacion, dinero, 4717,
+	public NuevaEspaña(String nombre,String continente, int poblacion,Alimentos maiz,Alimentos cacao,Alimentos tomate,MateriasPrimas oro) throws Exception {
+		super(nombre,continente, poblacion, 4717,
 				7353, 9020, 4290, 0);
 		this.recoleccionMaiz=maiz;
 		calcularProduccionMensual(maiz);
@@ -40,74 +40,15 @@ public class NuevaEspaña extends Virreinatos {
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionMaiz.toString() + "/ Produccion de de : "+ this.recoleccionOro.toString() + "/ Produccion de de : "+this.recoleccionCacao.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString();
 	}
-
-	public Alimentos getRecoleccionMaiz() {
-		return recoleccionMaiz;
-	}
 	
-
-	public void crearMercancia(ProductoNombre producto,int cantidad,int idMercancia) throws Exception {
-		Productos newProduct;
-
-		switch (producto) {
-		case Maiz:
-			if(this.recoleccionMaiz.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
-
-				newProduct= new Alimentos(recoleccionMaiz);
-				
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Oro:
-			if(this.recoleccionOro.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
-
-				newProduct= new MateriasPrimas(recoleccionOro);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Cacao:
-			if(this.recoleccionCacao.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionCacao.setCantidad(this.recoleccionCacao.getCantidad()-cantidad);
-
-				newProduct= new Alimentos(recoleccionCacao);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		case Tomate:
-			if(this.recoleccionTomate.getCantidad()>cantidad && this.getMercancia().containsKey(idMercancia)) {
-				this.recoleccionTomate.setCantidad(this.recoleccionTomate.getCantidad()-cantidad);
-
-				newProduct= new Alimentos(recoleccionTomate);
-
-				newProduct.setCantidad(cantidad);
-
-				this.getMercancia().get(idMercancia).añadirProducto(newProduct);
-			}else {
-				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto+" o ninguna mercancia con ese id ");
-			}
-			break;
-		default:
-			throw new IllegalArgumentException("Este reino no produce " + producto);
-		}
-	}
-
-	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
+	
+	/**
+	 * El usuario procede a crear mercancias de los productos  recolectados
+	 * @param producto
+	 * @param cantidad
+	 * @throws Exception
+	 */
+	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
 
@@ -118,7 +59,7 @@ public class NuevaEspaña extends Virreinatos {
 				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionMaiz);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Maiz");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -131,7 +72,7 @@ public class NuevaEspaña extends Virreinatos {
 				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionOro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Oro");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -146,7 +87,7 @@ public class NuevaEspaña extends Virreinatos {
 				this.recoleccionCacao.setCantidad(this.recoleccionCacao.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionCacao);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Cacao");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -160,7 +101,7 @@ public class NuevaEspaña extends Virreinatos {
 				this.recoleccionTomate.setCantidad(this.recoleccionTomate.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionTomate);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia(nombre, totalkg);
+				mercancia= new Mercancia("Tomate");
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -171,6 +112,33 @@ public class NuevaEspaña extends Virreinatos {
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
 
+	}
+	
+
+	
+	/**
+	 * Con el id de la Mercancia,se procede a Transportar a un destino determinado
+	 * @param idMercancia
+	 * @param destino
+	 * @throws Exception 
+	 */
+	public String formarFlota(int idMercancia) throws Exception {
+		int pesoDisponibleFlota;
+		
+		pesoDisponibleFlota=this.getFlota().añadirMercancia(this.getMercancia().get(idMercancia));
+//		this.getMercancia().remove(idMercancia);
+		
+		return "La flota todavia puede transportar "+pesoDisponibleFlota;
+	}
+	
+	public void enviarFlota(String destino) {
+		
+	}
+	
+	//geterSeters
+	
+	public Alimentos getRecoleccionMaiz() {
+		return recoleccionMaiz;
 	}
 
 	public void verProduccion() {

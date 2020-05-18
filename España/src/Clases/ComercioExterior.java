@@ -1,13 +1,12 @@
 package Clases;
-import java.util.HashMap;
 
 public class ComercioExterior extends Territorio {
 	
 	private int relacionInternacional;
 	private int distancia;
 	
-	public ComercioExterior(String nombre,String continente, HashMap<Integer,Flota>flota, int relacion,int distancia) {
-		super(nombre,continente,flota);
+	public ComercioExterior(String nombre,String continente, Flota flota, int relacion,int distancia) {
+		super(nombre,continente);
 		this.relacionInternacional=relacion;
 		this.distancia=distancia;
 	}
