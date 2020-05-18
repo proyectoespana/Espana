@@ -10,6 +10,7 @@ import Clases.NuevaGranada;
 import Clases.Peru;
 import Clases.Plata;
 import Clases.Reinos;
+import Clases.Territorio;
 import Clases.Virreinatos;
 
 public class ReinoCompleto {
@@ -33,15 +34,92 @@ public class ReinoCompleto {
 		this.borgoña=borgoña;
 		this.austria=astria;
 	}
-	
+
+	/**
+	 * Metodo encargado de meter mercancias en una flota determinada
+	 * @param reino
+	 * @param idMercancia
+	 * @return
+	 * @throws Exception
+	 */
+	public String formarFlota(Reinos reino,int idMercancia) throws Exception {
+		int pesoDisponibleFlota;
+
+		if(reino.getFlota().isDisponible()) {
+			pesoDisponibleFlota=reino.getFlota().añadirMercancia(reino.getMercancia().get(idMercancia));
+			
+
+			return "La flota todavia puede transportar "+pesoDisponibleFlota;
+		}else {
+			throw new Exception("La flota no esta disponible ");
+		}
+	}
+
+	/**
+	 * Metodo encargado de enviar una flota con mercancias a una determinada zona
+	 * @param destino
+	 * @throws Exception 
+	 */
+	public void enviarFlota(Reinos reino ,String destino) throws Exception {
+
+		if(reino instanceof Virreinatos) {
+
+			if(reino.getFlota().isDisponible()) {
+
+				switch (destino.toUpperCase()) {
+				case "PERU":
+					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPeru());
+					break;
+				case "PLATA":
+					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPlata());
+					break;
+				case "CASTILLA":
+					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaCastilla());
+					break;
+				case "NUEVA GRANADA":
+					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaGranada());
+					break;
+				case "NUEVA ESPAÑA":
+					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaEspaña());
+					break;
+				default:
+					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
+				}
+			}
+
+		}else if(reino instanceof Europa) {
+
+			if(reino.getFlota().isDisponible()) {
+
+				switch (destino.toUpperCase()) {
+				case "ARAGON":
+					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAragon());
+					break;
+				case "AUSTRIA":
+					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAustria());
+					break;
+				case "BORGOÑA":
+					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaBorgoña());
+					break;
+				case "CASTILLA":
+					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaCastilla());
+					break;
+				case "NUEVA ESPAÑA":
+					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaNuevaEsapaña());
+					break;
+				default:
+					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
+				}
+			}
+
+		}
+	}
+
 	public void verImportaciones(Reinos zona) {
 		zona.verMercanciasImportacion();
 	}
-	
-	public void verExportaciones(Reinos zona) {
-		zona.verMercanciasExportacion();
-	}
-	
+
+
 	public double verDinero(Reinos zona) {
 		return zona.getDineroTotal();
 	}
@@ -49,28 +127,19 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
-	
+
 	public String verDistancias(Reinos zona) throws Exception {
-		
+
 		if(zona instanceof Virreinatos) {
 			return ((Virreinatos)zona).mostrarDistancias();
-			
+
 		}else if(zona instanceof Europa) {
-			
+
 			return ((Europa)zona).mostrarDistancias();
 		}else {
-			
+
 			throw new Exception();
 		}
-	}
-	
-	public void verMercancias(Reinos zona) {
-		zona.verMercancias();
-	}
-	
-	public void verProduccionMensual(Reinos zona) {
-		
-		 zona.verProduccionMensual();
 	}
 	
 	public NuevaEspaña getNuevaEspaña() {
@@ -79,6 +148,14 @@ public class ReinoCompleto {
 
 	public void setNuevaEspaña(NuevaEspaña nuevaEspaña) {
 		this.nuevaEspaña = nuevaEspaña;
+	}
+
+	public NuevaGranada getNuevaGranda() {
+		return nuevaGranda;
+	}
+
+	public void setNuevaGranda(NuevaGranada nuevaGranda) {
+		this.nuevaGranda = nuevaGranda;
 	}
 
 	public Peru getPeru() {
@@ -133,5 +210,5 @@ public class ReinoCompleto {
 	public String toString() {
 		return "ReinoCompleto =" + nuevaEspaña + " / " + peru + " / " + plata + " / "	+ castilla + " / " + aragon + " / " + borgoña + " / " + austria ;
 	}
-	
+
 }

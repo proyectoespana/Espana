@@ -118,11 +118,7 @@ public abstract class Reinos extends Territorio{
 		
 	}
 	
-	public void crearMercancia(ProductoNombre producto,int numero,int idMercancia)throws Exception {
-		
-	}
-	
-	public void crearMercancia(ProductoNombre producto,int numero,String nombre,int totalkg)throws Exception {
+	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		
 	}
 

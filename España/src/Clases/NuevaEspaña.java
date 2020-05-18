@@ -40,8 +40,8 @@ public class NuevaEspaña extends Virreinatos {
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionMaiz.toString() + "/ Produccion de de : "+ this.recoleccionOro.toString() + "/ Produccion de de : "+this.recoleccionCacao.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString();
 	}
-	
-	
+
+
 	/**
 	 * El usuario procede a crear mercancias de los productos  recolectados
 	 * @param producto
@@ -113,30 +113,63 @@ public class NuevaEspaña extends Virreinatos {
 		}
 
 	}
-	
 
-	
-	/**
-	 * Con el id de la Mercancia,se procede a Transportar a un destino determinado
-	 * @param idMercancia
-	 * @param destino
-	 * @throws Exception 
-	 */
-	public String formarFlota(int idMercancia) throws Exception {
-		int pesoDisponibleFlota;
-		
-		pesoDisponibleFlota=this.getFlota().añadirMercancia(this.getMercancia().get(idMercancia));
-//		this.getMercancia().remove(idMercancia);
-		
-		return "La flota todavia puede transportar "+pesoDisponibleFlota;
-	}
-	
-	public void enviarFlota(String destino) {
-		
-	}
-	
+
+
+//	/**
+//	 * Con el id de la Mercancia,se procede a Transportar a un destino determinado
+//	 * @param idMercancia
+//	 * @param destino
+//	 * @throws Exception 
+//	 */
+//	public String formarFlota(int idMercancia) throws Exception {
+//		int pesoDisponibleFlota;
+//
+//		if(this.getFlota().isDisponible()) {
+//
+//			pesoDisponibleFlota=this.getFlota().añadirMercancia(this.getMercancia().get(idMercancia));
+//			//			this.getMercancia().remove(idMercancia);
+//
+//			return "La flota todavia puede transportar "+pesoDisponibleFlota;
+//
+//		}else {
+//			throw new Exception("La flota no esta disponible ");
+//		}
+//	}
+//
+//	/**
+//	 * Metodo encargado de enviar una flota con mercancias a una determinada zona
+//	 * @param destino
+//	 * @throws Exception 
+//	 */
+//	public void enviarFlota(String destino) throws Exception {
+//		
+//		if(this.getFlota().isDisponible()) {
+//			
+//			switch (destino.toUpperCase()) {
+//			case "PERU":
+//				this.getFlota().enviarMercancias(this.getDistanciaPeru());
+//				break;
+//			case "PLATA":
+//				this.getFlota().enviarMercancias(this.getDistanciaPlata());
+//				break;
+//			case "CASTILLA":
+//				this.getFlota().enviarMercancias(this.getDistanciaCastilla());
+//				break;
+//			case "NUEVA GRANADA":
+//				this.getFlota().enviarMercancias(this.getDistanciaNuevaGranada());
+//				break;
+//			case "NUEVA ESPAÑA":
+//				this.getFlota().enviarMercancias(this.getDistanciaNuevaEspaña());
+//				break;
+//			default:
+//				throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+this.getNombre());
+//			}
+//		}
+//	}
+
 	//geterSeters
-	
+
 	public Alimentos getRecoleccionMaiz() {
 		return recoleccionMaiz;
 	}

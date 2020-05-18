@@ -7,15 +7,17 @@ public class Flota {
 	private String nombre;
 	private LinkedHashMap <Integer,Mercancia>arrayMercancias;
 	private int pesoMaximo;
-	private String destino;
+	private int destino;
 	private int pesoTodasMercancias;
+	private boolean disponible;
 
 	public Flota(String nombre){
 		this.nombre=nombre;
 		this.arrayMercancias= new LinkedHashMap<Integer, Mercancia>();
 		this.pesoMaximo=700000;
-		this.destino= null;
+		this.destino= 0;
 		this.pesoTodasMercancias=0;
+		this.disponible=true;
 	}
 
 	/**
@@ -30,7 +32,9 @@ public class Flota {
 		if(pesoDisponible>mercancia.getTotalkg()) {
 			this.arrayMercancias.put(this.arrayMercancias.size()+1, mercancia);
 		}
-		return pesoDisponible-mercancia.getTotalkg();
+		pesoDisponible=pesoDisponible-mercancia.getTotalkg();
+		this.setPesoTodasMercancias(pesoDisponible);
+		return pesoDisponible;
 	}
 
 	/**
@@ -66,7 +70,21 @@ public class Flota {
 
 		}
 	}
-
+	
+	/**
+	 * Metodo que se encarga de enviar la flota a una zona determinada
+	 * @param destino
+	 * @throws Exception 
+	 */
+	public void enviarMercancias(int km) throws Exception {
+		if(km>0) {
+			this.destino=km;
+			this.disponible=false;
+		}else {
+			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
+		}
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -91,11 +109,11 @@ public class Flota {
 		this.pesoMaximo = pesoMaximo;
 	}
 
-	public String getDestino() {
+	public int getDestino() {
 		return destino;
 	}
 
-	public void setDestino(String destino) {
+	public void setDestino(int destino) {
 		this.destino = destino;
 	}
 
@@ -107,10 +125,21 @@ public class Flota {
 		this.pesoTodasMercancias = pesoTodasMercancias;
 	}
 
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+	
+	public String datosAvanzados() {
+		return "Peso Maximo "+this.pesoMaximo+" Peso de todas las mercancias "+this.pesoTodasMercancias+" km de destino "+this.destino+" disponible "+this.disponible;
+	}
+
 	@Override
 	public String toString() {
 		return "Flota nombre "+this.nombre+" con un total de "+this.arrayMercancias.size();
 	}
-
 
 }
