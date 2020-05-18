@@ -7,6 +7,17 @@ public class NuevaGranada extends Virreinatos {
 	private MateriasPrimas recoleccionTabaco;
 	private MateriasPrimas recoleccionCafe;
 
+	 /**
+     * Constructor con 7 parametros
+     * @param nombre informa sobre el nombre
+     * @param continente Informa sobre el continente en el que se encuentra
+     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+     * @param oro
+     * @param plata
+     * @param tabaco
+     * @param cafe
+     * @throws Exception
+     */
 	public NuevaGranada(String nombre,String continente, int poblacion,MateriasPrimas oro,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe) throws Exception {
 		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288 );
 		this.recoleccionOro = oro;
@@ -19,6 +30,10 @@ public class NuevaGranada extends Virreinatos {
 		calcularProduccionMensual(cafe);
 	}
 
+	/**
+     * Contructor de copia
+     * @param nuevaGranada
+     */
 	public NuevaGranada(NuevaGranada nuevaGranada) {
 		super(nuevaGranada);
 		this.recoleccionOro = nuevaGranada.getRecoleccionOro();
@@ -27,6 +42,12 @@ public class NuevaGranada extends Virreinatos {
 		this.recoleccionCafe = nuevaGranada.getRecoleccionCafe();
 	}
 
+    /**
+     * Crean las mercancias 
+     * @param producto recogen un Objeto producto
+     * @param cantidad recoge la cantidad 
+     * @throws IllegalArgumentException que no se admite ese dato
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;

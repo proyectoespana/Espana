@@ -37,6 +37,10 @@ public class NuevaEspaña extends Virreinatos {
 		
 	}
 
+	/**
+     * Constructor de Copia
+     * @param obj
+     */
 	public NuevaEspaña(NuevaEspaña obj) {
 		super(obj);
 		this.recoleccionMaiz=obj.getRecoleccionMaiz();

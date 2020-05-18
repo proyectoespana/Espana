@@ -1,11 +1,25 @@
 package Clases;
 
+/**
+ * Clase hija de Europa
+ * @author Grupo
+ *
+ */
 public class Aragon extends Europa {
 	private Alimentos recoleccionTrigo;
 	private Alimentos recoleccionUvas;
 
 
-
+	/**
+     * Constructor donde se pasarán por parametros los atributos anteriores
+     * @param nombre Informa sobre el nombre
+     * @param continente Informa sobre el continente que se encuentra
+     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+     * @param territorio 
+     * @param trigo Se introduce el objeto determinado que es
+     * @param uvas Se introduce el objeto determinado que es
+     * @throws Exception
+     */
 	public Aragon(String nombre,String continente,int poblacion,String territorio,Alimentos trigo,Alimentos uvas) throws Exception {
 		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483);
 		this.recoleccionTrigo=trigo;
@@ -21,6 +35,11 @@ public class Aragon extends Europa {
 		this.recoleccionUvas=a.getRecoleccionUvas();
 	}
 
+    /**
+     * El usuario procede a crear mercancias de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
@@ -58,6 +77,10 @@ public class Aragon extends Europa {
 
 	}
 
+	/**
+     * Método que devuelve la produccion mensual obtenida de los productos
+     * @return
+     */
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() ;
 	}

@@ -1,5 +1,10 @@
 package Clases;
 
+/**
+ * Clase hija de Reinos
+ * @author Grupo
+ *
+ */
 public abstract class Europa extends Reinos {
 	
 	private String territorio;
@@ -10,6 +15,19 @@ public abstract class Europa extends Reinos {
 	private int distanciaCastilla;
 	private int distanciaNuevaEsapaña;
 	
+	
+	  /**
+     * Constructor donde se pasarán por parametros los atributos anteriores
+     * @param nombre Informa sobre el nombre
+     * @param continente Informa sobre el continente que se encuentra
+     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+     * @param territorio 
+     * @param aragon Se introduce la distancia de aragon
+     * @param austria Se introduce la distancia de austria
+     * @param borgoña Se introduce la distancia de borgoña
+     * @param castilla Se introduce la distancia de castilla
+     * @param nuevaEspaña Se introduce la distancia de nueva españa
+     */
 	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña) {
 		super(nombre,continente, poblacion);
 		this.territorio=territorio;
@@ -21,6 +39,10 @@ public abstract class Europa extends Reinos {
 		this.distanciaNuevaEsapaña=nuevaEspaña;
 	}
 	
+	/**
+     * Constructor de copia
+     * @param obj
+     */
 	public Europa(Europa obj) {
 		super(obj);
 		this.distanciaAragon=obj.getDistanciaAragon();
@@ -32,6 +54,10 @@ public abstract class Europa extends Reinos {
 		this.territorio=obj.getTerritorio();
 	}
 	
+	  /**
+     * Método que muestra las distancias entre unas zonas y otras
+     * @return devuelve la distancia de cada zona
+     */
 	public String mostrarDistancias() {
 		return "Distancias respecto : Aragon "+this.distanciaAragon +" km / Austria : "+this.distanciaAustria +" km / Borgoña : " +this.distanciaBorgoña +" km/  Castilla :"+this.distanciaCastilla +" km/ Nueva España : "+this.distanciaNuevaEsapaña +" km ";
 	}

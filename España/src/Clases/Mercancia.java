@@ -1,13 +1,32 @@
 package Clases;
 import java.util.Iterator;
 import java.util.TreeMap;
-
+/**
+ * 
+ * @author GRUPO
+ *Clase encargada de almacenar los productos en lotes de mercancias
+ */
 public class Mercancia {
-
+/**
+ * Mercancias necesarias a la hora de crear una mercancia
+ */
 	private String nombre;
+	/**
+	 * Nombre de dicha mercancia
+	 */
 	private Productos producto;
+	/**
+	 * Objeto Producto del  que se va almacenar
+	 */
 	private int totalkg;
+	/**
+	 * la cantidad total de peso que tiene dicha mercancia
+	 */
 	
+	/**
+	 * 
+	 * @param nombre parametro que marca el nombre de dicha mercancia
+	 */
 	public Mercancia(String nombre) {
 		this.nombre="Mercancia de "+nombre;
 		this.producto = null;

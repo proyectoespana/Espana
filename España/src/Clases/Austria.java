@@ -1,5 +1,10 @@
 package Clases;
 
+/**
+ * Clase hija de Europa
+ * @author Grupo
+ *
+ */
 public class Austria extends Europa {
 
 	private MateriasPrimas recoleccionHierro;
@@ -7,7 +12,16 @@ public class Austria extends Europa {
 	private MateriasPrimas recoleccionAlgodon;
 
 
-
+    /**
+     * 
+     * @param nombre Informa sobre el nombre
+     * @param continente Informa sobre el continente que se encuentra
+     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+     * @param territorio
+     * @param hierro Se introduce el objeto determinado que es
+     * @param algodon Se introduce el objeto determinado que es
+     * @param arroz Se introduce el objeto determinado que es
+     */
 	public Austria(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,MateriasPrimas algodon,Alimentos arroz) {
 		super(nombre,continente, poblacion,territorio,1785, 0, 1147, 2382, 10145);
 		this.recoleccionHierro=hierro;
@@ -22,6 +36,14 @@ public class Austria extends Europa {
 		this.recoleccionAlgodon=a.getRecoleccionAlgodon();
 	}
 
+	  /**
+     * El usuario procede a crear mercancias de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
+     * @param nombre nombre del producto
+     * @param totalkg peso total del producto
+     * @throws Exception
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad,String nombre,int totalkg)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
@@ -74,6 +96,10 @@ public class Austria extends Europa {
 
 	}
 	
+	/**
+     * Método que devuelve la produccion mensual obtenida de los productos
+     * @return
+     */
 	public String  verproduccionMensual() {
 		return "Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString() + "/ Produccion de de : "+this.recoleccionAlgodon.toString();
 	}

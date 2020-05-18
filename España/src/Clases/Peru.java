@@ -7,6 +7,18 @@ public class Peru extends Virreinatos {
 	private Alimentos recoleccionTomate;
 	private Alimentos recoleccionPatata;
 
+	//Constructores
+	/**
+	 * Constructor de 7 parametros
+	 * @param nombre Informa sobre el nombre
+	 * @param continente Informa sobre el continente en el que se encuentra
+	 * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+	 * @param oro Se introduce el objeto determinado que es
+	 * @param maiz Se introduce el objeto determinado que es
+	 * @param tomate Se introduce el objeto determinado que es
+	 * @param patata Se introduce el objeto determinado que es
+	 * @throws Exception no se introducen otros objetos distintos 
+	 */
 	public Peru(String nombre,String continente, int poblacion,MateriasPrimas oro,Alimentos maiz,Alimentos tomate,Alimentos patata) throws Exception {
 		super(nombre,continente, poblacion, 0, 4163, 9123, 1970, 4717);
 		this.recoleccionOro = oro;
@@ -18,7 +30,10 @@ public class Peru extends Virreinatos {
 		this.recoleccionPatata = patata;
 		calcularProduccionMensual(patata);
 	}
-
+	/**
+	 * Constructor de Copia
+	 * @param peru
+	 */
 	public Peru(Peru peru) {
 		super(peru);
 		this.recoleccionOro = peru.getRecoleccionOro();
@@ -27,6 +42,13 @@ public class Peru extends Virreinatos {
 		this.recoleccionPatata = peru.getRecoleccionPatata();
 	}
 
+	//Metodos Publicos
+    /**
+     * Crean las mercancias 
+     * @param producto recogen un Objeto producto
+     * @param cantidad recoge la cantidad 
+     * @throws IllegalArgumentException que no se admite ese dato
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
