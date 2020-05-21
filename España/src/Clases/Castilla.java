@@ -60,7 +60,8 @@ public class Castilla extends Europa {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Trigo",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -73,7 +74,8 @@ public class Castilla extends Europa {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Uvas",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -88,7 +90,8 @@ public class Castilla extends Europa {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Hierro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);	
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}

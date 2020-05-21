@@ -26,6 +26,7 @@ public class Prueba {
 		
 		System.out.println(lista2.toString());
 		
+		
 	}
 
 }

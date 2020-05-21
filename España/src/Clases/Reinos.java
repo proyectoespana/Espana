@@ -11,6 +11,8 @@ public abstract class Reinos extends Territorio{
 	private LinkedHashMap <Integer,Mercancia> mercancia;
 	private double dineroTotal;
 	private boolean sublevaciones;
+	private static int idMercancias;
+	private static int idImportaciones;
 
 	public Reinos(String nombre, String continente,int poblacion) {
 		super(nombre, continente);
@@ -18,6 +20,8 @@ public abstract class Reinos extends Territorio{
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.sublevaciones=false;
+		this.idMercancias=1;
+		this.idImportaciones=1;
 	}
 
 	public Reinos(Reinos obj) {
@@ -49,45 +53,59 @@ public abstract class Reinos extends Territorio{
 			 *  de un determinado producto * el numero de personas de su pais determinado + un numero aleatorio con el que se podrá comerciar con el resto de Países.
 			 */
 			product.setCantidad((4*this.poblacion)+random);
+			//El objetivo es meter los datos de la produccion integra en la base de datos
+			cosumoProductos(product);
 			break;
 		case Tomate:
 			product.setCantidad((2*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Cacao:
 			product.setCantidad((1*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Maiz:
 			product.setCantidad((6*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Trigo:
 			product.setCantidad((5*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Arroz:
 			product.setCantidad((3*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Uvas:
 			product.setCantidad((1*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Hierro:
 			random2=rnd.nextInt((200-10)+10)+200;
 			product.setCantidad(random2);
+			cosumoProductos(product);
 			break;
 		case Algodon:
 			product.setCantidad((1*this.poblacion)+random);
+			cosumoProductos(product);
 			break;		
 		case Oro:
 			random2=rnd.nextInt((50-10)+10)+50;
 			product.setCantidad(random2);
+			cosumoProductos(product);
 			break;
 		case Plata:
 			random2=rnd.nextInt((50-10)+10)+50;
 			product.setCantidad(random2);
+			cosumoProductos(product);
 			break;
 		case Tabaco:
 			product.setCantidad((1*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		case Cafe:
 			product.setCantidad((3*this.poblacion)+random);
+			cosumoProductos(product);
 			break;
 		default:
 			throw new Exception("No existe "+product.getNombre());
@@ -125,6 +143,26 @@ public abstract class Reinos extends Territorio{
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		
 	}
+	
+	public void llegadaImpotacion(Flota barcos) {
+		
+		this.importacionMercancia.putAll(barcos.getArrayMercancias());
+		
+		barcos.getArrayMercancias().clear();
+		
+	}
+	
+	private void cosumoProductos(Productos product) {
+		int newCantidad;
+		
+		if(product.getNombre()==ProductoNombre.Cafe || product.getNombre()==ProductoNombre.Tabaco) {
+			newCantidad=(int) (product.getCantidad()*0.25);
+			product.setCantidad(product.getCantidad()-newCantidad);
+		}else {
+			newCantidad=(int) (product.getCantidad()*0.60);
+			product.setCantidad(product.getCantidad()-newCantidad);
+		}
+	}
 
 	public void sublevaciones() {
 
@@ -132,14 +170,6 @@ public abstract class Reinos extends Territorio{
 
 	public void crearExportacion(Territorio pais) {
 
-	}
-
-	public void llegadaImpotacion(Flota barcos) {
-		
-		this.importacionMercancia.putAll(barcos.getArrayMercancias());
-		
-		barcos.getArrayMercancias().clear();
-		
 	}
 	
 	//getter
@@ -187,6 +217,22 @@ public abstract class Reinos extends Territorio{
 
 	public void setSublevaciones(boolean sublevaciones) {
 		this.sublevaciones = sublevaciones;
+	}
+
+	public static int getIdMercancias() {
+		return idMercancias;
+	}
+
+	public static void setIdMercancias(int idMercancias) {
+		Reinos.idMercancias = idMercancias;
+	}
+
+	public static int getIdImportaciones() {
+		return idImportaciones;
+	}
+
+	public static void setIdImportaciones(int idImportaciones) {
+		Reinos.idImportaciones = idImportaciones;
 	}
 
 }

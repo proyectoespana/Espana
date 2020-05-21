@@ -61,7 +61,8 @@ public class Plata extends Virreinatos {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Plata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -74,7 +75,8 @@ public class Plata extends Virreinatos {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Tabaco",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -89,7 +91,8 @@ public class Plata extends Virreinatos {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Cafe",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -103,7 +106,8 @@ public class Plata extends Virreinatos {
 				newProduct.setCantidad(cantidad);
 				mercancia= new Mercancia("Patata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
