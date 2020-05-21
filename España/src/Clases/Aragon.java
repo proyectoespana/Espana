@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 /**
  * Clase hija de Europa
  * @author Grupo
@@ -26,7 +28,7 @@ public class Aragon extends Europa {
 		calcularProduccionMensual(this.recoleccionTrigo);
 		this.recoleccionUvas= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
 		calcularProduccionMensual(this.recoleccionUvas);
-
+		this.calcularProductosDemandados();
 	}
 
 	public Aragon(Aragon a) {
@@ -76,7 +78,19 @@ public class Aragon extends Europa {
 		default:
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
-
+	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Uvas && productoNombre==ProductoNombre.Trigo);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
 	}
 
 	/**

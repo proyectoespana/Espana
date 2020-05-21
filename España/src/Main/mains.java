@@ -38,36 +38,36 @@ public class mains {
 		
 //		Prueba crearMercancia / flormar Flota de Nueva Granada
 
-		System.out.println(espana.getNuevaGranda().verproduccionMensual());
-
-		espana.getNuevaGranda().crearMercancia(ProductoNombre.Tabaco, 50);
-
-		espana.getNuevaGranda().crearMercancia(ProductoNombre.Oro, 10);
-
-		espana.getNuevaGranda().crearMercancia(ProductoNombre.Plata, 20);
-
-		espana.getNuevaGranda().verMercancias();
-
-		System.out.println(espana.getNuevaGranda().verproduccionMensual());
-
-		espana.formarFlota(nuevaGranada, 0);
-		espana.formarFlota(nuevaGranada, 1);
-		espana.formarFlota(nuevaGranada, 2);
-		
-		espana.getNuevaGranda().verMercancias();
-		//mercancia 0
-		espana.getNuevaGranda().getFlota().verMercancias();
-		//3 mercancias
-
-		espana.enviarFlota(nuevaGranada, peru);
-		
-		peru.verMercanciasImportacion();
-//		mercancia tabaco, oro ,plata
-
-		espana.getNuevaGranda().getFlota().verMercancias();
-		//nada
-
-		System.out.println(espana.getNuevaGranda().getFlota().datosAvanzados());
+//		System.out.println(espana.getNuevaGranda().verproduccionMensual());
+//
+//		espana.getNuevaGranda().crearMercancia(ProductoNombre.Tabaco, 50);
+//
+//		espana.getNuevaGranda().crearMercancia(ProductoNombre.Oro, 10);
+//
+//		espana.getNuevaGranda().crearMercancia(ProductoNombre.Plata, 20);
+//
+//		espana.getNuevaGranda().verMercancias();
+//
+//		System.out.println(espana.getNuevaGranda().verproduccionMensual());
+//
+//		espana.formarFlota(nuevaGranada, 0);
+//		espana.formarFlota(nuevaGranada, 1);
+//		espana.formarFlota(nuevaGranada, 2);
+//		
+//		espana.getNuevaGranda().verMercancias();
+//		//mercancia 0
+//		espana.getNuevaGranda().getFlota().verMercancias();
+//		//3 mercancias
+//
+//		espana.enviarFlota(nuevaGranada, peru);
+//		
+//		peru.verMercanciasImportacion();
+////		mercancia tabaco, oro ,plata
+//
+//		espana.getNuevaGranda().getFlota().verMercancias();
+//		//nada
+//
+//		System.out.println(espana.getNuevaGranda().getFlota().datosAvanzados());
 		//disponible false
 
 		//Prueba 2
@@ -90,13 +90,29 @@ public class mains {
 //		espana.formarFlota(plata, 1);
 //		espana.formarFlota(plata, 2);
 //
-//		espana.enviarFlota(plata, "peru");
+//		espana.enviarFlota(plata, peru);
 //
 //		espana.getPlata().getFlota().verMercancias();
 //
 //		System.out.println(espana.getPlata().getFlota().datosAvanzados());
 //		
 //		System.out.println(espana.getNuevaGranda().verproduccionMensual());
+		
+		espana.getNuevaEspaña().verProductosDemandados();
+		
+		espana.getNuevaGranda().verProductosDemandados();
+		
+		espana.getPeru().verProductosDemandados();
+		
+		espana.getPlata().verProductosDemandados();
+		
+		espana.getCastilla().verProductosDemandados();
+		
+		espana.getAragon().verProductosDemandados();
+		
+		espana.getBorgoña().verProductosDemandados();
+		
+		espana.getAustria().verProductosDemandados();
 	}
 
 }

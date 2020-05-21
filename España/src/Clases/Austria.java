@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 /**
  * Clase hija de Europa
  * @author Grupo
@@ -31,6 +33,7 @@ public class Austria extends Europa {
 		calcularProduccionMensual(recoleccionArroz);
 		this.recoleccionAlgodon= new MateriasPrimas(ProductoNombre.Algodon, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(recoleccionAlgodon);
+		this.calcularProductosDemandados();
 	}
 
 	public Austria(Austria a) {
@@ -101,6 +104,19 @@ public class Austria extends Europa {
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
 
+	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Arroz && productoNombre==ProductoNombre.Algodon && productoNombre==ProductoNombre.Uvas);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
 	}
 	
 	/**

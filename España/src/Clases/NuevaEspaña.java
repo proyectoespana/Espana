@@ -33,8 +33,7 @@ public class NuevaEspaña extends Virreinatos {
 		calcularProduccionMensual(this.recoleccionCacao);
 		this.recoleccionTomate=new  Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
 		calcularProduccionMensual(this.recoleccionTomate);
-
-		
+		this.calcularProductosDemandados();
 	}
 
 	/**
@@ -186,6 +185,19 @@ public class NuevaEspaña extends Virreinatos {
 //			}
 //		}
 //	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Maiz && productoNombre==ProductoNombre.Oro && productoNombre==ProductoNombre.Cacao && productoNombre==ProductoNombre.Tomate);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
+	}
 
 	//geterSeters
 

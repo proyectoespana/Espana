@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 public class Peru extends Virreinatos {
 
 	private MateriasPrimas recoleccionOro;
@@ -29,6 +31,7 @@ public class Peru extends Virreinatos {
 		calcularProduccionMensual(this.recoleccionTomate);
 		this.recoleccionPatata =new Alimentos(ProductoNombre.Patata, 0, 0, 0, 0, "tubérculo", 0);
 		calcularProduccionMensual(this.recoleccionPatata);
+		this.calcularProductosDemandados();
 	}
 	/**
 	 * Constructor de Copia
@@ -117,6 +120,19 @@ public class Peru extends Virreinatos {
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
 
+	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Oro && productoNombre==ProductoNombre.Maiz && productoNombre==ProductoNombre.Tomate && productoNombre==ProductoNombre.Patata);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
 	}
 
 	public String  verproduccionMensual() {

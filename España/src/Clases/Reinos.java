@@ -13,12 +13,14 @@ public abstract class Reinos extends Territorio{
 	private boolean sublevaciones;
 	private static int idMercancias;
 	private static int idImportaciones;
+	private ProductoNombre [] productosDemandados;
 
 	public Reinos(String nombre, String continente,int poblacion) {
 		super(nombre, continente);
 		this.poblacion= poblacion;
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
+		this.productosDemandados=new ProductoNombre[(int)(Math.random()*3+0)];
 		this.sublevaciones=false;
 		this.idMercancias=1;
 		this.idImportaciones=1;
@@ -172,12 +174,20 @@ public abstract class Reinos extends Territorio{
 
 	}
 	
-	//getter
-
-	@Override
-	public String toString() {
-		return super.toString();
+	private void calcularProductosDemandados() {
+	
 	}
+	
+	/**
+	 * Metodo encargado de recorrer la lista de ProductosDemandamos y mostrar los mismo de cada Region
+	 */
+	public void verProductosDemandados() {
+		for(int i=0;i<this.productosDemandados.length;i++) {
+			System.out.println(this.productosDemandados[i]);
+		}
+	}
+	
+	//getter
 
 	public int getPoblacion() {
 		return poblacion;
@@ -235,4 +245,12 @@ public abstract class Reinos extends Territorio{
 		Reinos.idImportaciones = idImportaciones;
 	}
 
+	public ProductoNombre[] getProductosDemandados() {
+		return productosDemandados;
+	}
+
+	public void setProductosDemandados(ProductoNombre[] productosDemandados) {
+		this.productosDemandados = productosDemandados;
+	}
+	
 }

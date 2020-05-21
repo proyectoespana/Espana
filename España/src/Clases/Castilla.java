@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 /**
  * Clase hija de Europa
  * @author Grupo
@@ -30,6 +32,7 @@ public class Castilla extends Europa {
 		calcularProduccionMensual(this.recoleccionUvas);
 		this.recoleccionHierro=new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionHierro);
+		this.calcularProductosDemandados();
 	}
 
 	public Castilla(Castilla obj) {
@@ -100,6 +103,19 @@ public class Castilla extends Europa {
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
 
+	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Trigo && productoNombre==ProductoNombre.Uvas && productoNombre==ProductoNombre.Hierro);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 /**
  * Clase hija de Europa
  * @author Grupo
@@ -27,6 +29,7 @@ public class Borgoña extends Europa{
             calcularProduccionMensual(this.recoleccionHierro);
             this.recoleccionArroz= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "gramíneas", 0);
             calcularProduccionMensual(this.recoleccionArroz);
+            this.calcularProductosDemandados();
         }
 
         public Borgoña(Borgoña a) {
@@ -77,6 +80,19 @@ public class Borgoña extends Europa{
     			throw new IllegalArgumentException("Este reino no produce " + producto);
     		}
 
+    	}
+    	
+    	private void calcularProductosDemandados() {
+    		int valor;
+    		ProductoNombre productoNombre;
+    		
+    		for(int i=0;i<this.getProductosDemandados().length;i++) {
+    			do {
+    				valor = new Random().nextInt(ProductoNombre.values().length);
+    				productoNombre=ProductoNombre.values()[valor];
+    			}while(productoNombre==ProductoNombre.Hierro && productoNombre==ProductoNombre.Arroz);			
+    			this.getProductosDemandados()[i]=productoNombre;
+    		}	
     	}
                
     	/**
