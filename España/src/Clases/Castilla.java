@@ -24,11 +24,11 @@ public class Castilla extends Europa {
      */
 	public Castilla(String nombre,String continente, int poblacion,String territorio,Alimentos trigo,Alimentos uva,MateriasPrimas hierro) throws Exception {
 		super(nombre,continente, poblacion,territorio, 621,	2375, 1784, 0, 9020);
-		this.recoleccionTrigo=trigo;
+		this.recoleccionTrigo=new Alimentos(trigo);
 		calcularProduccionMensual(trigo);
-		this.recoleccionUvas=uva;
+		this.recoleccionUvas=new Alimentos(uva);
 		calcularProduccionMensual(uva);
-		this.recoleccionHierro=hierro;
+		this.recoleccionHierro=new MateriasPrimas(hierro);
 		calcularProduccionMensual(hierro);
 	}
 
@@ -104,7 +104,7 @@ public class Castilla extends Europa {
      * @return
      */
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() + "/ Produccion de de : "+this.recoleccionHierro.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() + "/ Produccion de de : "+this.recoleccionHierro.toString();
 	}
 
 	public Alimentos getRecoleccionTrigo() {

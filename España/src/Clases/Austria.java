@@ -24,9 +24,9 @@ public class Austria extends Europa {
      */
 	public Austria(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,MateriasPrimas algodon,Alimentos arroz) {
 		super(nombre,continente, poblacion,territorio,1785, 0, 1147, 2382, 10145);
-		this.recoleccionHierro=hierro;
-		this.recoleccionArroz=arroz;
-		this.recoleccionAlgodon=algodon;
+		this.recoleccionHierro=new MateriasPrimas(hierro);
+		this.recoleccionArroz=new Alimentos(arroz);
+		this.recoleccionAlgodon=new MateriasPrimas(algodon);
 	}
 
 	public Austria(Austria a) {
@@ -101,7 +101,7 @@ public class Austria extends Europa {
      * @return
      */
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString() + "/ Produccion de de : "+this.recoleccionAlgodon.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString() + "/ Produccion de de : "+this.recoleccionAlgodon.toString();
 	}
 
 	public MateriasPrimas getRecoleccionAlgodon() {

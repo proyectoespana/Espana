@@ -20,13 +20,13 @@ public class Plata extends Virreinatos {
      */
 	public Plata(String nombre,String continente, int poblacion,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe,Alimentos patata) throws Exception {
 		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353);
-		this.recoleccionPlata = plata;
+		this.recoleccionPlata = new MateriasPrimas(plata);
 		calcularProduccionMensual(plata);
-		this.recoleccionTabaco = tabaco;
+		this.recoleccionTabaco = new MateriasPrimas(tabaco);
 		calcularProduccionMensual(tabaco);
-		this.recoleccionCafe = cafe;
+		this.recoleccionCafe = new MateriasPrimas(cafe);
 		calcularProduccionMensual(cafe);
-		this.recoleccionPatata = patata;
+		this.recoleccionPatata = new Alimentos(patata);
 		calcularProduccionMensual(patata);
 	}
 
@@ -115,7 +115,7 @@ public class Plata extends Virreinatos {
 	}
 
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionPlata.toString() + "/ Produccion de de : "+ this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionPlata.toString() + "/ Produccion de de : "+ this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
 	}
 
 	public MateriasPrimas getRecoleccionPlata() {

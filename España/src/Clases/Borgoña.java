@@ -23,9 +23,9 @@ public class Borgoña extends Europa{
          */
         public Borgoña(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,Alimentos arroz) throws Exception {
             super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210);
-            this.recoleccionHierro=hierro;
+            this.recoleccionHierro=new MateriasPrimas(hierro);
             calcularProduccionMensual(hierro);
-            this.recoleccionArroz=arroz;
+            this.recoleccionArroz=new Alimentos(arroz);
             calcularProduccionMensual(arroz);
         }
 
@@ -82,7 +82,7 @@ public class Borgoña extends Europa{
          * @return
          */
     	public String  verproduccionMensual() {
-    		return "Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString();
+    		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString();
     	}
 
         public MateriasPrimas getRecoleccionHierro() {

@@ -118,8 +118,8 @@ public abstract class Reinos extends Territorio{
 		}
 	}
 	
-	public void verProduccionMensual() {
-		
+	public String verproduccionMensual() {
+		return this.getNombre();	
 	}
 	
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {

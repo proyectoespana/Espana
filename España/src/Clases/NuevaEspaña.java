@@ -25,13 +25,13 @@ public class NuevaEspaña extends Virreinatos {
 	public NuevaEspaña(String nombre,String continente, int poblacion,Alimentos maiz,Alimentos cacao,Alimentos tomate,MateriasPrimas oro) throws Exception {
 		super(nombre,continente, poblacion, 4717,
 				7353, 9020, 4290, 0);
-		this.recoleccionMaiz=maiz;
+		this.recoleccionMaiz= new Alimentos(maiz);
 		calcularProduccionMensual(maiz);
-		this.recoleccionOro=oro;
+		this.recoleccionOro=new MateriasPrimas(oro);
 		calcularProduccionMensual(oro);
-		this.recoleccionCacao=cacao;
+		this.recoleccionCacao=new Alimentos(cacao);
 		calcularProduccionMensual(cacao);
-		this.recoleccionTomate=tomate;
+		this.recoleccionTomate=new Alimentos(tomate);
 		calcularProduccionMensual(tomate);
 
 		
@@ -53,7 +53,7 @@ public class NuevaEspaña extends Virreinatos {
 	 * Mustra el nombre del producto y la cantidad del mismo
 	 */
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionMaiz.toString() + "/ Produccion de de : "+ this.recoleccionOro.toString() + "/ Produccion de de : "+this.recoleccionCacao.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionMaiz.toString() + "/ Produccion de de : "+ this.recoleccionOro.toString() + "/ Produccion de de : "+this.recoleccionCacao.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString();
 	}
 
 

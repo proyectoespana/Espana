@@ -164,7 +164,7 @@ public class Flota {
 	}
 
 	public String datosAvanzados() {
-		return "Peso Maximo "+this.pesoMaximo+" Peso de todas las mercancias "+this.pesoTodasMercancias+" km de destino "+this.destino+" disponible "+this.disponible;
+		return "Peso Maximo "+this.pesoMaximo+" Peso de todas las mercancias "+this.pesoTodasMercancias+" kg, ditancia destino "+this.destino+" km disponible "+this.disponible;
 	}
 
 	@Override

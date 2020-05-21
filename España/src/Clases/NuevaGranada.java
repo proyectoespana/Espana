@@ -20,13 +20,13 @@ public class NuevaGranada extends Virreinatos {
      */
 	public NuevaGranada(String nombre,String continente, int poblacion,MateriasPrimas oro,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe) throws Exception {
 		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288 );
-		this.recoleccionOro = oro;
+		this.recoleccionOro = new MateriasPrimas(oro);
 		calcularProduccionMensual(oro);
-		this.recoleccionPlata = plata;
+		this.recoleccionPlata = new MateriasPrimas(plata);
 		calcularProduccionMensual(plata);
-		this.recoleccionTabaco = tabaco;
+		this.recoleccionTabaco =new MateriasPrimas(tabaco);
 		calcularProduccionMensual(tabaco);
-		this.recoleccionCafe = cafe;
+		this.recoleccionCafe = new MateriasPrimas(cafe);
 		calcularProduccionMensual(cafe);
 	}
 
@@ -115,7 +115,7 @@ public class NuevaGranada extends Virreinatos {
 	}
 
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionOro.toString() + "/ Produccion de de : "+ this.recoleccionPlata.toString() + "/ Produccion de de : "+this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionOro.toString() + "/ Produccion de de : "+ this.recoleccionPlata.toString() + "/ Produccion de de : "+this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString();
 	}
 
 	public MateriasPrimas getRecoleccionOro() {

@@ -144,6 +144,7 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
+	
 	/**
 	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 
 	 * @param zona  se introduce el Reino en cuestion del que queremos saber sus distancias 

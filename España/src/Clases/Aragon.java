@@ -22,9 +22,9 @@ public class Aragon extends Europa {
      */
 	public Aragon(String nombre,String continente,int poblacion,String territorio,Alimentos trigo,Alimentos uvas) throws Exception {
 		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483);
-		this.recoleccionTrigo=trigo;
+		this.recoleccionTrigo=new Alimentos(trigo);
 		calcularProduccionMensual(trigo);
-		this.recoleccionUvas=uvas;
+		this.recoleccionUvas=new Alimentos(uvas);
 		calcularProduccionMensual(uvas);
 
 	}
@@ -82,7 +82,7 @@ public class Aragon extends Europa {
      * @return
      */
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() ;
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() ;
 	}
 
 	public Alimentos getRecoleccionTrigo() {

@@ -21,13 +21,13 @@ public class Peru extends Virreinatos {
 	 */
 	public Peru(String nombre,String continente, int poblacion,MateriasPrimas oro,Alimentos maiz,Alimentos tomate,Alimentos patata) throws Exception {
 		super(nombre,continente, poblacion, 0, 4163, 9123, 1970, 4717);
-		this.recoleccionOro = oro;
+		this.recoleccionOro = new MateriasPrimas(oro);
 		calcularProduccionMensual(oro);
-		this.recoleccionMaiz = maiz;
+		this.recoleccionMaiz = new Alimentos(maiz);
 		calcularProduccionMensual(maiz);
-		this.recoleccionTomate = tomate;
+		this.recoleccionTomate = new Alimentos(tomate);
 		calcularProduccionMensual(tomate);
-		this.recoleccionPatata = patata;
+		this.recoleccionPatata = new Alimentos(patata);
 		calcularProduccionMensual(patata);
 	}
 	/**
@@ -116,7 +116,7 @@ public class Peru extends Virreinatos {
 	}
 
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionOro.toString() + "/ Produccion de de : "+ this.recoleccionMaiz.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionOro.toString() + "/ Produccion de de : "+ this.recoleccionMaiz.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
 	}
 
 	public MateriasPrimas getRecoleccionOro() {
