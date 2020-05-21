@@ -18,16 +18,16 @@ public class Plata extends Virreinatos {
      * @param patata Se introduce el objeto determinado que es
      * @throws Exception
      */
-	public Plata(String nombre,String continente, int poblacion,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe,Alimentos patata) throws Exception {
+	public Plata(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353);
-		this.recoleccionPlata = new MateriasPrimas(plata);
-		calcularProduccionMensual(plata);
-		this.recoleccionTabaco = new MateriasPrimas(tabaco);
-		calcularProduccionMensual(tabaco);
-		this.recoleccionCafe = new MateriasPrimas(cafe);
-		calcularProduccionMensual(cafe);
-		this.recoleccionPatata = new Alimentos(patata);
-		calcularProduccionMensual(patata);
+		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionPlata);
+		this.recoleccionTabaco = new MateriasPrimas(ProductoNombre.Tabaco, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionTabaco);
+		this.recoleccionCafe = new MateriasPrimas(ProductoNombre.Cafe, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionCafe);
+		this.recoleccionPatata =new Alimentos(ProductoNombre.Patata, 0, 0, 0, 0, "tubérculo", 0);
+		calcularProduccionMensual(this.recoleccionPatata);
 	}
 
 	/**

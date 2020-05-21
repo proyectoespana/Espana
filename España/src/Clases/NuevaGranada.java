@@ -18,16 +18,16 @@ public class NuevaGranada extends Virreinatos {
      * @param cafe
      * @throws Exception
      */
-	public NuevaGranada(String nombre,String continente, int poblacion,MateriasPrimas oro,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe) throws Exception {
+	public NuevaGranada(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288 );
-		this.recoleccionOro = new MateriasPrimas(oro);
-		calcularProduccionMensual(oro);
-		this.recoleccionPlata = new MateriasPrimas(plata);
-		calcularProduccionMensual(plata);
-		this.recoleccionTabaco =new MateriasPrimas(tabaco);
-		calcularProduccionMensual(tabaco);
-		this.recoleccionCafe = new MateriasPrimas(cafe);
-		calcularProduccionMensual(cafe);
+		this.recoleccionOro = new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionOro);
+		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionPlata);
+		this.recoleccionTabaco =new MateriasPrimas(ProductoNombre.Tabaco, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionTabaco);
+		this.recoleccionCafe = new MateriasPrimas(ProductoNombre.Cafe, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionCafe);
 	}
 
 	/**

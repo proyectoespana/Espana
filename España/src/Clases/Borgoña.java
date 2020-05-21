@@ -21,12 +21,12 @@ public class Borgoña extends Europa{
          * @param arroz Se introduce el objeto determinado que es
          * @throws Exception
          */
-        public Borgoña(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,Alimentos arroz) throws Exception {
+        public Borgoña(String nombre,String continente,int poblacion,String territorio) throws Exception {
             super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210);
-            this.recoleccionHierro=new MateriasPrimas(hierro);
-            calcularProduccionMensual(hierro);
-            this.recoleccionArroz=new Alimentos(arroz);
-            calcularProduccionMensual(arroz);
+            this.recoleccionHierro= new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
+            calcularProduccionMensual(this.recoleccionHierro);
+            this.recoleccionArroz= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "gramíneas", 0);
+            calcularProduccionMensual(this.recoleccionArroz);
         }
 
         public Borgoña(Borgoña a) {

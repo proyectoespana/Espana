@@ -20,12 +20,12 @@ public class Aragon extends Europa {
      * @param uvas Se introduce el objeto determinado que es
      * @throws Exception
      */
-	public Aragon(String nombre,String continente,int poblacion,String territorio,Alimentos trigo,Alimentos uvas) throws Exception {
+	public Aragon(String nombre,String continente,int poblacion,String territorio) throws Exception {
 		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483);
-		this.recoleccionTrigo=new Alimentos(trigo);
-		calcularProduccionMensual(trigo);
-		this.recoleccionUvas=new Alimentos(uvas);
-		calcularProduccionMensual(uvas);
+		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "cereal", 0);
+		calcularProduccionMensual(this.recoleccionTrigo);
+		this.recoleccionUvas= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
+		calcularProduccionMensual(this.recoleccionUvas);
 
 	}
 

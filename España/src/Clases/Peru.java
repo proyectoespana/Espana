@@ -19,16 +19,16 @@ public class Peru extends Virreinatos {
 	 * @param patata Se introduce el objeto determinado que es
 	 * @throws Exception no se introducen otros objetos distintos 
 	 */
-	public Peru(String nombre,String continente, int poblacion,MateriasPrimas oro,Alimentos maiz,Alimentos tomate,Alimentos patata) throws Exception {
+	public Peru(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 0, 4163, 9123, 1970, 4717);
-		this.recoleccionOro = new MateriasPrimas(oro);
-		calcularProduccionMensual(oro);
-		this.recoleccionMaiz = new Alimentos(maiz);
-		calcularProduccionMensual(maiz);
-		this.recoleccionTomate = new Alimentos(tomate);
-		calcularProduccionMensual(tomate);
-		this.recoleccionPatata = new Alimentos(patata);
-		calcularProduccionMensual(patata);
+		this.recoleccionOro = new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionOro);
+		this.recoleccionMaiz = new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "Gramínea ", 0);
+		calcularProduccionMensual(this.recoleccionMaiz);
+		this.recoleccionTomate = new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
+		calcularProduccionMensual(this.recoleccionTomate);
+		this.recoleccionPatata =new Alimentos(ProductoNombre.Patata, 0, 0, 0, 0, "tubérculo", 0);
+		calcularProduccionMensual(this.recoleccionPatata);
 	}
 	/**
 	 * Constructor de Copia

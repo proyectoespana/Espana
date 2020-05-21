@@ -21,12 +21,16 @@ public class Austria extends Europa {
      * @param hierro Se introduce el objeto determinado que es
      * @param algodon Se introduce el objeto determinado que es
      * @param arroz Se introduce el objeto determinado que es
+     * @throws Exception 
      */
-	public Austria(String nombre,String continente,int poblacion,String territorio,MateriasPrimas hierro,MateriasPrimas algodon,Alimentos arroz) {
+	public Austria(String nombre,String continente,int poblacion,String territorio) throws Exception {
 		super(nombre,continente, poblacion,territorio,1785, 0, 1147, 2382, 10145);
-		this.recoleccionHierro=new MateriasPrimas(hierro);
-		this.recoleccionArroz=new Alimentos(arroz);
-		this.recoleccionAlgodon=new MateriasPrimas(algodon);
+		this.recoleccionHierro=new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionHierro);
+		this.recoleccionArroz= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "gramíneas", 0);
+		calcularProduccionMensual(recoleccionArroz);
+		this.recoleccionAlgodon= new MateriasPrimas(ProductoNombre.Algodon, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(recoleccionAlgodon);
 	}
 
 	public Austria(Austria a) {

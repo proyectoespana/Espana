@@ -22,14 +22,14 @@ public class Castilla extends Europa {
      * @param hierro Se introduce el objeto determinado que es
      * @throws Exception 
      */
-	public Castilla(String nombre,String continente, int poblacion,String territorio,Alimentos trigo,Alimentos uva,MateriasPrimas hierro) throws Exception {
+	public Castilla(String nombre,String continente, int poblacion,String territorio) throws Exception {
 		super(nombre,continente, poblacion,territorio, 621,	2375, 1784, 0, 9020);
-		this.recoleccionTrigo=new Alimentos(trigo);
-		calcularProduccionMensual(trigo);
-		this.recoleccionUvas=new Alimentos(uva);
-		calcularProduccionMensual(uva);
-		this.recoleccionHierro=new MateriasPrimas(hierro);
-		calcularProduccionMensual(hierro);
+		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "cereal", 0);
+		calcularProduccionMensual(this.recoleccionTrigo);
+		this.recoleccionUvas= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
+		calcularProduccionMensual(this.recoleccionUvas);
+		this.recoleccionHierro=new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionHierro);
 	}
 
 	public Castilla(Castilla obj) {
