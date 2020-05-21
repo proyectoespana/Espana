@@ -104,7 +104,7 @@ public abstract class Reinos extends Territorio{
 
 		while(iterador.hasNext()) {
 			key=(int) iterador.next();
-			System.out.println("Exportacion numero "+key+ " contenido "+this.importacionMercancia.get(key));
+			System.out.println("Exportacion "+this.importacionMercancia.get(key).getOrigen()+" numero "+key+" con "+this.importacionMercancia.get(key));
 		}
 	}
 	
@@ -119,7 +119,7 @@ public abstract class Reinos extends Territorio{
 	}
 	
 	public String verproduccionMensual() {
-		return this.getNombre();	
+		return this.getNombre()+" ";	
 	}
 	
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
@@ -135,7 +135,11 @@ public abstract class Reinos extends Territorio{
 	}
 
 	public void llegadaImpotacion(Flota barcos) {
-
+		
+		this.importacionMercancia.putAll(barcos.getArrayMercancias());
+		
+		barcos.getArrayMercancias().clear();
+		
 	}
 	
 	//getter

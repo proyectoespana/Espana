@@ -64,6 +64,7 @@ public class ReinoCompleto {
 
 		if(reino.getFlota().isDisponible()) {
 			pesoDisponibleFlota=reino.getFlota().añadirMercancia(reino.getMercancia().get(idMercancia));
+			reino.getMercancia().remove(idMercancia);
 
 
 			return "La flota todavia puede transportar "+pesoDisponibleFlota;
@@ -73,31 +74,36 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de enviar una flota con mercancias a una determinada zona
+	 * Metodo encargado de enviar una flota con mercancias a una determinada zona depositar toda la mercancia de la misma 
 	 * @param destino
 	 * @throws Exception 
 	 */
-	public void enviarFlota(Reinos reino ,String destino) throws Exception {
+	public void enviarFlota(Reinos reino ,Reinos destino) throws Exception {
 
 		if(reino instanceof Virreinatos) {
 
 			if(reino.getFlota().isDisponible()) {
 
-				switch (destino.toUpperCase()) {
+				switch (destino.getNombre().toUpperCase()) {
 				case "PERU":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPeru());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "PLATA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPlata());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPlata());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "CASTILLA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaCastilla());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaCastilla());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA GRANADA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaGranada());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaNuevaGranada());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA ESPAÑA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaEspaña());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
@@ -108,27 +114,42 @@ public class ReinoCompleto {
 
 			if(reino.getFlota().isDisponible()) {
 
-				switch (destino.toUpperCase()) {
+				switch (destino.getNombre().toUpperCase()) {
 				case "ARAGON":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAragon());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaAragon());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "AUSTRIA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAustria());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaAustria());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "BORGOÑA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaBorgoña());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaBorgoña());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "CASTILLA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaCastilla());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaCastilla());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA ESPAÑA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaNuevaEsapaña());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaNuevaEsapaña());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
 				}
 			}
 
+		}
+	}
+	
+	private void llegadaFlotaDestino(Reinos origen,Reinos destino) throws Exception {
+		if(!origen.equals(destino)) {
+			origen.getFlota().setDisponible(false);
+			
+			destino.llegadaImpotacion(origen.getFlota());
+		}else {
+			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
 		}
 	}
 

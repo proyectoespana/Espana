@@ -33,8 +33,8 @@ public class Flota {
 	/**
 	 * atributo encargado de estipular si esa flota esta disponible para meter mercancia
 	 */
-	
-	
+
+
 	/**
 	 * 
 	 * @param nombre
@@ -106,14 +106,15 @@ public class Flota {
 	 * @param destino
 	 * @throws Exception 
 	 */
-	public void enviarMercancias(int km) throws Exception {
-		if(km>0) {
-			this.destino=km;
-			this.disponible=false;
-		}else {
-			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
-		}
-	}
+
+//	public void enviarMercancias(int km) throws Exception {
+//		if(km>0) {
+//			this.destino=km;
+//			this.disponible=false;
+//		}else {
+//			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
+//		}
+//	}
 
 	public String getNombre() {
 		return nombre;

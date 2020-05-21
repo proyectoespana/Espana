@@ -58,7 +58,7 @@ public class Castilla extends Europa {
 				this.recoleccionTrigo.setCantidad(this.recoleccionTrigo.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionTrigo);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Trigo");
+				mercancia= new Mercancia("Trigo",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -71,7 +71,7 @@ public class Castilla extends Europa {
 				this.recoleccionUvas.setCantidad(this.recoleccionUvas.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionUvas);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Uvas");
+				mercancia= new Mercancia("Uvas",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -86,7 +86,7 @@ public class Castilla extends Europa {
 				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionHierro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Hierro");
+				mercancia= new Mercancia("Hierro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {

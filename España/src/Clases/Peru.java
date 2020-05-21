@@ -60,7 +60,7 @@ public class Peru extends Virreinatos {
 				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionOro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Oro");
+				mercancia= new Mercancia("Oro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -73,7 +73,7 @@ public class Peru extends Virreinatos {
 				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionMaiz);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Maiz");
+				mercancia= new Mercancia("Maiz",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -88,7 +88,7 @@ public class Peru extends Virreinatos {
 				this.recoleccionTomate.setCantidad(this.recoleccionTomate.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionTomate);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Tomate");
+				mercancia= new Mercancia("Tomate",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -102,7 +102,7 @@ public class Peru extends Virreinatos {
 				this.recoleccionPatata.setCantidad(this.recoleccionPatata.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionPatata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Patata");
+				mercancia= new Mercancia("Patata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {

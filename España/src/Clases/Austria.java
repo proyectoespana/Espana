@@ -59,7 +59,7 @@ public class Austria extends Europa {
 				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionHierro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Hierro");
+				mercancia= new Mercancia("Hierro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -72,7 +72,7 @@ public class Austria extends Europa {
 				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionArroz);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Arroz");
+				mercancia= new Mercancia("Arroz",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -87,7 +87,7 @@ public class Austria extends Europa {
 				this.recoleccionAlgodon.setCantidad(this.recoleccionAlgodon.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionAlgodon);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Algodon");
+				mercancia= new Mercancia("Algodon",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {

@@ -59,7 +59,7 @@ public class NuevaGranada extends Virreinatos {
 				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionOro);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Oro");
+				mercancia= new Mercancia("Oro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -72,7 +72,7 @@ public class NuevaGranada extends Virreinatos {
 				this.recoleccionPlata.setCantidad(this.recoleccionPlata.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionPlata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Plata");
+				mercancia= new Mercancia("Plata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -87,7 +87,7 @@ public class NuevaGranada extends Virreinatos {
 				this.recoleccionTabaco.setCantidad(this.recoleccionTabaco.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionTabaco);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Tabaco");
+				mercancia= new Mercancia("Tabaco",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
@@ -101,7 +101,7 @@ public class NuevaGranada extends Virreinatos {
 				this.recoleccionCafe.setCantidad(this.recoleccionCafe.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionCafe);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Cafe");
+				mercancia= new Mercancia("Cafe",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getMercancia().size(), mercancia);	
 			}else {
