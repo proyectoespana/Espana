@@ -127,7 +127,7 @@ public abstract class Reinos extends Territorio{
 			System.out.println("Exportacion "+this.importacionMercancia.get(key).getOrigen()+" numero "+key+" con "+this.importacionMercancia.get(key));
 		}
 	}
-	
+
 	public void verMercancias() {
 		Iterator iterador = this.mercancia.keySet().iterator();
 		int key;
@@ -137,26 +137,26 @@ public abstract class Reinos extends Territorio{
 			System.out.println("Mercancia numero "+key+ " contenido "+this.mercancia.get(key));
 		}
 	}
-	
+
 	public String verproduccionMensual() {
 		return this.getNombre()+" ";	
 	}
-	
+
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
-		
+
 	}
-	
+
 	public void llegadaImpotacion(Flota barcos) {
-		
+
 		this.importacionMercancia.putAll(barcos.getArrayMercancias());
-		
+
 		barcos.getArrayMercancias().clear();
-		
+
 	}
-	
+
 	private void cosumoProductos(Productos product) {
 		int newCantidad;
-		
+
 		if(product.getNombre()==ProductoNombre.Cafe || product.getNombre()==ProductoNombre.Tabaco) {
 			newCantidad=(int) (product.getCantidad()*0.25);
 			product.setCantidad(product.getCantidad()-newCantidad);
@@ -173,11 +173,11 @@ public abstract class Reinos extends Territorio{
 	public void crearExportacion(Territorio pais) {
 
 	}
-	
+
 	private void calcularProductosDemandados() {
-	
+
 	}
-	
+
 	/**
 	 * Metodo encargado de recorrer la lista de ProductosDemandamos y mostrar los mismo de cada Region
 	 */
@@ -186,7 +186,31 @@ public abstract class Reinos extends Territorio{
 			System.out.println(this.productosDemandados[i]);
 		}
 	}
-	
+
+	public boolean comprobarProductosDemandados() {
+		Iterator iterador = this.importacionMercancia.keySet().iterator();
+		int key;
+		int contador=0;
+
+		while(iterador.hasNext()) {
+			key=(int) iterador.next();
+			for(int i=0;i<this.productosDemandados.length;i++) {
+				if(this.productosDemandados!=null) {
+					if(this.importacionMercancia.get(iterador).getNombre().equals(this.productosDemandados[i])) {
+						contador++;
+						this.productosDemandados[i]=null;
+					}
+				}
+			}
+		}
+		
+		if(contador==this.productosDemandados.length) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	//getter
 
 	public int getPoblacion() {
@@ -252,5 +276,5 @@ public abstract class Reinos extends Territorio{
 	public void setProductosDemandados(ProductoNombre[] productosDemandados) {
 		this.productosDemandados = productosDemandados;
 	}
-	
+
 }
