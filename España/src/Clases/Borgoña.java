@@ -49,7 +49,7 @@ public class Borgoña extends Europa{
 
     		switch (producto) {
     		case Hierro:
-    			if(this.recoleccionHierro.getCantidad()>cantidad) {
+    			if(this.recoleccionHierro.getCantidad()>=cantidad) {
 
     				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
     				newProduct= new MateriasPrimas(recoleccionHierro);
@@ -57,13 +57,13 @@ public class Borgoña extends Europa{
     				mercancia= new Mercancia("Hierro",this.getNombre());
     				mercancia.añadirProducto(newProduct);
     				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-    				this.setIdMercancias(+1);
+    				this.setIdMercancias(this.getIdMercancias()+1);
     			}else {
     				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
     			}
     			break;
     		case Arroz:
-    			if(this.recoleccionArroz.getCantidad()>cantidad) {
+    			if(this.recoleccionArroz.getCantidad()>=cantidad) {
 
     				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
     				newProduct= new Alimentos(recoleccionArroz);
@@ -71,7 +71,7 @@ public class Borgoña extends Europa{
     				mercancia= new Mercancia("Arroz",this.getNombre());
     				mercancia.añadirProducto(newProduct);
     				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-    				this.setIdMercancias(+1);
+    				this.setIdMercancias(this.getIdMercancias()+1);
     			}else {
     				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
     			}

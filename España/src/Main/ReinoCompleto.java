@@ -185,6 +185,44 @@ public class ReinoCompleto {
 			throw new Exception();
 		}
 	}
+	
+	public void verProductosDemandadosElReino() {
+		System.out.println("--- Nueva España ");
+		nuevaEspaña.verProductosDemandados();
+		System.out.println("--- Nueva Granada ");
+		nuevaGranda.verProductosDemandados();
+		System.out.println("--- Peru ");
+		peru.verProductosDemandados();
+		System.out.println("--- Plata ");
+		plata.verProductosDemandados();
+		System.out.println("--- Castilla ");
+		castilla.verProductosDemandados();
+		System.out.println("--- Aragon ");
+		aragon.verProductosDemandados();
+		System.out.println("--- Borgoña ");
+		borgoña.verProductosDemandados();
+		System.out.println("--- Austria ");
+		austria.verProductosDemandados();
+	}
+	
+	public void verFlotasConMercancias() {
+		System.out.println("--- Nueva España ");
+		nuevaEspaña.getFlota().verMercancias();
+		System.out.println("--- Nueva Granada ");
+		nuevaGranda.getFlota().verMercancias();
+		System.out.println("--- Peru ");
+		peru.getFlota().verMercancias();
+		System.out.println("--- Plata ");
+		plata.getFlota().verMercancias();
+		System.out.println("--- Castilla ");
+		castilla.getFlota().verMercancias();
+		System.out.println("--- Aragon ");
+		aragon.getFlota().verMercancias();
+		System.out.println("--- Borgoña ");
+		borgoña.getFlota().verMercancias();
+		System.out.println("--- Austria ");
+		austria.getFlota().verMercancias();
+	}
 
 	public NuevaEspaña getNuevaEspaña() {
 		return nuevaEspaña;

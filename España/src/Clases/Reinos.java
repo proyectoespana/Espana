@@ -11,8 +11,8 @@ public abstract class Reinos extends Territorio{
 	private LinkedHashMap <Integer,Mercancia> mercancia;
 	private double dineroTotal;
 	private boolean sublevaciones;
-	private static int idMercancias;
-	private static int idImportaciones;
+	private int idMercancias;
+	private int idImportaciones;
 	private ProductoNombre [] productosDemandados;
 
 	public Reinos(String nombre, String continente,int poblacion) {
@@ -46,7 +46,7 @@ public abstract class Reinos extends Territorio{
 		int random;
 		int random2;
 
-		random=rnd.nextInt((30000-10000)+10000)+30000;
+		random=rnd.nextInt((10000-5000)+5000)+10000;
 
 		switch (product.getNombre()) {
 		case Patata: 
@@ -147,11 +147,17 @@ public abstract class Reinos extends Territorio{
 	}
 
 	public void llegadaImpotacion(Flota barcos) {
-
-		this.importacionMercancia.putAll(barcos.getArrayMercancias());
+		int key;
+		Iterator iterador = barcos.getArrayMercancias().keySet().iterator();
+		
+		while(iterador.hasNext()) {
+			key=(int) iterador.next();
+			this.importacionMercancia.put(this.idImportaciones, barcos.getArrayMercancias().get(key));
+			this.setIdImportaciones(this.getIdImportaciones()+1);
+		}
 
 		barcos.getArrayMercancias().clear();
-
+		barcos.setPesoTodasMercancias(0);
 	}
 
 	private void cosumoProductos(Productos product) {
@@ -212,7 +218,6 @@ public abstract class Reinos extends Territorio{
 	}
 
 	//getter
-
 	public int getPoblacion() {
 		return poblacion;
 	}
@@ -253,20 +258,20 @@ public abstract class Reinos extends Territorio{
 		this.sublevaciones = sublevaciones;
 	}
 
-	public static int getIdMercancias() {
+	public int getIdMercancias() {
 		return idMercancias;
 	}
 
-	public static void setIdMercancias(int idMercancias) {
-		Reinos.idMercancias = idMercancias;
+	public void setIdMercancias(int idMercancias) {
+		this.idMercancias = idMercancias;
 	}
 
-	public static int getIdImportaciones() {
+	public int getIdImportaciones() {
 		return idImportaciones;
 	}
 
-	public static void setIdImportaciones(int idImportaciones) {
-		Reinos.idImportaciones = idImportaciones;
+	public void setIdImportaciones(int idImportaciones) {
+		this.idImportaciones = idImportaciones;
 	}
 
 	public ProductoNombre[] getProductosDemandados() {
@@ -277,4 +282,5 @@ public abstract class Reinos extends Territorio{
 		this.productosDemandados = productosDemandados;
 	}
 
+	
 }

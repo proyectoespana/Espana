@@ -57,7 +57,7 @@ public class NuevaGranada extends Virreinatos {
 
 		switch (producto) {
 		case Oro:
-			if(this.recoleccionOro.getCantidad()>cantidad) {
+			if(this.recoleccionOro.getCantidad()>=cantidad) {
 
 				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionOro);
@@ -65,13 +65,13 @@ public class NuevaGranada extends Virreinatos {
 				mercancia= new Mercancia("Oro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Plata:
-			if(this.recoleccionPlata.getCantidad()>cantidad) {
+			if(this.recoleccionPlata.getCantidad()>=cantidad) {
 
 				this.recoleccionPlata.setCantidad(this.recoleccionPlata.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionPlata);
@@ -79,7 +79,7 @@ public class NuevaGranada extends Virreinatos {
 				mercancia= new Mercancia("Plata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -87,7 +87,7 @@ public class NuevaGranada extends Virreinatos {
 			break;
 		case Tabaco:
 
-			if(this.recoleccionTabaco.getCantidad()>cantidad) {
+			if(this.recoleccionTabaco.getCantidad()>=cantidad) {
 
 				this.recoleccionTabaco.setCantidad(this.recoleccionTabaco.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionTabaco);
@@ -95,14 +95,14 @@ public class NuevaGranada extends Virreinatos {
 				mercancia= new Mercancia("Tabaco",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Cafe:
 
-			if(this.recoleccionCafe.getCantidad()>cantidad) {
+			if(this.recoleccionCafe.getCantidad()>=cantidad) {
 
 				this.recoleccionCafe.setCantidad(this.recoleccionCafe.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionCafe);
@@ -110,7 +110,7 @@ public class NuevaGranada extends Virreinatos {
 				mercancia= new Mercancia("Cafe",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}

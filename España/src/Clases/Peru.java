@@ -58,7 +58,7 @@ public class Peru extends Virreinatos {
 
 		switch (producto) {
 		case Oro:
-			if(this.recoleccionOro.getCantidad()>cantidad) {
+			if(this.recoleccionOro.getCantidad()>=cantidad) {
 
 				this.recoleccionOro.setCantidad(this.recoleccionOro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionOro);
@@ -66,13 +66,13 @@ public class Peru extends Virreinatos {
 				mercancia= new Mercancia("Oro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Maiz:
-			if(this.recoleccionMaiz.getCantidad()>cantidad) {
+			if(this.recoleccionMaiz.getCantidad()>=cantidad) {
 
 				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionMaiz);
@@ -80,7 +80,7 @@ public class Peru extends Virreinatos {
 				mercancia= new Mercancia("Maiz",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -88,7 +88,7 @@ public class Peru extends Virreinatos {
 			break;
 		case Tomate:
 
-			if(this.recoleccionTomate.getCantidad()>cantidad) {
+			if(this.recoleccionTomate.getCantidad()>=cantidad) {
 
 				this.recoleccionTomate.setCantidad(this.recoleccionTomate.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionTomate);
@@ -96,14 +96,14 @@ public class Peru extends Virreinatos {
 				mercancia= new Mercancia("Tomate",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Patata:
 
-			if(this.recoleccionPatata.getCantidad()>cantidad) {
+			if(this.recoleccionPatata.getCantidad()>=cantidad) {
 
 				this.recoleccionPatata.setCantidad(this.recoleccionPatata.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionPatata);
@@ -111,7 +111,7 @@ public class Peru extends Virreinatos {
 				mercancia= new Mercancia("Patata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}

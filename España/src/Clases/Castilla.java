@@ -56,7 +56,7 @@ public class Castilla extends Europa {
 
 		switch (producto) {
 		case Trigo:
-			if(this.recoleccionTrigo.getCantidad()>cantidad) {
+			if(this.recoleccionTrigo.getCantidad()>=cantidad) {
 
 				this.recoleccionTrigo.setCantidad(this.recoleccionTrigo.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionTrigo);
@@ -64,13 +64,13 @@ public class Castilla extends Europa {
 				mercancia= new Mercancia("Trigo",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Uvas:
-			if(this.recoleccionUvas.getCantidad()>cantidad) {
+			if(this.recoleccionUvas.getCantidad()>=cantidad) {
 
 				this.recoleccionUvas.setCantidad(this.recoleccionUvas.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionUvas);
@@ -78,7 +78,7 @@ public class Castilla extends Europa {
 				mercancia= new Mercancia("Uvas",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -86,7 +86,7 @@ public class Castilla extends Europa {
 			break;
 		case Hierro:
 
-			if(this.recoleccionHierro.getCantidad()>cantidad) {
+			if(this.recoleccionHierro.getCantidad()>=cantidad) {
 
 				this.recoleccionHierro.setCantidad(this.recoleccionHierro.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionHierro);
@@ -94,7 +94,7 @@ public class Castilla extends Europa {
 				mercancia= new Mercancia("Hierro",this.getNombre());
 				mercancia.añadirProducto(newProduct);
 				this.getMercancia().put(this.getIdMercancias(), mercancia);	
-				this.setIdMercancias(+1);	
+				this.setIdMercancias(this.getIdMercancias()+1);	
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
