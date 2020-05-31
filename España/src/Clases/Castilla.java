@@ -25,10 +25,10 @@ public class Castilla extends Europa {
      * @throws Exception 
      */
 	public Castilla(String nombre,String continente, int poblacion,String territorio) throws Exception {
-		super(nombre,continente, poblacion,territorio, 621,	2375, 1784, 0, 9020);
+		super(nombre,continente, poblacion,territorio, 621,	2375, 1784, 0, 9020,7258,9123,10927);
 		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "cereal", 0);
 		calcularProduccionMensual(this.recoleccionTrigo);
-		this.recoleccionUvas= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
+		this.recoleccionUvas= new Alimentos(ProductoNombre.Uvas, 0, 0, 0, 0, "fruta", 0);
 		calcularProduccionMensual(this.recoleccionUvas);
 		this.recoleccionHierro=new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionHierro);
@@ -113,7 +113,7 @@ public class Castilla extends Europa {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);
 				productoNombre=ProductoNombre.values()[valor];
-			}while(productoNombre==ProductoNombre.Trigo && productoNombre==ProductoNombre.Uvas && productoNombre==ProductoNombre.Hierro);			
+			}while(productoNombre==ProductoNombre.Trigo || productoNombre==ProductoNombre.Uvas || productoNombre==ProductoNombre.Hierro);			
 			this.getProductosDemandados()[i]=productoNombre;
 		}	
 	}

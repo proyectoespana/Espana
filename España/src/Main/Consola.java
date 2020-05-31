@@ -128,13 +128,13 @@ public class Consola {
 		do {
 			System.out.println("1 -Patata");
 			System.out.println("2 -Tomate");
-			System.out.println("3 -Cacao");
+//			System.out.println("3 -Cacao");
 			System.out.println("4 -Maiz");
 			System.out.println("5 -Trigo");
 			System.out.println("6 -arroz");
 			System.out.println("7 -Uvas");
 			System.out.println("8 -Hierro");
-			System.out.println("9 -Algodon");
+//			System.out.println("9 -Algodon");
 			System.out.println("10 -Oro");
 			System.out.println("11 -Plata");
 			System.out.println("12 -Tabaco");
@@ -154,9 +154,9 @@ public class Consola {
 			case 2:
 				pais.crearMercancia(ProductoNombre.Tomate, cantidad);
 				break;
-			case 3: 
-				pais.crearMercancia(ProductoNombre.Cacao, cantidad);
-				break;
+//			case 3: 
+//				pais.crearMercancia(ProductoNombre.Cacao, cantidad);
+//				break;
 			case 4:
 				pais.crearMercancia(ProductoNombre.Maiz, cantidad);
 				break;
@@ -172,9 +172,9 @@ public class Consola {
 			case 8:
 				pais.crearMercancia(ProductoNombre.Hierro, cantidad);
 				break;
-			case 9: 
-				pais.crearMercancia(ProductoNombre.Algodon, cantidad);
-				break;
+//			case 9: 
+//				pais.crearMercancia(ProductoNombre.Algodon, cantidad);
+//				break;
 			case 10:
 				pais.crearMercancia(ProductoNombre.Oro, cantidad);
 				break;
@@ -206,7 +206,9 @@ public class Consola {
 			System.out.println("2 -Enviar flota");
 			System.out.println("3 -Ver productos demandados en el reino");
 			System.out.println("4 -Ver Mercancias de las flotas del reino");
-
+			System.out.println("5 -Retornar flota");
+			
+			
 			Scanner src2 = new Scanner(System.in);
 			metodo= src2.nextInt();
 
@@ -222,6 +224,9 @@ public class Consola {
 				break;
 			case 4:
 				espana.verFlotasConMercancias();
+				break;
+			case 5:
+				devolverFlota(espana);
 				break;
 			default:
 				throw new IllegalArgumentException("valor no valido " + metodo);
@@ -246,6 +251,7 @@ public class Consola {
 			System.out.println("5 -Castilla");
 			System.out.println("6 -Aragon");
 			System.out.println("7 -Austria");
+			System.out.println("8 -Borgoña");
 
 			Scanner src2 = new Scanner(System.in);
 			zona= src2.nextInt();
@@ -277,6 +283,9 @@ public class Consola {
 			case 7:
 				espana.formarFlota(espana.getAustria(), id);
 				break;
+			case 8:
+				espana.formarFlota(espana.getBorgoña(), id);
+				break;
 			default:
 				throw new IllegalArgumentException("valor no valido " + zona);
 			}
@@ -301,6 +310,7 @@ public class Consola {
 			System.out.println("5 -Castilla");
 			System.out.println("6 -Aragon");
 			System.out.println("7 -Austria");
+			System.out.println("8 -Borgoña");
 
 			Scanner src2 = new Scanner(System.in);
 			zona1= src2.nextInt();
@@ -314,6 +324,7 @@ public class Consola {
 			System.out.println("5 -Castilla");
 			System.out.println("6 -Aragon");
 			System.out.println("7 -Austria");
+			System.out.println("8 -Borgoña");
 			zona2= src3.nextInt();
 
 
@@ -338,6 +349,9 @@ public class Consola {
 				break;
 			case 7:
 				reino=espana.getAustria();
+				break;
+			case 8:
+				reino=espana.getBorgoña();
 				break;
 			default:
 				throw new IllegalArgumentException("valor no valido " + zona1);
@@ -365,11 +379,66 @@ public class Consola {
 			case 7:
 				espana.enviarFlota(reino, espana.getAustria());
 				break;
+			case 8:
+				espana.enviarFlota(reino, espana.getBorgoña());
+				break;
 			default:
 				throw new IllegalArgumentException("valor no valido " + zona2);
 			}
 			Scanner src = new Scanner(System.in);
 			System.out.println("Introduzca 0 para salir al menu de Reino Completo");
+			i= src.nextInt();
+		}while(i!=0);
+	}
+	
+	public static void devolverFlota(ReinoCompleto espana) {
+		int i;
+		int zona ;
+
+		do {
+			System.out.println("1 -Nueva Espana");
+			System.out.println("2 -Nueva Granada");
+			System.out.println("3 -Peru");
+			System.out.println("4 -Plata");
+			System.out.println("5 -Castilla");
+			System.out.println("6 -Aragon");
+			System.out.println("7 -Austria");
+			System.out.println("8 -Borgoña");
+
+			Scanner src2 = new Scanner(System.in);
+			zona= src2.nextInt();
+
+			switch (zona) {
+			case 1: 
+				espana.devolverFlota(espana.getNuevaEspaña());
+				break;
+			case 2:
+				espana.devolverFlota(espana.getNuevaGranda());
+				break;
+			case 3: 
+				espana.devolverFlota(espana.getPeru());
+				break;
+			case 4:
+				espana.devolverFlota(espana.getPlata());
+				break;
+			case 5: 
+				espana.devolverFlota(espana.getCastilla());
+				break;
+			case 6:
+				espana.devolverFlota(espana.getAragon());
+				break;
+			case 7:
+				espana.devolverFlota(espana.getAustria());
+				break;
+			case 8:
+				espana.devolverFlota(espana.getBorgoña());
+				break;
+			default:
+				throw new IllegalArgumentException("valor no valido " + zona);
+			}
+
+			Scanner src = new Scanner(System.in);
+			System.out.println("Introduzca 0 para salir al menu Reino Completo");
 			i= src.nextInt();
 		}while(i!=0);
 	}
@@ -390,7 +459,7 @@ public class Consola {
 
 		Aragon aragon = new Aragon("Aragon","Europa", 100, "Zaragoza");
 
-		Borgoña borgoña = new Borgoña("Flandes","Europa", 100, "Flandes");
+		Borgoña borgoña = new Borgoña("Borgoña","Europa", 100, "Flandes");
 
 		Austria austria = new Austria("Austria","Europa", 100, "Austria");
 

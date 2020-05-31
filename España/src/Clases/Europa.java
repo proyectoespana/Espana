@@ -14,6 +14,10 @@ public abstract class Europa extends Reinos {
 	private int distanciaBorgoña;
 	private int distanciaCastilla;
 	private int distanciaNuevaEsapaña;
+	//modificacion por tiempo
+	private int distanciaNuevaGranada;
+	private int distanciaPeru;
+	private int distanciaPlata;
 	
 	
 	  /**
@@ -28,7 +32,7 @@ public abstract class Europa extends Reinos {
      * @param castilla Se introduce la distancia de castilla
      * @param nuevaEspaña Se introduce la distancia de nueva españa
      */
-	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña) {
+	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña,int nuevaGranada,int peru,int plata) {
 		super(nombre,continente, poblacion);
 		this.territorio=territorio;
 		this.guerra=false;
@@ -37,6 +41,9 @@ public abstract class Europa extends Reinos {
 		this.distanciaBorgoña=borgoña;
 		this.distanciaCastilla=castilla;
 		this.distanciaNuevaEsapaña=nuevaEspaña;
+		this.distanciaNuevaGranada=nuevaGranada;
+		this.distanciaPeru=peru;
+		this.distanciaPlata=plata;
 	}
 	
 	/**
@@ -50,6 +57,9 @@ public abstract class Europa extends Reinos {
 		this.distanciaBorgoña=obj.getDistanciaBorgoña();
 		this.distanciaCastilla=obj.getDistanciaCastilla();
 		this.distanciaNuevaEsapaña=obj.getDistanciaNuevaEsapaña();
+		this.distanciaNuevaGranada=obj.getDistanciaNuevaGranada();
+		this.distanciaPeru=obj.getDistanciaPeru();
+		this.distanciaPlata=obj.getDistanciaPlata();
 		this.guerra=obj.isGuerra();
 		this.territorio=obj.getTerritorio();
 	}
@@ -62,10 +72,6 @@ public abstract class Europa extends Reinos {
 		return "Distancias respecto : Aragon "+this.distanciaAragon +" km / Austria : "+this.distanciaAustria +" km / Borgoña : " +this.distanciaBorgoña +" km/  Castilla :"+this.distanciaCastilla +" km/ Nueva España : "+this.distanciaNuevaEsapaña +" km ";
 	}
 	
-	public void estadoGuerra() {
-		
-	}
-
 	public String getTerritorio() {
 		return territorio;
 	}
@@ -120,6 +126,30 @@ public abstract class Europa extends Reinos {
 
 	public void setDistanciaNuevaEsapaña(int distanciaNuevaEsapaña) {
 		this.distanciaNuevaEsapaña = distanciaNuevaEsapaña;
+	}
+
+	public int getDistanciaNuevaGranada() {
+		return distanciaNuevaGranada;
+	}
+
+	public void setDistanciaNuevaGranada(int distanciaNuevaGranada) {
+		this.distanciaNuevaGranada = distanciaNuevaGranada;
+	}
+
+	public int getDistanciaPeru() {
+		return distanciaPeru;
+	}
+
+	public void setDistanciaPeru(int distanciaPeru) {
+		this.distanciaPeru = distanciaPeru;
+	}
+
+	public int getDistanciaPlata() {
+		return distanciaPlata;
+	}
+
+	public void setDistanciaPlata(int distanciaPlata) {
+		this.distanciaPlata = distanciaPlata;
 	}
 
 	@Override

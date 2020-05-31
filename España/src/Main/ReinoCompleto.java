@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.ArrayList;
+
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
@@ -28,7 +30,7 @@ public class ReinoCompleto {
 	private Aragon aragon;
 	private Borgoña borgoña;
 	private Austria austria;
-	
+
 	/**
 	 * 
 	 * @param nuevaEspaña se introduce el objeto de nueva España preciamente creado
@@ -105,6 +107,18 @@ public class ReinoCompleto {
 					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPeru());
 					this.llegadaFlotaDestino(reino, destino);
 					break;
+				case "ARAGON":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaAragon());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "AUSTRIA":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaAustria());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "BORGOÑA":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaBorgoña());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
 				}
@@ -115,6 +129,26 @@ public class ReinoCompleto {
 			if(reino.getFlota().isDisponible()) {
 
 				switch (destino.getNombre().toUpperCase()) {
+				case "PERU":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "PLATA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPlata());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "CASTILLA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaCastilla());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "NUEVA GRANADA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaNuevaGranada());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "NUEVA ESPAÑA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
 				case "ARAGON":
 					reino.getFlota().setDestino(((Europa) reino).getDistanciaAragon());
 					this.llegadaFlotaDestino(reino, destino);
@@ -127,14 +161,6 @@ public class ReinoCompleto {
 					reino.getFlota().setDestino(((Europa) reino).getDistanciaBorgoña());
 					this.llegadaFlotaDestino(reino, destino);
 					break;
-				case "CASTILLA":
-					reino.getFlota().setDestino(((Europa) reino).getDistanciaCastilla());
-					this.llegadaFlotaDestino(reino, destino);
-					break;
-				case "NUEVA ESPAÑA":
-					reino.getFlota().setDestino(((Europa) reino).getDistanciaNuevaEsapaña());
-					this.llegadaFlotaDestino(reino, destino);
-					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
 				}
@@ -142,11 +168,20 @@ public class ReinoCompleto {
 
 		}
 	}
-	
+
+	/**
+	 * Metodo encargado de poner disponible la flota de un determinado territorio
+	 * @param reino parametro encargado de introducir el pais en cuestion del que se quiere que se ponga la flota disponible
+	 */
+	public void devolverFlota(Reinos reino) {
+		reino.getFlota().setDisponible(true);
+		reino.getFlota().setDestino(0);
+	}
+
 	private void llegadaFlotaDestino(Reinos origen,Reinos destino) throws Exception {
 		if(!origen.equals(destino)) {
 			origen.getFlota().setDisponible(false);
-			
+
 			destino.llegadaImpotacion(origen.getFlota());
 		}else {
 			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
@@ -165,7 +200,22 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
-	
+//	
+//	public void pasarTurno() {
+//		
+//		
+//		
+//	}
+//	
+//	protected void pasarTurnoIteradorZonas(Reinos reino) {
+//		
+//		for (int i=0;i>reino.getProductosDemandados().length;i++) {
+//			if(reino.getProductosDemandados()[i]!=null) {
+//				this.sublevacionesTurno.add(this.nuevaEspaña.getNombre());
+//			}
+//		}
+//	}
+
 	/**
 	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 
 	 * @param zona  se introduce el Reino en cuestion del que queremos saber sus distancias 
@@ -185,7 +235,10 @@ public class ReinoCompleto {
 			throw new Exception();
 		}
 	}
-	
+
+	/**
+	 * Metodo encargado de ver hacer una manera mas visual todos los productos del Reino Demandados
+	 */
 	public void verProductosDemandadosElReino() {
 		System.out.println("--- Nueva España ");
 		nuevaEspaña.verProductosDemandados();
@@ -204,7 +257,10 @@ public class ReinoCompleto {
 		System.out.println("--- Austria ");
 		austria.verProductosDemandados();
 	}
-	
+
+	/**
+	 * Metodo encargado de ver hacer una manera mas visual todas las flotas creadas en el Reino
+	 */
 	public void verFlotasConMercancias() {
 		System.out.println("--- Nueva España ");
 		nuevaEspaña.getFlota().verMercancias();

@@ -21,7 +21,7 @@ public class NuevaGranada extends Virreinatos {
      * @throws Exception
      */
 	public NuevaGranada(String nombre,String continente, int poblacion) throws Exception {
-		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288 );
+		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288,6829,8186,8949);
 		this.recoleccionOro = new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionOro);
 		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
@@ -129,7 +129,7 @@ public class NuevaGranada extends Virreinatos {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);
 				productoNombre=ProductoNombre.values()[valor];
-			}while(productoNombre==ProductoNombre.Oro && productoNombre==ProductoNombre.Plata && productoNombre==ProductoNombre.Tabaco && productoNombre==ProductoNombre.Cafe);			
+			}while(productoNombre==ProductoNombre.Oro || productoNombre==ProductoNombre.Plata || productoNombre==ProductoNombre.Tabaco || productoNombre==ProductoNombre.Cafe);			
 			this.getProductosDemandados()[i]=productoNombre;
 		}	
 	}

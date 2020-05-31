@@ -30,7 +30,7 @@ public class mains {
 
 		Aragon aragon = new Aragon("Aragon","Europa", 100, "Zaragoza");
 
-		Borgoña borgoña = new Borgoña("Flandes","Europa", 100, "Flandes");
+		Borgoña borgoña = new Borgoña("Borgoña","Europa", 100, "Flandes");
 
 		Austria austria = new Austria("Austria","Europa", 100, "Austria");
 
@@ -97,6 +97,12 @@ public class mains {
 //		System.out.println(espana.getPlata().getFlota().datosAvanzados());
 //		
 //		System.out.println(espana.getNuevaGranda().verproduccionMensual());
+		
+		espana.getPeru().crearMercancia(ProductoNombre.Oro, 5);
+		
+		espana.formarFlota(peru, 1);
+		
+		espana.enviarFlota(peru, borgoña);
 		
 		espana.getNuevaEspaña().verProductosDemandados();
 		

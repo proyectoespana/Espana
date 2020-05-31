@@ -11,7 +11,8 @@ public class Borgoña extends Europa{
 
         private MateriasPrimas recoleccionHierro;
         private Alimentos recoleccionArroz;
-
+        private Alimentos recoleccionTomates;
+        private Alimentos recoleccionPatatas;
 
         /**
          * Constructor donde se pasarán por parametros los atributos anteriores
@@ -24,11 +25,15 @@ public class Borgoña extends Europa{
          * @throws Exception
          */
         public Borgoña(String nombre,String continente,int poblacion,String territorio) throws Exception {
-            super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210);
+            super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210,8186,10134,12248);
             this.recoleccionHierro= new MateriasPrimas(ProductoNombre.Hierro, 0, 0, 0, 0, 0, 10);
             calcularProduccionMensual(this.recoleccionHierro);
-            this.recoleccionArroz= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "gramíneas", 0);
+            this.recoleccionArroz= new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Gramíneas", 0);
             calcularProduccionMensual(this.recoleccionArroz);
+            this.recoleccionTomates= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "Fruta ", 0);
+            calcularProduccionMensual(recoleccionTomates);
+            this.recoleccionPatatas= new Alimentos(ProductoNombre.Patata, 0, 0, 0, 0, "Tubérculo ", 0);
+            calcularProduccionMensual(recoleccionPatatas);
             this.calcularProductosDemandados();
         }
 
@@ -36,6 +41,8 @@ public class Borgoña extends Europa{
             super(a);
             this.recoleccionArroz=a.getRecoleccionArroz();
             this.recoleccionHierro=a.getRecoleccionHierro();
+            this.recoleccionTomates=a.getRecoleccionTomates();
+            this.recoleccionPatatas=a.getRecoleccionPatatas();
         }
 
         /**
@@ -76,6 +83,36 @@ public class Borgoña extends Europa{
     				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
     			}
     			break;
+    		case Tomate:
+
+    			if(this.recoleccionTomates.getCantidad()>=cantidad) {
+
+    				this.recoleccionTomates.setCantidad(this.recoleccionTomates.getCantidad()-cantidad);
+    				newProduct= new Alimentos(recoleccionTomates);
+    				newProduct.setCantidad(cantidad);
+    				mercancia= new Mercancia("Tomate",this.getNombre());
+    				mercancia.añadirProducto(newProduct);
+    				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+    				this.setIdMercancias(this.getIdMercancias()+1);
+    			}else {
+    				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+    			}
+    			break;
+    		case Patata:
+
+    			if(this.recoleccionPatatas.getCantidad()>=cantidad) {
+
+    				this.recoleccionPatatas.setCantidad(this.recoleccionPatatas.getCantidad()-cantidad);
+    				newProduct= new Alimentos(recoleccionPatatas);
+    				newProduct.setCantidad(cantidad);
+    				mercancia= new Mercancia("Patata",this.getNombre());
+    				mercancia.añadirProducto(newProduct);
+    				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+    				this.setIdMercancias(this.getIdMercancias()+1);
+    			}else {
+    				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+    			}
+    			break;
     		default:
     			throw new IllegalArgumentException("Este reino no produce " + producto);
     		}
@@ -90,7 +127,7 @@ public class Borgoña extends Europa{
     			do {
     				valor = new Random().nextInt(ProductoNombre.values().length);
     				productoNombre=ProductoNombre.values()[valor];
-    			}while(productoNombre==ProductoNombre.Hierro && productoNombre==ProductoNombre.Arroz);			
+    			}while(productoNombre==ProductoNombre.Hierro || productoNombre==ProductoNombre.Arroz|| productoNombre==ProductoNombre.Patata);			
     			this.getProductosDemandados()[i]=productoNombre;
     		}	
     	}
@@ -100,24 +137,40 @@ public class Borgoña extends Europa{
          * @return
          */
     	public String  verproduccionMensual() {
-    		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString();
+    		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString()+ "/ Produccion de de : "+ this.recoleccionPatatas.toString()+ "/ Produccion de de : "+ this.recoleccionTomates.toString();
     	}
 
-        public MateriasPrimas getRecoleccionHierro() {
-            return recoleccionHierro;
-        }
+		public MateriasPrimas getRecoleccionHierro() {
+			return recoleccionHierro;
+		}
 
-        public void setRecoleccionHierro(MateriasPrimas recoleccionHierro) {
-            this.recoleccionHierro = recoleccionHierro;
-        }
+		public void setRecoleccionHierro(MateriasPrimas recoleccionHierro) {
+			this.recoleccionHierro = recoleccionHierro;
+		}
 
-        public Alimentos getRecoleccionArroz() {
-            return recoleccionArroz;
-        }
+		public Alimentos getRecoleccionArroz() {
+			return recoleccionArroz;
+		}
 
-        public void setRecoleccionArroz(Alimentos recoleccionArroz) {
-            this.recoleccionArroz = recoleccionArroz;
-        }
+		public void setRecoleccionArroz(Alimentos recoleccionArroz) {
+			this.recoleccionArroz = recoleccionArroz;
+		}
+
+		public Alimentos getRecoleccionTomates() {
+			return recoleccionTomates;
+		}
+
+		public void setRecoleccionTomates(Alimentos recoleccionTomates) {
+			this.recoleccionTomates = recoleccionTomates;
+		}
+
+		public Alimentos getRecoleccionPatatas() {
+			return recoleccionPatatas;
+		}
+
+		public void setRecoleccionPatatas(Alimentos recoleccionPatatas) {
+			this.recoleccionPatatas = recoleccionPatatas;
+		}
 
 		@Override
 		public String toString() {

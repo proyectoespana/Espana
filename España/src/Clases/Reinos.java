@@ -20,7 +20,7 @@ public abstract class Reinos extends Territorio{
 		this.poblacion= poblacion;
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
-		this.productosDemandados=new ProductoNombre[(int)(Math.random()*3+0)];
+		this.productosDemandados=new ProductoNombre[(int)(Math.random()*2)];
 		this.sublevaciones=false;
 		this.idMercancias=1;
 		this.idImportaciones=1;
@@ -62,10 +62,10 @@ public abstract class Reinos extends Territorio{
 			product.setCantidad((2*this.poblacion)+random);
 			cosumoProductos(product);
 			break;
-		case Cacao:
-			product.setCantidad((1*this.poblacion)+random);
-			cosumoProductos(product);
-			break;
+//		case Cacao:
+//			product.setCantidad((1*this.poblacion)+random);
+//			cosumoProductos(product);
+//			break;
 		case Maiz:
 			product.setCantidad((6*this.poblacion)+random);
 			cosumoProductos(product);
@@ -87,10 +87,10 @@ public abstract class Reinos extends Territorio{
 			product.setCantidad(random2);
 			cosumoProductos(product);
 			break;
-		case Algodon:
-			product.setCantidad((1*this.poblacion)+random);
-			cosumoProductos(product);
-			break;		
+//		case Algodon:
+//			product.setCantidad((1*this.poblacion)+random);
+//			cosumoProductos(product);
+//			break;		
 		case Oro:
 			random2=rnd.nextInt((50-10)+10)+50;
 			product.setCantidad(random2);
@@ -146,10 +146,14 @@ public abstract class Reinos extends Territorio{
 
 	}
 
+	/**Metodo encargado de transpasar las importaciones de una flota al pais al que se les a mandado 
+	 * 
+	 * @param barcos parametro encargado de pasar la flota que ha sido envidada por otro pais
+	 */
 	public void llegadaImpotacion(Flota barcos) {
 		int key;
 		Iterator iterador = barcos.getArrayMercancias().keySet().iterator();
-		
+
 		while(iterador.hasNext()) {
 			key=(int) iterador.next();
 			this.importacionMercancia.put(this.idImportaciones, barcos.getArrayMercancias().get(key));
@@ -158,8 +162,32 @@ public abstract class Reinos extends Territorio{
 
 		barcos.getArrayMercancias().clear();
 		barcos.setPesoTodasMercancias(0);
+		this.comprobarImportaciones();
 	}
 
+	/**
+	 * Metodo encargado de recorred  las importaciones y comprobar si estas contienen productos demandados
+	 */
+	private void comprobarImportaciones() {
+		Iterator iterador = this.importacionMercancia.keySet().iterator();
+		int key;
+
+		while(iterador.hasNext()) {
+			key=(int) iterador.next();
+			for(int i=0;i<this.productosDemandados.length;i++) {
+				if(this.productosDemandados[i]!=null) {
+					if(this.productosDemandados[i].equals(this.importacionMercancia.get(key).getProducto().getNombre())) {
+						this.productosDemandados[i]=null;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Metodo encargado de calcular de forma automatcia el consumo de productos dentro de un pais
+	 * @param product parametro encargado de pasar el producto del que se quiere calcular el consumo 
+	 */
 	private void cosumoProductos(Productos product) {
 		int newCantidad;
 
@@ -173,14 +201,6 @@ public abstract class Reinos extends Territorio{
 	}
 
 	public void sublevaciones() {
-
-	}
-
-	public void crearExportacion(Territorio pais) {
-
-	}
-
-	private void calcularProductosDemandados() {
 
 	}
 
@@ -209,7 +229,7 @@ public abstract class Reinos extends Territorio{
 				}
 			}
 		}
-		
+
 		if(contador==this.productosDemandados.length) {
 			return true;
 		}else {
@@ -282,5 +302,5 @@ public abstract class Reinos extends Territorio{
 		this.productosDemandados = productosDemandados;
 	}
 
-	
+
 }

@@ -9,6 +9,9 @@ public abstract class Virreinatos extends Reinos {
 	private int distanciaCastilla;
 	private int distanciaNuevaGranada;
 	private int distanciaNuevaEspaña;
+	private int distanciaAragon;
+	private int distanciaBorgoña;
+	private int distanciaAustria;
 
 	//Constructores
     /**
@@ -22,13 +25,16 @@ public abstract class Virreinatos extends Reinos {
      * @param granada Indica la distancia sobre donde se encuentra el reino de Granada
      * @param nuevaEspaña Indica la distancia sobre donde se encuentra el reino de Granada
      */
-	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña) {
+	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña,int aragon,int borgoña,int austria) {
 		super(nombre, continente, poblacion);
 		this.distanciaPeru=peru;
 		this.distanciaPlata=plata;
 		this.distanciaCastilla=castilla;
 		this.distanciaNuevaGranada=granada;
 		this.distanciaNuevaEspaña=nuevaEspaña;
+		this.distanciaAragon=aragon;
+		this.distanciaBorgoña=borgoña;
+		this.distanciaAustria=austria;
 	}
 
 	/**
@@ -42,6 +48,9 @@ public abstract class Virreinatos extends Reinos {
 		this.distanciaCastilla=obj.getDistanciaCastilla();
 		this.distanciaNuevaGranada=obj.getDistanciaNuevaGranada();
 		this.distanciaNuevaEspaña=obj.getDistanciaNuevaEspaña();
+		this.distanciaAragon=obj.getDistanciaAragon();
+		this.distanciaBorgoña=obj.getDistanciaBorgoña();
+		this.distanciaAustria=obj.getDistanciaAustria();
 	}
 	
 	/**
@@ -57,6 +66,12 @@ public abstract class Virreinatos extends Reinos {
      * 
      * @return devuelve las distancias de cada Reino
      */
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	public int getDistanciaPeru() {
 		return distanciaPeru;
 	}
@@ -97,9 +112,28 @@ public abstract class Virreinatos extends Reinos {
 		this.distanciaNuevaEspaña = distanciaNuevaEspaña;
 	}
 
-	@Override
-	public String toString() {
-		return super.toString();
+	public int getDistanciaAragon() {
+		return distanciaAragon;
+	}
+
+	public void setDistanciaAragon(int distanciaAragon) {
+		this.distanciaAragon = distanciaAragon;
+	}
+
+	public int getDistanciaBorgoña() {
+		return distanciaBorgoña;
+	}
+
+	public void setDistanciaBorgoña(int distanciaBorgoña) {
+		this.distanciaBorgoña = distanciaBorgoña;
+	}
+
+	public int getDistanciaAustria() {
+		return distanciaAustria;
+	}
+
+	public void setDistanciaAustria(int distanciaAustria) {
+		this.distanciaAustria = distanciaAustria;
 	}
 	
 }

@@ -21,7 +21,7 @@ public class Plata extends Virreinatos {
      * @throws Exception
      */
 	public Plata(String nombre,String continente, int poblacion) throws Exception {
-		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353);
+		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
 		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionPlata);
 		this.recoleccionTabaco = new MateriasPrimas(ProductoNombre.Tabaco, 0, 0, 0, 0, 0, 10);
@@ -128,7 +128,7 @@ public class Plata extends Virreinatos {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);
 				productoNombre=ProductoNombre.values()[valor];
-			}while(productoNombre==ProductoNombre.Plata && productoNombre==ProductoNombre.Tabaco && productoNombre==ProductoNombre.Cafe && productoNombre==ProductoNombre.Patata);			
+			}while(productoNombre==ProductoNombre.Plata || productoNombre==ProductoNombre.Tabaco || productoNombre==ProductoNombre.Cafe || productoNombre==ProductoNombre.Patata);			
 			this.getProductosDemandados()[i]=productoNombre;
 		}	
 	}

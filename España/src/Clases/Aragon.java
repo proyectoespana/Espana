@@ -10,6 +10,8 @@ import java.util.Random;
 public class Aragon extends Europa {
 	private Alimentos recoleccionTrigo;
 	private Alimentos recoleccionUvas;
+	private Alimentos recoleccionMaiz;
+	private Alimentos recoleccionArroz;
 
 
 	/**
@@ -23,11 +25,15 @@ public class Aragon extends Europa {
      * @throws Exception
      */
 	public Aragon(String nombre,String continente,int poblacion,String territorio) throws Exception {
-		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483);
+		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483,6829,9628,11379);
 		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "cereal", 0);
 		calcularProduccionMensual(this.recoleccionTrigo);
-		this.recoleccionUvas= new Alimentos(ProductoNombre.Tomate, 0, 0, 0, 0, "fruta", 0);
+		this.recoleccionUvas= new Alimentos(ProductoNombre.Uvas, 0, 0, 0, 0, "fruta", 0);
 		calcularProduccionMensual(this.recoleccionUvas);
+		this.recoleccionMaiz = new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "", 0);
+		calcularProduccionMensual(recoleccionMaiz);
+		this.recoleccionArroz = new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "", 0);
+		calcularProduccionMensual(recoleccionArroz);
 		this.calcularProductosDemandados();
 	}
 
@@ -35,6 +41,8 @@ public class Aragon extends Europa {
 		super(a);
 		this.recoleccionTrigo=a.getRecoleccionTrigo();
 		this.recoleccionUvas=a.getRecoleccionUvas();
+		this.recoleccionArroz=a.getRecoleccionArroz();
+		this.recoleccionMaiz=a.getRecoleccionMaiz();
 	}
 
     /**
@@ -75,6 +83,35 @@ public class Aragon extends Europa {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
+		case Arroz:
+			if(this.recoleccionArroz.getCantidad()>=cantidad) {
+
+				this.recoleccionArroz.setCantidad(this.recoleccionArroz.getCantidad()-cantidad);
+				newProduct= new Alimentos(recoleccionArroz);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia("Arroz",this.getNombre());
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+			break;
+		case Maiz:
+			if(this.recoleccionMaiz.getCantidad()>=cantidad) {
+
+				this.recoleccionMaiz.setCantidad(this.recoleccionMaiz.getCantidad()-cantidad);
+				newProduct= new Alimentos(recoleccionMaiz);
+				newProduct.setCantidad(cantidad);
+				mercancia= new Mercancia("Maiz",this.getNombre());
+				mercancia.añadirProducto(newProduct);
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
+			}else {
+				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
+			}
+
+			break;
 		default:
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
@@ -88,7 +125,7 @@ public class Aragon extends Europa {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);
 				productoNombre=ProductoNombre.values()[valor];
-			}while(productoNombre==ProductoNombre.Uvas && productoNombre==ProductoNombre.Trigo);			
+			}while(productoNombre==ProductoNombre.Uvas || productoNombre==ProductoNombre.Trigo);			
 			this.getProductosDemandados()[i]=productoNombre;
 		}	
 	}
@@ -98,9 +135,9 @@ public class Aragon extends Europa {
      * @return
      */
 	public String  verproduccionMensual() {
-		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() ;
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString()+ "/ Produccion de de : "+ this.recoleccionMaiz.toString()+ "/ Produccion de de : "+ this.recoleccionArroz.toString();
 	}
-
+	
 	public Alimentos getRecoleccionTrigo() {
 		return recoleccionTrigo;
 	}
@@ -115,6 +152,22 @@ public class Aragon extends Europa {
 
 	public void setRecoleccionUvas(Alimentos recoleccionUvas) {
 		this.recoleccionUvas = recoleccionUvas;
+	}
+
+	public Alimentos getRecoleccionMaiz() {
+		return recoleccionMaiz;
+	}
+
+	public void setRecoleccionMaiz(Alimentos recoleccionMaiz) {
+		this.recoleccionMaiz = recoleccionMaiz;
+	}
+
+	public Alimentos getRecoleccionArroz() {
+		return recoleccionArroz;
+	}
+
+	public void setRecoleccionArroz(Alimentos recoleccionArroz) {
+		this.recoleccionArroz = recoleccionArroz;
 	}
 
 	@Override
