@@ -1,6 +1,6 @@
 package Main;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import Clases.Aragon;
 import Clases.Austria;
@@ -200,21 +200,50 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
-//	
-//	public void pasarTurno() {
-//		
-//		
-//		
-//	}
-//	
-//	protected void pasarTurnoIteradorZonas(Reinos reino) {
-//		
-//		for (int i=0;i>reino.getProductosDemandados().length;i++) {
-//			if(reino.getProductosDemandados()[i]!=null) {
-//				this.sublevacionesTurno.add(this.nuevaEspaña.getNombre());
-//			}
-//		}
-//	}
+	
+	/**
+	 * Metodo encargado de comprobar si todas las regiones tienen los productos demandados por las mismas
+	 * @return retorna una lista que contiene las zonas donde no se han satisfacido las necesidades que pedian
+	 */
+	public HashSet pasarTurno() {
+		//uso de HashSet para que no haya repeticiones
+		HashSet<String> zonasSinProductosDemandados= new HashSet<String>();
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(nuevaEspaña));
+	
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(nuevaGranda));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(peru));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(plata));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(castilla));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(aragon));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(borgoña));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(austria));
+		
+		zonasSinProductosDemandados.remove(null);
+		
+		return zonasSinProductosDemandados;
+	}
+	
+	/**
+	 * Metodo hermano del de PasarTurno, su principal funcion es ir al metodo "comprobarProductosDemandados" de cada zona y comprobar si es true or false
+	 * @param reino  se pasa como parametro el pais en cuestion del que se quiere comprobar su metodo 
+	 * @return retorna el nombre de la zona si en la misma no se han satisfacido las necesidades y en cambio "nada" si en esa zona no hay necesidad de productos
+	 */
+	private String comprobarProducotosDemandadosZonas(Reinos reino) {
+		
+		if(!reino.comprobarProductosDemandados()) {
+			return reino.getNombre();
+		}else {
+			return null;
+		}
+	}
+	
 
 	/**
 	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 

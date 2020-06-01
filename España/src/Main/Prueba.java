@@ -1,30 +1,43 @@
 package Main;
 
-import java.util.LinkedHashMap;
+import java.util.HashSet;
 
 public class Prueba {
 
 	public static void main(String[] args) {
 		
-		LinkedHashMap<Integer,String> lista = new LinkedHashMap<Integer, String>();
+		HashSet<String> ad= new HashSet<String>();
+		HashSet<String> od= new HashSet<String>();
 		
-		LinkedHashMap<Integer, String>lista2= new LinkedHashMap<Integer, String>();
+		od.add("asd");
+		od.add("dasfg");
 		
+		ad.add("hola");
+		ad.add(null);
+		ad.add(null);
+		ad.add(null);
+		ad.add(null);
+
 		
-		lista.put(1, "primero");
-		lista.put(2, "segundo");
-		lista.put(3, "tercero");
-		lista.put(4, "cuato");
-		lista.put(5, "quinto");
-		lista.put(6, "ultimo");
+		ad.remove(null);
+		od.addAll(ad);
+		System.out.println(od.toString());
 		
-		lista2.putAll(lista);
-	
-		System.out.println(lista2.toString());
+
+		boolean gs= true;
 		
-		lista2.clear();
+		if(!gs) {
+			System.out.println("ofdas");
+		}else {
+			System.out.println("bien");
+		}
 		
-		System.out.println(lista2.toString());
+		String [] hola = new String  [1];
+		
+		hola[0]=null;
+		
+		System.out.println(hola[0]);
+		
 		
 		
 	}

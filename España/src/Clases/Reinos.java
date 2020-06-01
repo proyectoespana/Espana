@@ -209,7 +209,9 @@ public abstract class Reinos extends Territorio{
 	 */
 	public void verProductosDemandados() {
 		for(int i=0;i<this.productosDemandados.length;i++) {
-			System.out.println(this.productosDemandados[i]);
+			if(this.productosDemandados[i]!=null) {
+				System.out.println(this.productosDemandados[i]);
+			}
 		}
 	}
 
@@ -238,6 +240,7 @@ public abstract class Reinos extends Territorio{
 	}
 
 	//getter
+	
 	public int getPoblacion() {
 		return poblacion;
 	}
@@ -301,6 +304,5 @@ public abstract class Reinos extends Territorio{
 	public void setProductosDemandados(ProductoNombre[] productosDemandados) {
 		this.productosDemandados = productosDemandados;
 	}
-
 
 }

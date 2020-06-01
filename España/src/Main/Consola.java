@@ -1,11 +1,14 @@
 package Main;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
 import Clases.Castilla;
+import Clases.Europa;
 import Clases.NuevaEspaña;
 import Clases.NuevaGranada;
 import Clases.Peru;
@@ -15,6 +18,137 @@ import Clases.Reinos;
 
 public class Consola {
 
+	public static HashSet<String> zonasSinProductosDemandados = new HashSet<String>();
+
+	public static int contadorTurnos=0;
+		
+	public static NuevaEspaña nuevaEspaña;
+
+	public static NuevaGranada nuevaGranada  ;
+
+	public static Peru peru ;		
+
+	public static Plata plata ;
+
+	public static Castilla castilla ;
+
+	public static Aragon aragon ;
+
+	public static Borgoña borgoña ;
+
+	public static Austria austria  ;
+
+	public static ReinoCompleto espana ;
+
+
+	public static void constructor() throws Exception {
+		nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100);
+		nuevaGranada= new NuevaGranada("Nueva Granada", "America", 100);
+		peru= new Peru("Peru","America", 100);
+		plata= new Plata("Plata","America", 100);
+		castilla= new Castilla("Castilla","Europa", 100,  "Madrid");
+		aragon= new Aragon("Aragon","Europa", 100, "Zaragoza");
+		borgoña = new Borgoña("Borgoña","Europa", 100, "Flandes");
+		austria= new Austria("Austria","Europa", 100, "Austria");
+		espana= new ReinoCompleto(nuevaEspaña, nuevaGranada, peru, plata, castilla, aragon, borgoña, austria);
+	}
+
+
+	/**
+	 * Metodo encargado de recargar los constructores y poner si alguna zona tiene sublevaciones
+	 * @throws Exception
+	 */
+	protected static void cambiarTruno() throws Exception {		
+
+		if(contadorTurnos!=0) {
+			contadorTurnos++;
+			
+			pasarTurno(espana);
+
+			constructor();
+
+			recorrerLista(espana);
+
+		}else {
+
+			contadorTurnos++;
+			
+			constructor();
+			
+		}
+		
+		if(zonasSinProductosDemandados.size()==8) {
+			System.out.println(" Has aguantado "+contadorTurnos+" turnos");
+		}else {
+			PrimeraPantalla(espana);
+		}	
+	}
+
+	/**
+	 * Metodo encargado de meter en una lista el nombre de las zonas en las que no se ha podido transpasar los productos que demandaban
+	 * @param espana
+	 */
+	public static void pasarTurno(ReinoCompleto espana) {
+		zonasSinProductosDemandados.addAll(espana.pasarTurno());			
+	}
+
+	public static void recorrerLista(ReinoCompleto espana) {
+		Iterator it= zonasSinProductosDemandados.iterator();
+		String nombreZona;
+
+		while(it.hasNext()) {
+			nombreZona=(String) it.next();
+			
+			switch (nombreZona.toUpperCase()) {
+			case "PERU":
+				/**
+				 * Una vez sabemos las zonas donde no se ha podido satifacer la demanda de productos se procede a poner las
+				 * sublevaciones a true y quitar las posibles demandas de productos que tuviese
+				 */
+				espana.getPeru().setSublevaciones(true);
+				recorrer(espana.getPeru());
+				break;
+			case "PLATA":
+				espana.getPlata().setSublevaciones(true);
+				recorrer(espana.getPlata());
+				break;
+			case "CASTILLA":
+				espana.getCastilla().setSublevaciones(true);
+				recorrer(espana.getCastilla());
+				break;
+			case "NUEVA GRANADA":
+				espana.getNuevaGranda().setSublevaciones(true);
+				recorrer(espana.getNuevaGranda());
+				break;
+			case "NUEVA ESPAÑA":
+				espana.getNuevaEspaña().setSublevaciones(true);
+				recorrer(espana.getNuevaEspaña());
+				break;
+			case "ARAGON":
+				espana.getAragon().setSublevaciones(true);
+				recorrer(espana.getAragon());
+				break;
+			case "AUSTRIA":
+				espana.getAustria().setSublevaciones(true);
+				recorrer(espana.getAustria());
+				break;
+			case "BORGOÑA":
+				espana.getBorgoña().setSublevaciones(true);
+				recorrer(espana.getBorgoña());
+				break;
+			default:
+				throw new IllegalArgumentException(nombreZona+" no esta disponible");
+			}
+		}
+	}
+	
+	private static void recorrer(Reinos reino) {
+		for(int i=0;i<reino.getProductosDemandados().length;i++) {
+			if(reino.getProductosDemandados()[i]!=null) {
+				reino.getProductosDemandados()[i]=null;
+			}
+		}
+	}
 
 	public static void PrimeraPantalla(ReinoCompleto espana) throws Exception {
 		int i;
@@ -30,6 +164,7 @@ public class Consola {
 			System.out.println("7 -Aragon");
 			System.out.println("8 -Austria");
 			System.out.println("9 -Borgoña");
+			System.out.println("10 -Pasar Turno");
 
 			Scanner src2 = new Scanner(System.in);
 			zona= src2.nextInt();
@@ -61,6 +196,9 @@ public class Consola {
 				break;
 			case 9:
 				verZona(espana.getBorgoña());
+				break;
+			case 10:
+				cambiarTruno();
 				break;
 			default:
 				throw new IllegalArgumentException("valor no valido " + zona);
@@ -128,13 +266,13 @@ public class Consola {
 		do {
 			System.out.println("1 -Patata");
 			System.out.println("2 -Tomate");
-//			System.out.println("3 -Cacao");
+			//			System.out.println("3 -Cacao");
 			System.out.println("4 -Maiz");
 			System.out.println("5 -Trigo");
 			System.out.println("6 -arroz");
 			System.out.println("7 -Uvas");
 			System.out.println("8 -Hierro");
-//			System.out.println("9 -Algodon");
+			//			System.out.println("9 -Algodon");
 			System.out.println("10 -Oro");
 			System.out.println("11 -Plata");
 			System.out.println("12 -Tabaco");
@@ -154,9 +292,9 @@ public class Consola {
 			case 2:
 				pais.crearMercancia(ProductoNombre.Tomate, cantidad);
 				break;
-//			case 3: 
-//				pais.crearMercancia(ProductoNombre.Cacao, cantidad);
-//				break;
+				//			case 3: 
+				//				pais.crearMercancia(ProductoNombre.Cacao, cantidad);
+				//				break;
 			case 4:
 				pais.crearMercancia(ProductoNombre.Maiz, cantidad);
 				break;
@@ -172,9 +310,9 @@ public class Consola {
 			case 8:
 				pais.crearMercancia(ProductoNombre.Hierro, cantidad);
 				break;
-//			case 9: 
-//				pais.crearMercancia(ProductoNombre.Algodon, cantidad);
-//				break;
+				//			case 9: 
+				//				pais.crearMercancia(ProductoNombre.Algodon, cantidad);
+				//				break;
 			case 10:
 				pais.crearMercancia(ProductoNombre.Oro, cantidad);
 				break;
@@ -207,8 +345,8 @@ public class Consola {
 			System.out.println("3 -Ver productos demandados en el reino");
 			System.out.println("4 -Ver Mercancias de las flotas del reino");
 			System.out.println("5 -Retornar flota");
-			
-			
+
+
 			Scanner src2 = new Scanner(System.in);
 			metodo= src2.nextInt();
 
@@ -390,7 +528,7 @@ public class Consola {
 			i= src.nextInt();
 		}while(i!=0);
 	}
-	
+
 	public static void devolverFlota(ReinoCompleto espana) {
 		int i;
 		int zona ;
@@ -446,30 +584,30 @@ public class Consola {
 
 	public static void main(String[] args) throws Exception {
 
-		NuevaEspaña nuevaEspaña = new NuevaEspaña("Nueva España", "Ameriaca", 100);
-
-		NuevaGranada nuevaGranada = new NuevaGranada("Nueva Granada", "America", 100);
-
-		Peru peru= new Peru("Peru","America", 100);		
-
-		Plata plata = new Plata("Plata","America", 100);
-
-
-		Castilla castilla = new Castilla("Castilla","Europa", 100,  "Madrid");
-
-		Aragon aragon = new Aragon("Aragon","Europa", 100, "Zaragoza");
-
-		Borgoña borgoña = new Borgoña("Borgoña","Europa", 100, "Flandes");
-
-		Austria austria = new Austria("Austria","Europa", 100, "Austria");
-
-		ReinoCompleto espana = new ReinoCompleto(nuevaEspaña, nuevaGranada, peru, plata, castilla, aragon, borgoña, austria);
+		//		NuevaEspaña nuevaEspaña = new NuevaEspaña("Nueva España", "Ameriaca", 100);
+		//
+		//		NuevaGranada nuevaGranada = new NuevaGranada("Nueva Granada", "America", 100);
+		//
+		//		Peru peru= new Peru("Peru","America", 100);		
+		//
+		//		Plata plata = new Plata("Plata","America", 100);
+		//
+		//
+		//		Castilla castilla = new Castilla("Castilla","Europa", 100,  "Madrid");
+		//
+		//		Aragon aragon = new Aragon("Aragon","Europa", 100, "Zaragoza");
+		//
+		//		Borgoña borgoña = new Borgoña("Borgoña","Europa", 100, "Flandes");
+		//
+		//		Austria austria = new Austria("Austria","Europa", 100, "Austria");
+		//
+		//		ReinoCompleto espana = new ReinoCompleto(nuevaEspaña, nuevaGranada, peru, plata, castilla, aragon, borgoña, austria);
 
 
 
 		//Prueba de consola
 
-		PrimeraPantalla(espana);
+		cambiarTruno();
 	}
 
 }

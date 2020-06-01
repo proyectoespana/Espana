@@ -26,13 +26,13 @@ public class Aragon extends Europa {
      */
 	public Aragon(String nombre,String continente,int poblacion,String territorio) throws Exception {
 		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483,6829,9628,11379);
-		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "cereal", 0);
+		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "Cereal", 0);
 		calcularProduccionMensual(this.recoleccionTrigo);
-		this.recoleccionUvas= new Alimentos(ProductoNombre.Uvas, 0, 0, 0, 0, "fruta", 0);
+		this.recoleccionUvas= new Alimentos(ProductoNombre.Uvas, 0, 0, 0, 0, "Fruta", 0);
 		calcularProduccionMensual(this.recoleccionUvas);
-		this.recoleccionMaiz = new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "", 0);
+		this.recoleccionMaiz = new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "Semilla", 0);
 		calcularProduccionMensual(recoleccionMaiz);
-		this.recoleccionArroz = new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "", 0);
+		this.recoleccionArroz = new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Cereal", 0);
 		calcularProduccionMensual(recoleccionArroz);
 		this.calcularProductosDemandados();
 	}
