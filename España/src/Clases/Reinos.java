@@ -1,8 +1,12 @@
 package Clases;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Random;
+
+import BaseDeDatos.IntroducirDatos;
+import Main.PanelControl;
 
 public abstract class Reinos extends Territorio{
 
@@ -14,9 +18,11 @@ public abstract class Reinos extends Territorio{
 	private int idMercancias;
 	private int idImportaciones;
 	private ProductoNombre [] productosDemandados;
+	private IntroducirDatos base;
 
-	public Reinos(String nombre, String continente,int poblacion) {
+	public Reinos(String nombre, String continente,int poblacion,IntroducirDatos base) {
 		super(nombre, continente);
+		this.base=base;
 		this.poblacion= poblacion;
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
@@ -32,6 +38,7 @@ public abstract class Reinos extends Territorio{
 		this.importacionMercancia=obj.getImportacionMercancia();
 		this.dineroTotal=obj.getDineroTotal();
 		this.sublevaciones=obj.isSublevaciones();
+		this.base=obj.getBase();
 	}
 
 
@@ -55,7 +62,7 @@ public abstract class Reinos extends Territorio{
 			 *  de un determinado producto * el numero de personas de su pais determinado + un numero aleatorio con el que se podrá comerciar con el resto de Países.
 			 */
 			product.setCantidad((4*this.poblacion)+random);
-			//El objetivo es meter los datos de la produccion integra en la base de datos
+			//El objetivo es meter los datos de la produccion integra en la base de datos produccion total
 			cosumoProductos(product);
 			break;
 		case Tomate:
@@ -188,17 +195,29 @@ public abstract class Reinos extends Territorio{
 	/**
 	 * Metodo encargado de calcular de forma automatcia el consumo de productos dentro de un pais
 	 * @param product parametro encargado de pasar el producto del que se quiere calcular el consumo 
+	 * @throws SQLException 
 	 */
-	private void cosumoProductos(Productos product) {
+	private void cosumoProductos(Productos product) throws SQLException {
 		int newCantidad;
+		int produccionPrincipal;
+	
 
 		if(product.getNombre()==ProductoNombre.Cafe || product.getNombre()==ProductoNombre.Tabaco) {
+			//se consume el 25% de lo generado
 			newCantidad=(int) (product.getCantidad()*0.25);
+			produccionPrincipal=product.getCantidad();
 			product.setCantidad(product.getCantidad()-newCantidad);
 		}else {
+			//consume el 60% de lo generado
 			newCantidad=(int) (product.getCantidad()*0.60);
+			produccionPrincipal=product.getCantidad();
 			product.setCantidad(product.getCantidad()-newCantidad);
 		}
+		
+		//insertamos en la base de datos los primeros contenidos
+//		IntroducirDatos.insertarDatosProduccion("PrimeraPrueba", 3, 2, 3, PanelControl.getContadorTurnos());
+//		base.insertarDatosProduccion(product.getNombre().toString(), product.getCantidad(), newCantidad, PanelControl.getContadorTurnos());
+		IntroducirDatos.insertarDatosProduccion(PanelControl.getContadorTurnos(), this.getNombre(), product.getNombre().toString(), produccionPrincipal, newCantidad, product.getCantidad());
 	}
 
 	public void sublevaciones() {
@@ -249,9 +268,10 @@ public abstract class Reinos extends Territorio{
 	public void zonaNoDisponibleDemanda() {
 		this.productosDemandados=new ProductoNombre[0];
 	}
-
-	//getter
 	
+	
+	//getter
+
 	public int getPoblacion() {
 		return poblacion;
 	}
@@ -315,5 +335,14 @@ public abstract class Reinos extends Territorio{
 	public void setProductosDemandados(ProductoNombre[] productosDemandados) {
 		this.productosDemandados = productosDemandados;
 	}
+
+	public IntroducirDatos getBase() {
+		return base;
+	}
+
+	public void setBase(IntroducirDatos base) {
+		this.base = base;
+	}
+	
 
 }

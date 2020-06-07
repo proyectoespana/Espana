@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import BaseDeDatos.IntroducirDatos;
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
@@ -23,11 +24,13 @@ public class Consola {
 	public static int contadorTurnos=0;
 
 	public static ReinoCompleto espana ;
+	
+	public static IntroducirDatos base;
 
 
 	public static void constructor() throws Exception {
 		
-		espana= new ReinoCompleto();
+		espana= new ReinoCompleto(base);
 	}
 
 

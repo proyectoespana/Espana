@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 import Main.PanelControl;
 
-public class Ventana_Flota_Castilla {
+public class Ventana_Sublevaciones {
 	private JPanel panel;
 	private JLabel etiqueta1;
 	private JLabel etiqueta2;
@@ -36,17 +36,17 @@ public class Ventana_Flota_Castilla {
 	private PanelControl control;
 	private JMenuBar menu;
 	private JMenu jmenu;
-	
 
 	static {
-		imagen = new ImageIcon("imagenes/barcoNav.gif");
-		imagen2 = new ImageIcon("imagenes/mundo.gif");
-		imagen3 = new ImageIcon("imagenes/caja.gif");
+		imagen = new ImageIcon("barcoNav.gif");
+		imagen2 = new ImageIcon("mundo.gif");
+		imagen3 = new ImageIcon("caja.gif");
 	}
 
-	public Ventana_Flota_Castilla(PanelControl control) {
+	
+	public Ventana_Sublevaciones(PanelControl control) {
 		this.control=control;
-		ventana = new JFrame("Mercancia Flota Castilla");
+		ventana = new JFrame("Mercancia Flota Borgoña");
 		ventana.setSize(815, 300);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
@@ -68,7 +68,7 @@ public class Ventana_Flota_Castilla {
 	}
 
 	public void colocarEtiquetas() {
-		etiqueta1 = new JLabel("Mercancias de Castilla");
+		etiqueta1 = new JLabel("Mercancias de Borgoña");
 		etiqueta2 = new JLabel("Mercancias");
 		etiqueta3 = new JLabel("~~~~~~~~~~~~~~");
 		etiqueta4 = new JLabel("Destino");
@@ -98,7 +98,7 @@ public class Ventana_Flota_Castilla {
 
 		//		String [] mercanciasFlota=new  String[this.control.getEspana().getAragon().getFlota().getArrayMercancias().size()];
 
-		Iterator it=this.control.getEspana().getCastilla().getFlota().getArrayMercancias().keySet().iterator();
+		Iterator it=this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().keySet().iterator();
 
 		while(it.hasNext()) {
 			JMenuItem jmenuitem;
@@ -109,7 +109,7 @@ public class Ventana_Flota_Castilla {
 			//			mercanciasFlota[posicion]=id+" "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ";
 
 			//			jmenuitem = new JMenuItem(mercanciasFlota[posicion]);
-			jmenuitem = new JMenuItem(id+" "+this.control.getEspana().getCastilla().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getCastilla().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ");
+			jmenuitem = new JMenuItem(id+" "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ");
 
 			jmenu.add(jmenuitem);
 		}
@@ -152,13 +152,6 @@ public class Ventana_Flota_Castilla {
 			box2.addItem("Austria");
 		}
 
-		if(control.getEspana().getBorgoña().isSublevaciones()==false) {
-			box2.addItem("Borgoña");
-		}
-		
-		if(control.getEspana().getAragon().isSublevaciones()==false) {
-			box2.addItem("Aragon");
-		}
 	}
 
 	/**
@@ -175,43 +168,33 @@ public class Ventana_Flota_Castilla {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if(control.getEspana().getCastilla().getFlota().getArrayMercancias().size()!=0) {
+				if(control.getEspana().getBorgoña().getFlota().getArrayMercancias().size()!=0) {
 					try {
 						switch (box2.getSelectedItem().toString().toUpperCase()) {
 						case "NUEVA ESPAÑA":
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getNuevaEspaña());
+							control.getEspana().enviarFlota(control.getEspana().getBorgoña(), control.getEspana().getNuevaEspaña());
 							System.out.println("Importaciones Nueva España");
 							control.getEspana().getNuevaEspaña().verMercanciasImportacion();
 							break;
 						case "NUEVA GRANADA": 
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getNuevaGranda());
+							control.getEspana().enviarFlota(control.getEspana().getBorgoña(), control.getEspana().getNuevaGranda());
 							System.out.println("Importaciones Nueva Granda");
 							control.getEspana().getNuevaGranda().verMercanciasImportacion();
 							break;
 						case "PERU":
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getPeru());
+							control.getEspana().enviarFlota(control.getEspana().getBorgoña(), control.getEspana().getPeru());
 							System.out.println("Importaciones Peru");
 							control.getEspana().getPeru().verMercanciasImportacion();
 							break;
 						case "PLATA": 
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getPlata());
+							control.getEspana().enviarFlota(control.getEspana().getBorgoña(), control.getEspana().getPlata());
 							System.out.println("Importaciones Plata");
 							control.getEspana().getPlata().verMercanciasImportacion();
 							break;
 						case "AUSTRIA":
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getAustria());
+							control.getEspana().enviarFlota(control.getEspana().getBorgoña(), control.getEspana().getAustria());
 							System.out.println("Importaciones Austria ");
 							control.getEspana().getAustria().verMercanciasImportacion();
-							break;
-						case "BORGOÑA":
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getBorgoña());
-							System.out.println("Importaciones Borgoña");
-							control.getEspana().getBorgoña().verMercanciasImportacion();
-							break;
-						case "ARAGON":
-							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getAragon());
-							System.out.println("Importaciones Aragón");
-							control.getEspana().getAragon().verMercanciasImportacion();
 							break;
 						default:
 							throw new IllegalArgumentException(box2.getSelectedItem().toString().toUpperCase());
@@ -219,10 +202,10 @@ public class Ventana_Flota_Castilla {
 
 						jmenu.removeAll();
 
-						System.out.println("Mercancias Reino Castilla");
-						control.getEspana().getCastilla().verMercancias();
-						System.out.println("Mercancias FLota Castilla");
-						control.getEspana().getCastilla().getFlota().verMercancias();
+						System.out.println("Mercancias Reino Borgoña");
+						control.getEspana().getBorgoña().verMercancias();
+						System.out.println("Mercancias FLota Borgoña");
+						control.getEspana().getBorgoña().getFlota().verMercancias();
 
 
 					}catch (Exception o) {

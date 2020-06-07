@@ -2,6 +2,8 @@ package Clases;
 
 import java.util.Random;
 
+import BaseDeDatos.IntroducirDatos;
+
 public class Plata extends Virreinatos {
 
 	private MateriasPrimas recoleccionPlata;
@@ -20,8 +22,8 @@ public class Plata extends Virreinatos {
      * @param patata Se introduce el objeto determinado que es
      * @throws Exception
      */
-	public Plata(String nombre,String continente, int poblacion) throws Exception {
-		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
+	public Plata(String nombre,String continente, int poblacion,IntroducirDatos base) throws Exception {
+		super(nombre,continente, poblacion,base, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
 		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionPlata);
 		this.recoleccionTabaco = new MateriasPrimas(ProductoNombre.Tabaco, 0, 0, 0, 0, 0, 10);

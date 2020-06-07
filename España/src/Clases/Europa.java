@@ -1,5 +1,7 @@
 package Clases;
 
+import BaseDeDatos.IntroducirDatos;
+
 /**
  * Clase hija de Reinos
  * @author Grupo
@@ -32,8 +34,8 @@ public abstract class Europa extends Reinos {
      * @param castilla Se introduce la distancia de castilla
      * @param nuevaEspaña Se introduce la distancia de nueva españa
      */
-	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña,int nuevaGranada,int peru,int plata) {
-		super(nombre,continente, poblacion);
+	public Europa(String nombre,String continente, int poblacion,IntroducirDatos base ,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña,int nuevaGranada,int peru,int plata) {
+		super(nombre,continente, poblacion,base);
 		this.territorio=territorio;
 		this.guerra=false;
 		this.distanciaAragon=aragon;

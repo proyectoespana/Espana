@@ -2,6 +2,8 @@ package Clases;
 
 import java.util.Random;
 
+import BaseDeDatos.IntroducirDatos;
+
 /**
  * Clase hija de Europa
  * @author Grupo
@@ -24,8 +26,8 @@ public class Aragon extends Europa {
      * @param uvas Se introduce el objeto determinado que es
      * @throws Exception
      */
-	public Aragon(String nombre,String continente,int poblacion,String territorio) throws Exception {
-		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483,6829,9628,11379);
+	public Aragon(String nombre,String continente,int poblacion,String territorio,IntroducirDatos base ) throws Exception {
+		super(nombre,continente, poblacion,base,territorio,0, 1778, 1543, 624, 9483,6829,9628,11379);
 		this.recoleccionTrigo= new Alimentos(ProductoNombre.Trigo, 0, 0, 0, 0, "Cereal", 0);
 		calcularProduccionMensual(this.recoleccionTrigo);
 		this.recoleccionUvas= new Alimentos(ProductoNombre.Uvas, 0, 0, 0, 0, "Fruta", 0);

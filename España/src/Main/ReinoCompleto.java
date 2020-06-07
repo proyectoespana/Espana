@@ -1,7 +1,10 @@
 package Main;
 
+import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.Iterator;
 
+import BaseDeDatos.IntroducirDatos;
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
@@ -30,6 +33,7 @@ public class ReinoCompleto {
 	private Aragon aragon;
 	private Borgoña borgoña;
 	private Austria austria;
+	private IntroducirDatos base;
 
 	/**
 	 * 
@@ -44,15 +48,16 @@ public class ReinoCompleto {
 	 * @throws Exception 
 	 */
 
-	public ReinoCompleto() throws Exception {
-		this.nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100);
-		this.nuevaGranda=new NuevaGranada("Nueva Granada", "America", 100);
-		this.peru=new Peru("Peru","America", 100);
-		this.plata= new Plata("Plata","America", 100);
-		this.castilla=new Castilla("Castilla","Europa", 100,  "Madrid");
-		this.aragon= new Aragon("Aragon","Europa", 100, "Zaragoza");
-		this.borgoña= new Borgoña("Borgoña","Europa", 100, "Flandes");
-		this.austria=new Austria("Austria","Europa", 100, "Austria");
+	public ReinoCompleto(IntroducirDatos base) throws Exception {
+		this.base=base;
+		this.nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100,base);
+		this.nuevaGranda=new NuevaGranada("Nueva Granada", "America", 100,base);
+		this.peru=new Peru("Peru","America", 100,base);
+		this.plata= new Plata("Plata","America", 100,base);
+		this.castilla=new Castilla("Castilla","Europa", 100,  "Madrid",base);
+		this.aragon= new Aragon("Aragon","Europa", 100, "Zaragoza",base);
+		this.borgoña= new Borgoña("Borgoña","Europa", 100, "Flandes",base);
+		this.austria=new Austria("Austria","Europa", 100, "Austria",base);
 	}
 
 	/**
@@ -86,6 +91,8 @@ public class ReinoCompleto {
 		if(reino instanceof Virreinatos) {
 
 			if(reino.getFlota().isDisponible()) {
+				
+				enviarBaseDatosIdMercancias(reino,destino);
 
 				switch (destino.getNombre().toUpperCase()) {
 				case "PERU":
@@ -128,6 +135,8 @@ public class ReinoCompleto {
 		}else if(reino instanceof Europa) {
 
 			if(reino.getFlota().isDisponible()) {
+				
+				enviarBaseDatosIdMercancias(reino,destino);
 
 				switch (destino.getNombre().toUpperCase()) {
 				case "PERU":
@@ -168,6 +177,38 @@ public class ReinoCompleto {
 			}
 
 		}
+	}
+	
+	protected void enviarBaseDatosIdMercancias(Reinos origen,Reinos destino) throws SQLException {
+		Iterator it = origen.getFlota().getArrayMercancias().keySet().iterator();
+		int id;
+		int turno;
+		String codigoPais;
+		String aux;
+		
+		turno=PanelControl.getContadorTurnos();
+		
+		if(origen.getNombre().equals("Nueva España")) {
+			codigoPais="NE";
+		}else if(origen.getNombre().equals("Nueva Granada")) {
+			codigoPais="NG";
+		}else {
+			codigoPais=origen.getNombre().substring(0,2);
+		}
+		
+		aux=codigoPais;
+		
+		while(it.hasNext()) {
+			codigoPais=aux;
+			id=(int) it.next();
+			
+			codigoPais+=id;
+			System.out.println(codigoPais);
+			
+			IntroducirDatos.insertarImportaciones(codigoPais.toUpperCase(),origen.getNombre().toString(),destino.getNombre().toString(),turno);
+		}
+		System.out.println("hola");
+			
 	}
 
 	/**

@@ -1,4 +1,7 @@
 package Clases;
+
+import BaseDeDatos.IntroducirDatos;
+
 /*
  * GRUPO
  */
@@ -25,8 +28,8 @@ public abstract class Virreinatos extends Reinos {
      * @param granada Indica la distancia sobre donde se encuentra el reino de Granada
      * @param nuevaEspaña Indica la distancia sobre donde se encuentra el reino de Granada
      */
-	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña,int aragon,int borgoña,int austria) {
-		super(nombre, continente, poblacion);
+	public Virreinatos(String nombre, String continente, int poblacion,IntroducirDatos base,int peru,int plata,int castilla,int granada,int nuevaEspaña,int aragon,int borgoña,int austria) {
+		super(nombre, continente, poblacion,base);
 		this.distanciaPeru=peru;
 		this.distanciaPlata=plata;
 		this.distanciaCastilla=castilla;

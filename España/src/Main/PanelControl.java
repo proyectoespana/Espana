@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+import BaseDeDatos.IntroducirDatos;
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
@@ -22,13 +23,16 @@ public class PanelControl {
 	
 	private HashSet<String> zonasSinProductosDemandados ;
 	private HashSet<String> zonasSinFlotaTrue ;
-	private  int contadorTurnos;		
+	private static int contadorTurnos;		
 	private ReinoCompleto espana ;
 	private Ventana_Principal principal;
+	private IntroducirDatos base;
 
 
 	public PanelControl() throws Exception {
-		this.espana= new ReinoCompleto();
+		IntroducirDatos.conectar();
+		IntroducirDatos.borrar();
+		this.espana= new ReinoCompleto(base);
 		this.contadorTurnos=0;
 		this.zonasSinProductosDemandados= new HashSet<String>();
 		this.zonasSinFlotaTrue= new HashSet<String>();
@@ -43,7 +47,7 @@ public class PanelControl {
 	 */
 	protected void constructor() throws Exception {
 
-		this.espana= new ReinoCompleto();
+		this.espana= new ReinoCompleto(base);
 	}
 
 
@@ -82,6 +86,7 @@ public class PanelControl {
 		System.out.println("Borgoña"+this.espana.getBorgoña().isSublevaciones());
 		
 		this.principal= new Ventana_Principal(this);
+//		IntroducirDatos.insertarDatosProduccion("xqfeff", 3, 2, 3, this.contadorTurnos);
 		principal.setVisible(true);
 		
 		if(zonasSinProductosDemandados.size()==8) {
@@ -246,8 +251,23 @@ public class PanelControl {
 	}
 	
 	public void crearMercancias(Reinos pais,int cantidad,ProductoNombre producto) throws Exception {
+		String codigoPais;
 		pais.crearMercancia(producto, cantidad);
+		int turno;
 
+		turno= PanelControl.getContadorTurnos();
+		
+		if(pais.getNombre().equals("Nueva España")) {
+			codigoPais="NE";
+		}else if(pais.getNombre().equals("Nueva Granada")) {
+			codigoPais="NG";
+		}else {
+			codigoPais=pais.getNombre().substring(0,2);
+		}	
+		
+		codigoPais=codigoPais+pais.getMercancia().size();
+		
+		IntroducirDatos.insertarDatosMercancias(codigoPais.toUpperCase(),producto.toString(),cantidad,turno,pais.getNombre().toString());
 		
 		pais.verMercancias();
 	}
@@ -284,12 +304,20 @@ public class PanelControl {
 		this.zonasSinProductosDemandados = zonasSinProductosDemandados;
 	}
 
-	public int getContadorTurnos() {
+	public HashSet<String> getZonasSinFlotaTrue() {
+		return zonasSinFlotaTrue;
+	}
+
+	public void setZonasSinFlotaTrue(HashSet<String> zonasSinFlotaTrue) {
+		this.zonasSinFlotaTrue = zonasSinFlotaTrue;
+	}
+
+	public static int getContadorTurnos() {
 		return contadorTurnos;
 	}
 
-	public void setContadorTurnos(int contadorTurnos) {
-		this.contadorTurnos = contadorTurnos;
+	public static void setContadorTurnos(int contadorTurnos) {
+		PanelControl.contadorTurnos = contadorTurnos;
 	}
 
 	public ReinoCompleto getEspana() {
@@ -299,6 +327,25 @@ public class PanelControl {
 	public void setEspana(ReinoCompleto espana) {
 		this.espana = espana;
 	}
+
+	public Ventana_Principal getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Ventana_Principal principal) {
+		this.principal = principal;
+	}
+
+	public IntroducirDatos getBase() {
+		return base;
+	}
+
+	public void setBase(IntroducirDatos base) {
+		this.base = base;
+	}
+	
+
+	
 
 
 }
