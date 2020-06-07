@@ -150,7 +150,7 @@ public class MapaAmerica extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("AmericaDef.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("imagenes/AmericaDef.jpg"));
 		lblNewLabel.setBounds(5, 5, 520, 320);
 		add(lblNewLabel);
 		

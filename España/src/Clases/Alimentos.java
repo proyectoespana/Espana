@@ -2,14 +2,15 @@ package Clases;
 
 public class Alimentos extends Productos {
 	
-	private int tiempoPerecer;
 	/**
 	 * tiempo determinado de vida de un Alimento 
 	 */
-	private String tipo;
+	private int tiempoPerecer;
 	/**
 	 * atributo que marca el tipo de Alimeto que es "verdura,fruta..."
 	 */
+	private String tipo;
+
 	
 	/**
 	 *       
@@ -28,6 +29,10 @@ public class Alimentos extends Productos {
 		this.tipo = tipo;
 	}
 	
+	/**
+	 * Constructor de copia
+	 * @param alimentos
+	 */
 	public Alimentos(Alimentos alimentos) {
 		super(alimentos);
 		this.tiempoPerecer=alimentos.getTiempoPerecer();

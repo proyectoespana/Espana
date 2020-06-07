@@ -554,6 +554,8 @@ public class Ventana_Principal extends JFrame {
 		mntmNewMenuItem_7.addActionListener(listener);
 
 	}
+	
+	
 
 
 	

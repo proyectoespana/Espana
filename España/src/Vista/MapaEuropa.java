@@ -155,7 +155,7 @@ public class MapaEuropa extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("EuropaDef.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("imagenes/EuropaDef.jpg"));
 		lblNewLabel.setBounds(5, 5, 520, 320);
 		add(lblNewLabel);
 		

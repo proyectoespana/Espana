@@ -38,9 +38,9 @@ public class Ventana_Flota_Borgonha {
 	private JMenu jmenu;
 
 	static {
-		imagen = new ImageIcon("barcoNav.gif");
-		imagen2 = new ImageIcon("mundo.gif");
-		imagen3 = new ImageIcon("caja.gif");
+		imagen = new ImageIcon("imagenes/barcoNav.gif");
+		imagen2 = new ImageIcon("imagenes/mundo.gif");
+		imagen3 = new ImageIcon("imagenes/caja.gif");
 	}
 
 	

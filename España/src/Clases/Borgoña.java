@@ -119,6 +119,10 @@ public class Borgoña extends Europa{
 
     	}
     	
+    	/**
+    	 * Mertodo encargado de calcular la produccion generada por ese reino
+    	 * 
+    	 */
     	private void calcularProductosDemandados() {
     		int valor;
     		ProductoNombre productoNombre;

@@ -185,7 +185,7 @@ public class Ventana_Demandas_Reinos {
 	
 	public void aniadir() {
 		panel.setLayout(new BorderLayout());
-		etiqueta10 = new JLabel(new ImageIcon(Ventana_Demandas_Reinos.class.getResource("papiro.png")));                  
+		etiqueta10 = new JLabel(new ImageIcon("imagenes/papiro.png"));                  
 		etiqueta10.setBounds(-100, 0, 100, 100);	
 		panel.add(etiqueta10);
 	}
