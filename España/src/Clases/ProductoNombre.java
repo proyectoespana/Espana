@@ -1,8 +1,8 @@
 package Clases;
 
 public enum ProductoNombre {
-	Patata,Tomate,Cacao,Maiz,Trigo,Arroz,Uvas,
-	Hierro,Algodon,Oro,Plata,Tabaco,Cafe
+	Patata,Tomate,Maiz,Trigo,Arroz,Uvas,
+	Hierro,Oro,Plata,Tabaco,Cafe
 }
 
 

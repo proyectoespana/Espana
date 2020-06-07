@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 public class Plata extends Virreinatos {
 
 	private MateriasPrimas recoleccionPlata;
@@ -7,18 +9,34 @@ public class Plata extends Virreinatos {
 	private MateriasPrimas recoleccionCafe;
 	private Alimentos recoleccionPatata;
 
-	public Plata(String nombre,String continente, int poblacion,MateriasPrimas plata,MateriasPrimas tabaco,MateriasPrimas cafe,Alimentos patata) throws Exception {
-		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353);
-		this.recoleccionPlata = plata;
-		calcularProduccionMensual(plata);
-		this.recoleccionTabaco = tabaco;
-		calcularProduccionMensual(tabaco);
-		this.recoleccionCafe = cafe;
-		calcularProduccionMensual(cafe);
-		this.recoleccionPatata = patata;
-		calcularProduccionMensual(patata);
+	/**
+     * Constructor de 7 parametros
+     * @param nombre informa sobre el nombre
+     * @param continente Informa sobre el continente en el que se encuentra
+     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
+     * @param plata Se introduce el objeto determinado que es
+     * @param tabaco Se introduce el objeto determinado que es
+     * @param cafe Se introduce el objeto determinado que es
+     * @param patata Se introduce el objeto determinado que es
+     * @throws Exception
+     */
+	public Plata(String nombre,String continente, int poblacion) throws Exception {
+		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
+		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionPlata);
+		this.recoleccionTabaco = new MateriasPrimas(ProductoNombre.Tabaco, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionTabaco);
+		this.recoleccionCafe = new MateriasPrimas(ProductoNombre.Cafe, 0, 0, 0, 0, 0, 10);
+		calcularProduccionMensual(this.recoleccionCafe);
+		this.recoleccionPatata =new Alimentos(ProductoNombre.Patata, 0, 0, 0, 0, "tubérculo", 0);
+		calcularProduccionMensual(this.recoleccionPatata);
+		this.calcularProductosDemandados();
 	}
 
+	/**
+     * Constructor de copia
+     * @param plata
+     */
 	public Plata(Plata plata) {
 		super(plata);
 		this.recoleccionPlata = plata.getRecoleccionPlata();
@@ -27,33 +45,41 @@ public class Plata extends Virreinatos {
 		this.recoleccionPatata = plata.getRecoleccionPatata();
 	}
 
+    /**
+     * Crean las mercancias 
+     * @param producto recogen un Objeto producto
+     * @param cantidad recoge la cantidad 
+     * @throws IllegalArgumentException que no se admite ese dato
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
 
 		switch (producto) {
 		case Plata:
-			if(this.recoleccionPlata.getCantidad()>cantidad) {
+			if(this.recoleccionPlata.getCantidad()>=cantidad) {
 
 				this.recoleccionPlata.setCantidad(this.recoleccionPlata.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionPlata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Plata");
+				mercancia= new Mercancia("Plata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Tabaco:
-			if(this.recoleccionTabaco.getCantidad()>cantidad) {
+			if(this.recoleccionTabaco.getCantidad()>=cantidad) {
 
 				this.recoleccionTabaco.setCantidad(this.recoleccionTabaco.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionTabaco);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Tabaco");
+				mercancia= new Mercancia("Tabaco",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -61,28 +87,30 @@ public class Plata extends Virreinatos {
 			break;
 		case Cafe:
 
-			if(this.recoleccionCafe.getCantidad()>cantidad) {
+			if(this.recoleccionCafe.getCantidad()>=cantidad) {
 
 				this.recoleccionCafe.setCantidad(this.recoleccionCafe.getCantidad()-cantidad);
 				newProduct= new MateriasPrimas(recoleccionCafe);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Cafe");
+				mercancia= new Mercancia("Cafe",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
 			break;
 		case Patata:
 
-			if(this.recoleccionPatata.getCantidad()>cantidad) {
+			if(this.recoleccionPatata.getCantidad()>=cantidad) {
 
 				this.recoleccionPatata.setCantidad(this.recoleccionPatata.getCantidad()-cantidad);
 				newProduct= new Alimentos(recoleccionPatata);
 				newProduct.setCantidad(cantidad);
-				mercancia= new Mercancia("Patata");
+				mercancia= new Mercancia("Patata",this.getNombre());
 				mercancia.añadirProducto(newProduct);
-				this.getMercancia().put(this.getMercancia().size(), mercancia);	
+				this.getMercancia().put(this.getIdMercancias(), mercancia);	
+				this.setIdMercancias(this.getIdMercancias()+1);
 			}else {
 				throw new IllegalArgumentException(this.getNombre()+" no tiene " + cantidad+" kg de "+producto);
 			}
@@ -90,11 +118,23 @@ public class Plata extends Virreinatos {
 		default:
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
-
+	}
+	
+	private void calcularProductosDemandados() {
+		int valor;
+		ProductoNombre productoNombre;
+		
+		for(int i=0;i<this.getProductosDemandados().length;i++) {
+			do {
+				valor = new Random().nextInt(ProductoNombre.values().length);
+				productoNombre=ProductoNombre.values()[valor];
+			}while(productoNombre==ProductoNombre.Plata || productoNombre==ProductoNombre.Tabaco || productoNombre==ProductoNombre.Cafe || productoNombre==ProductoNombre.Patata);			
+			this.getProductosDemandados()[i]=productoNombre;
+		}	
 	}
 
 	public String  verproduccionMensual() {
-		return "Produccion de : "+this.recoleccionPlata.toString() + "/ Produccion de de : "+ this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
+		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionPlata.toString() + "/ Produccion de de : "+ this.recoleccionTabaco.toString() + "/ Produccion de de : "+this.recoleccionCafe.toString() + "/ Produccion de de : "+this.recoleccionPatata.toString();
 	}
 
 	public MateriasPrimas getRecoleccionPlata() {

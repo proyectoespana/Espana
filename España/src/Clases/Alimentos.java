@@ -3,8 +3,24 @@ package Clases;
 public class Alimentos extends Productos {
 	
 	private int tiempoPerecer;
+	/**
+	 * tiempo determinado de vida de un Alimento 
+	 */
 	private String tipo;
-					
+	/**
+	 * atributo que marca el tipo de Alimeto que es "verdura,fruta..."
+	 */
+	
+	/**
+	 *       
+	 * @param nombre                  Parametro encargado de introducir el nombre del producto
+	 * @param costeObtencionMedia     Parametro encargado de introducir el coste de obtencion del producto
+	 * @param costeMercadoInterno     Parametro encargado de introducir el coste de mercado interno
+	 * @param costeTransporteMedio     Parametro encargado de introducir el coste de Transporte Medio
+	 * @param costeMercadoExterno     Parametro encargado de introducir el precio que tiene en el mercado exterior 
+	 * @param tipo                    Parametro encargado de introducir el tipo de Alimento que es 
+	 * @param perecer                 Parametro encargado de estipular el tiempo de vida de dicho producto
+	 */				
 	public Alimentos(ProductoNombre nombre, double costeObtencionMedia, double costeMercadoInterno, double costeTransporteMedio,
 			double costeMercadoExterno, String tipo,int perecer) {
 		super(nombre, costeObtencionMedia, costeMercadoInterno, costeTransporteMedio, costeMercadoExterno);
@@ -18,7 +34,9 @@ public class Alimentos extends Productos {
 		this.tipo=alimentos.getTipo();
 	}
 	
-	
+	/**
+	 * Metodo encargado de ver los datos mas intrinsecos de un Alimento para hacer mas sencillo el toString
+	 */
 	public String verDatosAvanzados() {
 		return super.verDatosAvanzados() + " tiempo de perecer : "+this.tiempoPerecer+" tipo : "+this.tipo;  
 	}

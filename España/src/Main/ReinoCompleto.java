@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.HashSet;
+
 import Clases.Aragon;
 import Clases.Austria;
 import Clases.Borgoña;
@@ -28,7 +30,7 @@ public class ReinoCompleto {
 	private Aragon aragon;
 	private Borgoña borgoña;
 	private Austria austria;
-	
+
 	/**
 	 * 
 	 * @param nuevaEspaña se introduce el objeto de nueva España preciamente creado
@@ -39,17 +41,18 @@ public class ReinoCompleto {
 	 * @param aragon se introduce el objeto de Aragon preciamente creado
 	 * @param borgoña se introduce el objeto de Borgoña preciamente creado
 	 * @param astria se introduce el objeto de Austria  preciamente creado
+	 * @throws Exception 
 	 */
 
-	public ReinoCompleto(NuevaEspaña nuevaEspaña,NuevaGranada nuevaGranda ,Peru peru,Plata plata,Castilla castilla,Aragon aragon,Borgoña borgoña,Austria astria) {
-		this.nuevaEspaña= nuevaEspaña;
-		this.nuevaGranda=nuevaGranda;
-		this.peru=peru;
-		this.plata=plata;
-		this.castilla=castilla;
-		this.aragon=aragon;
-		this.borgoña=borgoña;
-		this.austria=astria;
+	public ReinoCompleto() throws Exception {
+		this.nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100);
+		this.nuevaGranda=new NuevaGranada("Nueva Granada", "America", 100);
+		this.peru=new Peru("Peru","America", 100);
+		this.plata= new Plata("Plata","America", 100);
+		this.castilla=new Castilla("Castilla","Europa", 100,  "Madrid");
+		this.aragon= new Aragon("Aragon","Europa", 100, "Zaragoza");
+		this.borgoña= new Borgoña("Borgoña","Europa", 100, "Flandes");
+		this.austria=new Austria("Austria","Europa", 100, "Austria");
 	}
 
 	/**
@@ -64,6 +67,7 @@ public class ReinoCompleto {
 
 		if(reino.getFlota().isDisponible()) {
 			pesoDisponibleFlota=reino.getFlota().añadirMercancia(reino.getMercancia().get(idMercancia));
+			reino.getMercancia().remove(idMercancia);
 
 
 			return "La flota todavia puede transportar "+pesoDisponibleFlota;
@@ -73,31 +77,48 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de enviar una flota con mercancias a una determinada zona
+	 * Metodo encargado de enviar una flota con mercancias a una determinada zona depositar toda la mercancia de la misma 
 	 * @param destino
 	 * @throws Exception 
 	 */
-	public void enviarFlota(Reinos reino ,String destino) throws Exception {
+	public void enviarFlota(Reinos reino ,Reinos destino) throws Exception {
 
 		if(reino instanceof Virreinatos) {
 
 			if(reino.getFlota().isDisponible()) {
 
-				switch (destino.toUpperCase()) {
+				switch (destino.getNombre().toUpperCase()) {
 				case "PERU":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPeru());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "PLATA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaPlata());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPlata());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "CASTILLA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaCastilla());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaCastilla());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA GRANADA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaGranada());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaNuevaGranada());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA ESPAÑA":
-					reino.getFlota().enviarMercancias(((Virreinatos) reino).getDistanciaNuevaEspaña());
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "ARAGON":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaAragon());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "AUSTRIA":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaAustria());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "BORGOÑA":
+					reino.getFlota().setDestino(((Virreinatos) reino).getDistanciaBorgoña());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
@@ -108,27 +129,63 @@ public class ReinoCompleto {
 
 			if(reino.getFlota().isDisponible()) {
 
-				switch (destino.toUpperCase()) {
-				case "ARAGON":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAragon());
+				switch (destino.getNombre().toUpperCase()) {
+				case "PERU":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
-				case "AUSTRIA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaAustria());
-					break;
-				case "BORGOÑA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaBorgoña());
+				case "PLATA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPlata());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "CASTILLA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaCastilla());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaCastilla());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "NUEVA GRANADA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaNuevaGranada());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				case "NUEVA ESPAÑA":
-					reino.getFlota().enviarMercancias(((Europa) reino).getDistanciaNuevaEsapaña());
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaPeru());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "ARAGON":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaAragon());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "AUSTRIA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaAustria());
+					this.llegadaFlotaDestino(reino, destino);
+					break;
+				case "BORGOÑA":
+					reino.getFlota().setDestino(((Europa) reino).getDistanciaBorgoña());
+					this.llegadaFlotaDestino(reino, destino);
 					break;
 				default:
 					throw new IllegalArgumentException(destino+" no esta disponible en las rutas de "+reino.getNombre());
 				}
 			}
 
+		}
+	}
+
+	/**
+	 * Metodo encargado de poner disponible la flota de un determinado territorio
+	 * @param reino parametro encargado de introducir el pais en cuestion del que se quiere que se ponga la flota disponible
+	 */
+	public void devolverFlota(Reinos reino) {
+		reino.getFlota().setDisponible(true);
+		reino.getFlota().setDestino(0);
+	}
+
+	private void llegadaFlotaDestino(Reinos origen,Reinos destino) throws Exception {
+		if(!origen.equals(destino)) {
+			origen.getFlota().setDisponible(false);
+
+			destino.llegadaImpotacion(origen.getFlota());
+		}else {
+			throw new Exception("Esa ruta comercial esta demasiado cerca no es necesario mandar una flota");
 		}
 	}
 
@@ -144,6 +201,95 @@ public class ReinoCompleto {
 	public void sublevaciones(Reinos zona) {
 
 	}
+	
+	/**
+	 * Metodo encargado de comprobar si todas las regiones tienen los productos demandados por las mismas
+	 * @return retorna una lista que contiene las zonas donde no se han satisfacido las necesidades que pedian
+	 */
+	public HashSet pasarTurno() {
+		//uso de HashSet para que no haya repeticiones
+		HashSet<String> zonasSinProductosDemandados= new HashSet<String>();
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(nuevaEspaña));
+	
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(nuevaGranda));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(peru));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(plata));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(castilla));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(aragon));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(borgoña));
+		
+		zonasSinProductosDemandados.add(this.comprobarProducotosDemandadosZonas(austria));
+		
+		zonasSinProductosDemandados.remove(null);
+		
+		return zonasSinProductosDemandados;
+	}
+	
+	/**
+	 * Metodo hermano del de PasarTurno, su principal funcion es ir al metodo "comprobarProductosDemandados" de cada zona y comprobar si es true or false
+	 * @param reino  se pasa como parametro el pais en cuestion del que se quiere comprobar su metodo 
+	 * @return retorna el nombre de la zona si en la misma no se han satisfacido las necesidades y en cambio "nada" si en esa zona no hay necesidad de productos
+	 */
+	private String comprobarProducotosDemandadosZonas(Reinos reino) {
+		
+		if(reino.getProductosDemandados().length>0) {
+			
+			if(reino.getProductosDemandados()[0]!=null) {
+				return reino.getNombre();
+			}else {
+				return null;
+			}
+			
+		}else {
+			return null;
+		}
+		
+//		if(!reino.comprobarProductosDemandados()) {
+//			return reino.getNombre();
+//		}else {
+//			return null;
+//		}
+	}
+	
+//	public HashSet comprobarFlotasRetornadas() {
+//		
+//		HashSet<String> zonasSinFlotaTrue= new HashSet<String>();
+//		
+//		if(!nuevaEspaña.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(nuevaEspaña.getNombre()+" "+nuevaEspaña.getFlota().getDestino());
+//			
+//		}else if(!nuevaGranda.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(nuevaGranda.getNombre()+" "+nuevaGranda.getFlota().getDestino());
+//			
+//		}else if(!peru.getFlota().isDisponible()) {	
+//			zonasSinFlotaTrue.add(peru.getNombre()+" "+peru.getFlota().getDestino());
+//			
+//		}else if(!plata.getFlota().isDisponible()) {	
+//			zonasSinFlotaTrue.add(plata.getNombre()+" "+plata.getFlota().getDestino());
+//			
+//		}else if(!castilla.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(castilla.getNombre()+" "+castilla.getFlota().getDestino());
+//			
+//		}else if(!aragon.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(aragon.getNombre()+" "+aragon.getFlota().getDestino());
+//			
+//		}else if(!borgoña.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(borgoña.getNombre()+" "+borgoña.getFlota().getDestino());
+//			
+//		}else if(!austria.getFlota().isDisponible()) {
+//			zonasSinFlotaTrue.add(austria.getNombre()+" "+austria.getFlota().getDestino());
+//		}
+//		
+//		return zonasSinFlotaTrue;
+//	}
+	
+
 	/**
 	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 
 	 * @param zona  se introduce el Reino en cuestion del que queremos saber sus distancias 
@@ -162,6 +308,50 @@ public class ReinoCompleto {
 
 			throw new Exception();
 		}
+	}
+
+	/**
+	 * Metodo encargado de ver hacer una manera mas visual todos los productos del Reino Demandados
+	 */
+	public void verProductosDemandadosElReino() {
+		System.out.println("--- Nueva España ");
+		nuevaEspaña.verProductosDemandados();
+		System.out.println("--- Nueva Granada ");
+		nuevaGranda.verProductosDemandados();
+		System.out.println("--- Peru ");
+		peru.verProductosDemandados();
+		System.out.println("--- Plata ");
+		plata.verProductosDemandados();
+		System.out.println("--- Castilla ");
+		castilla.verProductosDemandados();
+		System.out.println("--- Aragon ");
+		aragon.verProductosDemandados();
+		System.out.println("--- Borgoña ");
+		borgoña.verProductosDemandados();
+		System.out.println("--- Austria ");
+		austria.verProductosDemandados();
+	}
+
+	/**
+	 * Metodo encargado de ver hacer una manera mas visual todas las flotas creadas en el Reino
+	 */
+	public void verFlotasConMercancias() {
+		System.out.println("--- Nueva España ");
+		nuevaEspaña.getFlota().verMercancias();
+		System.out.println("--- Nueva Granada ");
+		nuevaGranda.getFlota().verMercancias();
+		System.out.println("--- Peru ");
+		peru.getFlota().verMercancias();
+		System.out.println("--- Plata ");
+		plata.getFlota().verMercancias();
+		System.out.println("--- Castilla ");
+		castilla.getFlota().verMercancias();
+		System.out.println("--- Aragon ");
+		aragon.getFlota().verMercancias();
+		System.out.println("--- Borgoña ");
+		borgoña.getFlota().verMercancias();
+		System.out.println("--- Austria ");
+		austria.getFlota().verMercancias();
 	}
 
 	public NuevaEspaña getNuevaEspaña() {
