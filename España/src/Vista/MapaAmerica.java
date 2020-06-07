@@ -56,6 +56,8 @@ public class MapaAmerica extends JPanel {
 		boton3.setBounds(244, 105, 20, 20);
 		boton4.setBounds(194, 62, 20, 20);
 		
+		comprobarSublevacion();
+		
 		add(boton1);
 		add(boton2);
 		add(boton3);
@@ -95,6 +97,8 @@ public class MapaAmerica extends JPanel {
 //			}
 //			
 //		});
+		
+		
 		
 		ActionListener listener = new ActionListener() {
             @Override
@@ -153,6 +157,27 @@ public class MapaAmerica extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon("imagenes/AmericaDef.jpg"));
 		lblNewLabel.setBounds(5, 5, 520, 320);
 		add(lblNewLabel);
+		
+	}
+	
+	
+	public void comprobarSublevacion() {
+		
+		if(control.getEspana().getPlata().isSublevaciones()) {
+			this.boton1.setEnabled(false);
+		}
+		
+		if(control.getEspana().getPeru().isSublevaciones()) {
+			this.boton2.setEnabled(false);
+		}
+		
+		if(control.getEspana().getNuevaGranda().isSublevaciones()) {
+			this.boton3.setEnabled(false);
+		}
+		
+		if(control.getEspana().getNuevaEspaña().isSublevaciones()) {
+			this.boton4.setEnabled(false);
+		}
 		
 	}
 	
