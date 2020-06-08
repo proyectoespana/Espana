@@ -38,6 +38,7 @@ public class Ventana_Almacen_Borgonha {
 		this.control=control;
 		ventana = new JFrame("Almacén Borgoña");
 		ventana.setSize(320, 350);
+		ventana.setResizable(false);
 		modeloLista=new DefaultListModel();
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);

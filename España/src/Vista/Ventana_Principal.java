@@ -27,10 +27,13 @@ public class Ventana_Principal extends JFrame {
 	/**
 	 * Panel general.
 	 */
+	
 	private JPanel contentPane;
+	
 	/**
 	 * 
 	 */
+	
 	private PanelControl control;
 	
 	/**
@@ -43,7 +46,8 @@ public class Ventana_Principal extends JFrame {
 
 		this.control = control;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1020, 555);
+		setBounds(100, 100, 1020, 565);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,7 +60,7 @@ public class Ventana_Principal extends JFrame {
 	}
 
 	/**
-	 * Metodo el cual iniciamos todos los metodos e insertarlos en el JFrame
+	 * Método el cual iniciamos todos los métodos e insertarlos en el JFrame.
 	 */
 	
 	//Metodos
@@ -68,18 +72,59 @@ public class Ventana_Principal extends JFrame {
 		crearListasMercancias();
 		crearBotonDemandas();
 		colocarEtiquetas();
-		//		crearPanelRetornarFlotas();
+		colocarImagenMonarca();
 	}
+	
+	/**
+	 * Panel Mapa
+	 * Panel en el que se encuentran los continentes cuando se mandan flotas.
+	 */
+	
+	private void crearPanelMapa() {
+		MapaEuropa mE = new MapaEuropa(control);
+		MapaAmerica mA = new MapaAmerica(control);
+		
+		JButton botonEuropa = new JButton("Europa");
+		JButton botonAmerica = new JButton("America");
+		botonEuropa.setBounds(200, 5, 90, 30);
+		botonAmerica.setBounds(300, 5, 90, 30);
+		
+		contentPane.add(botonEuropa);
+		contentPane.add(botonAmerica);
+		contentPane.add(mE);
+		contentPane.add(mA);
+		mA.setVisible(false);
+		
+		ActionListener listener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton source = (JButton) e.getSource();
+				
+				if(source == botonEuropa) {
+					mE.setVisible(true);
+					mA.setVisible(false);
+				}else {
+					mA.setVisible(true);
+					mE.setVisible(false);
+				}
+			
+			}
+		};
+		
+		botonEuropa.addActionListener(listener);
+		botonAmerica.addActionListener(listener);
+	}
+	
+	/**
+	 * Método en el cual se mostraran las peticiones de los distintos países.
+	 */
 
 	private void crearBotonDemandas() {
 		JButton boton = new JButton("Boton Circular");
 		ImageIcon imagen=new ImageIcon("Clickaraqui.jpg");
 		boton.setBounds(720, 25, 120, 40);
 		boton.setFont(new Font("Serif", Font.PLAIN, 14));
-		//		boton.setToolTipText("");
-		//		boton.setFont(new Font("Arial", Font.PLAIN, 11));
-		//		boton.setBackground(Color.green);
-		//		boton.setForeground(Color.BLUE);
 		boton.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_SMOOTH)));
 		contentPane.add(boton);
 		ActionListener listener = new ActionListener() {
@@ -94,7 +139,7 @@ public class Ventana_Principal extends JFrame {
 	}
 	
 	/**
-	 * Etiquetas direccionales
+	 * Etiquetas direccionales.
 	 */
 	
 	private void colocarEtiquetas() {
@@ -109,8 +154,8 @@ public class Ventana_Principal extends JFrame {
 		jl1.setBounds(780, 9, 200, 200);
 		jl2.setBounds(780, 102, 200, 200);
 		jl3.setBounds(780, 268, 200, 200);
-		jl4.setBounds(400, 336, 300, 200);
-		jl5.setBounds(180, 336, 300, 200);
+		jl4.setBounds(503, 336, 300, 200);
+		jl5.setBounds(50, 336, 300, 200);
 		
 		contentPane.add(jl1);
 		contentPane.add(jl2);
@@ -118,15 +163,133 @@ public class Ventana_Principal extends JFrame {
 		contentPane.add(jl4);
 		contentPane.add(jl5);
 	}
-	
-	
 
 	/**
-	 * Panel Listas Mercancias
-	 * En este panel se guardaran las mercancias de los distintos paises creadas por el usuario.
-	 * Se seleccionara que mercancias quiere almacenar en la flota.
-	 * A su vez se mostrara cuanto peso puede transportar la flota y cuanto peso ha introducido.
+	 * Panel Mercancias
+	 * El funcionamiento de este panel consiste en que el usuario cree las mercancías con los Kilos que este quiera.
+	 * Cada país tiene sus productos y cuando se crea una mercancía, la cantidad bajará.
 	 */
+	
+	private void crearPanelMercancias() {
+		JPanel panelMercancia = new JPanel();
+		panelMercancia.setBorder(new LineBorder(new Color(169, 169, 169), 2));
+		panelMercancia.setBounds(635, 100, 280, 70);
+		contentPane.add(panelMercancia);
+		panelMercancia.setLayout(null);
+
+		JLabel etiquetaMercancia = new JLabel("Montar Mercancia");
+		etiquetaMercancia.setBounds(90, 3, 104, 20);
+		panelMercancia.add(etiquetaMercancia);
+
+		JMenuBar menuBar_1 = new JMenuBar();
+		menuBar_1.setBounds(75, 30, 135, 21);
+		panelMercancia.add(menuBar_1);
+
+		JMenu mnAragon = new JMenu("Europa");
+		menuBar_1.add(mnAragon);
+
+		JMenuItem mntmNewMenuItem = new JMenuItem("Castilla");
+		mnAragon.add(mntmNewMenuItem);
+		
+		if(control.getEspana().getCastilla().isSublevaciones()==true) {
+			mntmNewMenuItem.setEnabled(false);
+		}
+	
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Aragon");
+		mnAragon.add(mntmNewMenuItem_1);
+		
+		if(control.getEspana().getAragon().isSublevaciones()==true) {
+			mntmNewMenuItem_1.setEnabled(false);
+		}
+
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Borgoña");
+		mnAragon.add(mntmNewMenuItem_2);
+		
+		if(control.getEspana().getBorgoña().isSublevaciones()==true) {
+			mntmNewMenuItem_2.setEnabled(false);
+		}
+
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Austria");
+		mnAragon.add(mntmNewMenuItem_3);
+		
+		if(control.getEspana().getAustria().isSublevaciones()==true) {
+			mntmNewMenuItem_3.setEnabled(false);
+		}
+
+		JMenu mnPeru = new JMenu("Virreinatos");
+		menuBar_1.add(mnPeru);
+
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Nueva España");
+		mnPeru.add(mntmNewMenuItem_4);
+		
+		if(control.getEspana().getNuevaEspaña().isSublevaciones()==true) {
+			mntmNewMenuItem_4.setEnabled(false);
+		}
+
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Nueva Granada");
+		mnPeru.add(mntmNewMenuItem_5);
+		
+		if(control.getEspana().getNuevaGranda().isSublevaciones()==true) {
+			mntmNewMenuItem_5.setEnabled(false);
+		}
+
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Peru");
+		mnPeru.add(mntmNewMenuItem_6);
+		
+		if(control.getEspana().getPeru().isSublevaciones()==true) {
+			mntmNewMenuItem_6.setEnabled(false);
+		}
+
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Plata");
+		mnPeru.add(mntmNewMenuItem_7);
+		
+		if(control.getEspana().getPlata().isSublevaciones()==true) {
+			mntmNewMenuItem_7.setEnabled(false);
+		}
+
+		ActionListener listener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JMenuItem source = (JMenuItem) e.getSource();
+
+				if (source == mntmNewMenuItem) {
+					Ventana_Mercancia_Castilla f1 = new Ventana_Mercancia_Castilla(control);
+				} else if (source == mntmNewMenuItem_1) {
+					Ventana_Mercancia_Aragon f2 = new Ventana_Mercancia_Aragon(control);
+				} else if (source == mntmNewMenuItem_2) {
+					Ventana_Mercancia_Borgonha f3 = new Ventana_Mercancia_Borgonha(control);
+				} else if (source == mntmNewMenuItem_3) {
+					Ventana_Mercancia_Austria f4 = new Ventana_Mercancia_Austria(control);
+				} else if (source == mntmNewMenuItem_4) {
+					Ventana_Mercancia_NuevaEspaña f5 = new Ventana_Mercancia_NuevaEspaña(control);
+				} else if (source == mntmNewMenuItem_5) {
+					Ventana_Mercancia_NuevaGranada f6 = new Ventana_Mercancia_NuevaGranada(control);
+				} else if (source == mntmNewMenuItem_6) {
+					Ventana_Mercancia_Peru f7 = new Ventana_Mercancia_Peru(control);
+				} else if (source == mntmNewMenuItem_7) {
+					Ventana_Mercancia_Plata f8 = new Ventana_Mercancia_Plata(control);
+				}
+			}
+		};
+
+		mntmNewMenuItem.addActionListener(listener);
+		mntmNewMenuItem_1.addActionListener(listener);
+		mntmNewMenuItem_2.addActionListener(listener);
+		mntmNewMenuItem_3.addActionListener(listener);
+		mntmNewMenuItem_4.addActionListener(listener);
+		mntmNewMenuItem_5.addActionListener(listener);
+		mntmNewMenuItem_6.addActionListener(listener);
+		mntmNewMenuItem_7.addActionListener(listener);
+
+	}
+	
+	/**
+	 * Panel Listas Mercancias
+	 * En este panel se guardarán las mercancías de los distintos países creadas por el usuario.
+	 * Se seleccionará que mercancías quiere almacenar en la flota.
+	 * A su vez se mostrará cuanto peso puede transportar la flota y cuanto peso ha introducido.
+	 */
+	
 	private void crearListasMercancias() {
 		JMenuItem mntmNewMenuItem;
 		JMenuItem mntmNewMenuItem_1;
@@ -269,171 +432,13 @@ public class Ventana_Principal extends JFrame {
 
 	}
 
-	
-	/**
-	 * Panel Mercancias
-	 * El funcionamiento de este panel consiste en que el usuario cree las mercancias con los Kilos que este quiera.
-	 * Cada pais tiene sus productos y cuando se crea una mercancia, la cantidad bajara.
-	 */
-	private void crearPanelMercancias() {
-		JPanel panelMercancia = new JPanel();
-		panelMercancia.setBorder(new LineBorder(new Color(169, 169, 169), 2));
-		panelMercancia.setBounds(635, 100, 280, 70);
-		contentPane.add(panelMercancia);
-		panelMercancia.setLayout(null);
-
-		JLabel etiquetaMercancia = new JLabel("Montar Mercancia");
-		etiquetaMercancia.setBounds(90, 3, 104, 20);
-		panelMercancia.add(etiquetaMercancia);
-
-		JMenuBar menuBar_1 = new JMenuBar();
-		menuBar_1.setBounds(75, 30, 135, 21);
-		panelMercancia.add(menuBar_1);
-
-		JMenu mnAragon = new JMenu("Europa");
-		menuBar_1.add(mnAragon);
-
-		JMenuItem mntmNewMenuItem = new JMenuItem("Castilla");
-		mnAragon.add(mntmNewMenuItem);
-		
-		if(control.getEspana().getCastilla().isSublevaciones()==true) {
-			mntmNewMenuItem.setEnabled(false);
-		}
-	
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Aragon");
-		mnAragon.add(mntmNewMenuItem_1);
-		
-		if(control.getEspana().getAragon().isSublevaciones()==true) {
-			mntmNewMenuItem_1.setEnabled(false);
-		}
-
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Borgoña");
-		mnAragon.add(mntmNewMenuItem_2);
-		
-		if(control.getEspana().getBorgoña().isSublevaciones()==true) {
-			mntmNewMenuItem_2.setEnabled(false);
-		}
-
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Austria");
-		mnAragon.add(mntmNewMenuItem_3);
-		
-		if(control.getEspana().getAustria().isSublevaciones()==true) {
-			mntmNewMenuItem_3.setEnabled(false);
-		}
-
-		JMenu mnPeru = new JMenu("Virreinatos");
-		menuBar_1.add(mnPeru);
-
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Nueva España");
-		mnPeru.add(mntmNewMenuItem_4);
-		
-		if(control.getEspana().getNuevaEspaña().isSublevaciones()==true) {
-			mntmNewMenuItem_4.setEnabled(false);
-		}
-
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Nueva Granada");
-		mnPeru.add(mntmNewMenuItem_5);
-		
-		if(control.getEspana().getNuevaGranda().isSublevaciones()==true) {
-			mntmNewMenuItem_5.setEnabled(false);
-		}
-
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Peru");
-		mnPeru.add(mntmNewMenuItem_6);
-		
-		if(control.getEspana().getPeru().isSublevaciones()==true) {
-			mntmNewMenuItem_6.setEnabled(false);
-		}
-
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Plata");
-		mnPeru.add(mntmNewMenuItem_7);
-		
-		if(control.getEspana().getPlata().isSublevaciones()==true) {
-			mntmNewMenuItem_7.setEnabled(false);
-		}
-
-		ActionListener listener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JMenuItem source = (JMenuItem) e.getSource();
-
-				if (source == mntmNewMenuItem) {
-					Ventana_Mercancia_Castilla f1 = new Ventana_Mercancia_Castilla(control);
-				} else if (source == mntmNewMenuItem_1) {
-					Ventana_Mercancia_Aragon f2 = new Ventana_Mercancia_Aragon(control);
-				} else if (source == mntmNewMenuItem_2) {
-					Ventana_Mercancia_Borgonha f3 = new Ventana_Mercancia_Borgonha(control);
-				} else if (source == mntmNewMenuItem_3) {
-					Ventana_Mercancia_Austria f4 = new Ventana_Mercancia_Austria(control);
-				} else if (source == mntmNewMenuItem_4) {
-					Ventana_Mercancia_NuevaEspaña f5 = new Ventana_Mercancia_NuevaEspaña(control);
-				} else if (source == mntmNewMenuItem_5) {
-					Ventana_Mercancia_NuevaGranada f6 = new Ventana_Mercancia_NuevaGranada(control);
-				} else if (source == mntmNewMenuItem_6) {
-					Ventana_Mercancia_Peru f7 = new Ventana_Mercancia_Peru(control);
-				} else if (source == mntmNewMenuItem_7) {
-					Ventana_Mercancia_Plata f8 = new Ventana_Mercancia_Plata(control);
-				}
-			}
-		};
-
-		mntmNewMenuItem.addActionListener(listener);
-		mntmNewMenuItem_1.addActionListener(listener);
-		mntmNewMenuItem_2.addActionListener(listener);
-		mntmNewMenuItem_3.addActionListener(listener);
-		mntmNewMenuItem_4.addActionListener(listener);
-		mntmNewMenuItem_5.addActionListener(listener);
-		mntmNewMenuItem_6.addActionListener(listener);
-		mntmNewMenuItem_7.addActionListener(listener);
-
-	}
-
-	/**
-	 * Panel Mapa
-	 * Panel en el que se encuentran los continentes cuando se mandan flotas
-	 */
-	private void crearPanelMapa() {
-		MapaEuropa mE = new MapaEuropa(control);
-		MapaAmerica mA = new MapaAmerica(control);
-		
-		JButton botonEuropa = new JButton("Europa");
-		JButton botonAmerica = new JButton("America");
-		botonEuropa.setBounds(200, 5, 90, 30);
-		botonAmerica.setBounds(300, 5, 90, 30);
-		
-		contentPane.add(botonEuropa);
-		contentPane.add(botonAmerica);
-		contentPane.add(mE);
-		contentPane.add(mA);
-		mA.setVisible(false);
-		
-		ActionListener listener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton source = (JButton) e.getSource();
-				
-				if(source == botonEuropa) {
-					mE.setVisible(true);
-					mA.setVisible(false);
-				}else {
-					mA.setVisible(true);
-					mE.setVisible(false);
-				}
-			
-			}
-		};
-		
-		botonEuropa.addActionListener(listener);
-		botonAmerica.addActionListener(listener);
-	}
-
 	/**
 	 * Panel Flotas
 	 * Panel en el que se encuentran las flotas de los diferentes países.
-	 * En el, se podra ver las mercancias almacenadas en cada flota.
-	 * Por ultimo, se mandara esa flota con las mercancias al lugar (destino) que se desee.
+	 * En el, se podrá ver las mercancías almacenadas en cada flota.
+	 * Por último, se mandará esa flota con las mercancías al lugar (destino) que se desee.
 	 */
+	
 	private void crearPanelFlotas() {
 		JPanel panelFlotas = new JPanel();
 		panelFlotas.setBorder(new LineBorder(Color.BLUE, 2));
@@ -555,14 +560,46 @@ public class Ventana_Principal extends JFrame {
 
 	}
 	
+	/**
+	 * hacer javadoc
+	 */
 	
-
-
+	private void colocarImagenMonarca() {
+		
+		JLabel monarca = new JLabel();
+		monarca.setBorder(new LineBorder(Color.BLACK, 4));
+		monarca.setHorizontalAlignment(SwingConstants.CENTER);
+		monarca.setIcon(new ImageIcon("imagenes/CarlosI.gif"));
+		monarca.setBounds(328, 380, 175, 140);
+		add(monarca);
+		
+		//Cambiar número de turnos
+		
+		if(PanelControl.getContadorTurnos()<10) {
+			monarca.setIcon(new ImageIcon("imagenes/Odin.gif"));
+			
+		}else if(PanelControl.getContadorTurnos()>=10) {
+			monarca.setIcon(new ImageIcon("imagenes/CarlosII.gif"));
+			
+		}else if(PanelControl.getContadorTurnos()>=15) {
+			monarca.setIcon(new ImageIcon("imagenes/FelipeII.gif"));
+			
+		}else if(PanelControl.getContadorTurnos()>=20) {
+			monarca.setIcon(new ImageIcon("imagenes/FelipeIII.gif"));
+			
+		}else if(PanelControl.getContadorTurnos()>=25) {
+			monarca.setIcon(new ImageIcon("imagenes/FelipeIV.gif"));
+			
+		}else
+			monarca.setIcon(new ImageIcon("imagenes/Odin.gif"));
+		
+	}
 	
 	/**
 	 * Boton Siguiente Turno
 	 * Boton cuyo funcionamiento consiste en pasar al turno/ronda siguiente.
 	 */
+	
 	private void siguienteTurno() {
 		JButton botonSiguienteTurno = new JButton("Siguiente turno");
 		botonSiguienteTurno.setBounds(45, 405, 140, 60);

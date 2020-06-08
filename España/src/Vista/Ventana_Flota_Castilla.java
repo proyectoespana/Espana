@@ -48,6 +48,7 @@ public class Ventana_Flota_Castilla {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Castilla");
 		ventana.setSize(815, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
@@ -133,7 +134,7 @@ public class Ventana_Flota_Castilla {
 	public void recorrerPaises() {
 
 		if(control.getEspana().getNuevaEspaña().isSublevaciones()==false) {
-			box2.addItem("Nueva España");
+			box2.addItem("Nueva EspaÃ±a");
 		}
 
 		if(control.getEspana().getNuevaGranda().isSublevaciones()==false) {
@@ -178,9 +179,9 @@ public class Ventana_Flota_Castilla {
 				if(control.getEspana().getCastilla().getFlota().getArrayMercancias().size()!=0) {
 					try {
 						switch (box2.getSelectedItem().toString().toUpperCase()) {
-						case "NUEVA ESPAÑA":
+						case "NUEVA ESPAÃ‘A":
 							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getNuevaEspaña());
-							System.out.println("Importaciones Nueva España");
+							System.out.println("Importaciones Nueva EspaÃ±a");
 							control.getEspana().getNuevaEspaña().verMercanciasImportacion();
 							break;
 						case "NUEVA GRANADA": 
@@ -203,14 +204,14 @@ public class Ventana_Flota_Castilla {
 							System.out.println("Importaciones Austria ");
 							control.getEspana().getAustria().verMercanciasImportacion();
 							break;
-						case "BORGOÑA":
+						case "BORGOÃ‘A":
 							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getBorgoña());
-							System.out.println("Importaciones Borgoña");
+							System.out.println("Importaciones BorgoÃ±a");
 							control.getEspana().getBorgoña().verMercanciasImportacion();
 							break;
 						case "ARAGON":
 							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getAragon());
-							System.out.println("Importaciones Aragón");
+							System.out.println("Importaciones AragÃ³n");
 							control.getEspana().getAragon().verMercanciasImportacion();
 							break;
 						default:

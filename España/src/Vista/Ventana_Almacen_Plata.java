@@ -40,6 +40,7 @@ public class Ventana_Almacen_Plata {
 		this.control=control;
 		ventana = new JFrame("Almacén Nueva Plata");
 		ventana.setSize(320, 350);
+		ventana.setResizable(false);
 		modeloLista=new DefaultListModel();
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);

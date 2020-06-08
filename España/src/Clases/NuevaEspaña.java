@@ -24,8 +24,8 @@ public class NuevaEspaña extends Virreinatos {
 	 * @param oro			parametro  donde se introduce el tipo de Alimento que produce ese Reino
 	 * @throws Exception	Excepcion se produce si en el metodo calcularProduccion se introduce un producto que no esta en la lista
 	 */
-	public NuevaEspaña(String nombre,String continente, int poblacion,IntroducirDatos base) throws Exception {
-		super(nombre,continente, poblacion,base, 4717,7353, 9020, 4290, 0,9483,9210,9978);
+	public NuevaEspaña(String nombre,String continente, int poblacion) throws Exception {
+		super(nombre,continente, poblacion, 4717,7353, 9020, 4290, 0,9483,9210,9978);
 		this.recoleccionMaiz= new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "Gramínea ", 0);
 		calcularProduccionMensual(this.recoleccionMaiz);
 		this.recoleccionOro=new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);

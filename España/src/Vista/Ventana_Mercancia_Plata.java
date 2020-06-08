@@ -42,6 +42,7 @@ public class Ventana_Mercancia_Plata {
 		this.control=control;
 		ventana = new JFrame("Mercancia Plata");
 		ventana.setSize(565, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

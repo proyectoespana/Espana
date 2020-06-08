@@ -38,6 +38,7 @@ public class Ventana_Mercancia_Castilla {
 		this.control=control;
 		ventana = new JFrame("Mercancia Castilla");
 		ventana.setSize(565, 250);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

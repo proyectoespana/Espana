@@ -46,6 +46,7 @@ public class Ventana_Almacen_Castilla {
 		this.control=control;
 		ventana = new JFrame("Almacén Castilla");
 		ventana.setSize(320, 350);
+		ventana.setResizable(false);
 		modeloLista=new DefaultListModel();
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);

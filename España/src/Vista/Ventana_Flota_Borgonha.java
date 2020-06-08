@@ -48,6 +48,7 @@ public class Ventana_Flota_Borgonha {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Borgoña");
 		ventana.setSize(815, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

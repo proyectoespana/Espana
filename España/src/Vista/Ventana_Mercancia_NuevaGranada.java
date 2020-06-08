@@ -42,6 +42,7 @@ public class Ventana_Mercancia_NuevaGranada {
 		this.control=control;
 		ventana = new JFrame("Mercancia Nueva Granada");
 		ventana.setSize(565, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

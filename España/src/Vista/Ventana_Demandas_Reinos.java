@@ -38,6 +38,7 @@ public class Ventana_Demandas_Reinos {
 		this.control=control;
 		ventana = new JFrame("Demandas Diferentes Reinos");
 		ventana.setSize(350, 520);
+		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 		iniciarComponentes();

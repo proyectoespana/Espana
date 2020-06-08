@@ -18,11 +18,9 @@ public abstract class Reinos extends Territorio{
 	private int idMercancias;
 	private int idImportaciones;
 	private ProductoNombre [] productosDemandados;
-	private IntroducirDatos base;
 
-	public Reinos(String nombre, String continente,int poblacion,IntroducirDatos base) {
+	public Reinos(String nombre, String continente,int poblacion) {
 		super(nombre, continente);
-		this.base=base;
 		this.poblacion= poblacion;
 		this.importacionMercancia=new LinkedHashMap<Integer, Mercancia>();
 		this.mercancia=new LinkedHashMap<Integer, Mercancia>();
@@ -38,7 +36,6 @@ public abstract class Reinos extends Territorio{
 		this.importacionMercancia=obj.getImportacionMercancia();
 		this.dineroTotal=obj.getDineroTotal();
 		this.sublevaciones=obj.isSublevaciones();
-		this.base=obj.getBase();
 	}
 
 
@@ -215,9 +212,8 @@ public abstract class Reinos extends Territorio{
 		}
 		
 		//insertamos en la base de datos los primeros contenidos
-//		IntroducirDatos.insertarDatosProduccion("PrimeraPrueba", 3, 2, 3, PanelControl.getContadorTurnos());
-//		base.insertarDatosProduccion(product.getNombre().toString(), product.getCantidad(), newCantidad, PanelControl.getContadorTurnos());
-		IntroducirDatos.insertarDatosProduccion(PanelControl.getContadorTurnos(), this.getNombre(), product.getNombre().toString(), produccionPrincipal, newCantidad, product.getCantidad());
+
+//		IntroducirDatos.insertarDatosProduccion(PanelControl.getContadorTurnos(), this.getNombre(), product.getNombre().toString(), produccionPrincipal, newCantidad, product.getCantidad());
 	}
 
 	public void sublevaciones() {
@@ -334,14 +330,6 @@ public abstract class Reinos extends Territorio{
 
 	public void setProductosDemandados(ProductoNombre[] productosDemandados) {
 		this.productosDemandados = productosDemandados;
-	}
-
-	public IntroducirDatos getBase() {
-		return base;
-	}
-
-	public void setBase(IntroducirDatos base) {
-		this.base = base;
 	}
 	
 

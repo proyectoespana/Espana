@@ -25,12 +25,10 @@ public class Consola {
 
 	public static ReinoCompleto espana ;
 	
-	public static IntroducirDatos base;
-
 
 	public static void constructor() throws Exception {
 		
-		espana= new ReinoCompleto(base);
+		espana= new ReinoCompleto();
 	}
 
 

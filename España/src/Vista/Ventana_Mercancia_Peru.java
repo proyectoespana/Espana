@@ -42,6 +42,7 @@ public class Ventana_Mercancia_Peru {
 		this.control=control;
 		ventana = new JFrame("Mercancia Peru");
 		ventana.setSize(565, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

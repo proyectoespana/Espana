@@ -48,16 +48,15 @@ public class ReinoCompleto {
 	 * @throws Exception 
 	 */
 
-	public ReinoCompleto(IntroducirDatos base) throws Exception {
-		this.base=base;
-		this.nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100,base);
-		this.nuevaGranda=new NuevaGranada("Nueva Granada", "America", 100,base);
-		this.peru=new Peru("Peru","America", 100,base);
-		this.plata= new Plata("Plata","America", 100,base);
-		this.castilla=new Castilla("Castilla","Europa", 100,  "Madrid",base);
-		this.aragon= new Aragon("Aragon","Europa", 100, "Zaragoza",base);
-		this.borgoña= new Borgoña("Borgoña","Europa", 100, "Flandes",base);
-		this.austria=new Austria("Austria","Europa", 100, "Austria",base);
+	public ReinoCompleto() throws Exception {
+		this.nuevaEspaña= new NuevaEspaña("Nueva España", "Ameriaca", 100);
+		this.nuevaGranda=new NuevaGranada("Nueva Granada", "America", 100);
+		this.peru=new Peru("Peru","America", 100);
+		this.plata= new Plata("Plata","America", 100);
+		this.castilla=new Castilla("Castilla","Europa", 100,  "Madrid");
+		this.aragon= new Aragon("Aragon","Europa", 100, "Zaragoza");
+		this.borgoña= new Borgoña("Borgoña","Europa", 100, "Flandes");
+		this.austria=new Austria("Austria","Europa", 100, "Austria");
 	}
 
 	/**
@@ -205,7 +204,7 @@ public class ReinoCompleto {
 			codigoPais+=id;
 			System.out.println(codigoPais);
 			
-			IntroducirDatos.insertarImportaciones(codigoPais.toUpperCase(),origen.getNombre().toString(),destino.getNombre().toString(),turno);
+//			IntroducirDatos.insertarImportaciones(codigoPais.toUpperCase(),origen.getNombre().toString(),destino.getNombre().toString(),turno);
 		}
 		System.out.println("hola");
 			
@@ -291,44 +290,9 @@ public class ReinoCompleto {
 			return null;
 		}
 		
-//		if(!reino.comprobarProductosDemandados()) {
-//			return reino.getNombre();
-//		}else {
-//			return null;
-//		}
+
+
 	}
-	
-//	public HashSet comprobarFlotasRetornadas() {
-//		
-//		HashSet<String> zonasSinFlotaTrue= new HashSet<String>();
-//		
-//		if(!nuevaEspaña.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(nuevaEspaña.getNombre()+" "+nuevaEspaña.getFlota().getDestino());
-//			
-//		}else if(!nuevaGranda.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(nuevaGranda.getNombre()+" "+nuevaGranda.getFlota().getDestino());
-//			
-//		}else if(!peru.getFlota().isDisponible()) {	
-//			zonasSinFlotaTrue.add(peru.getNombre()+" "+peru.getFlota().getDestino());
-//			
-//		}else if(!plata.getFlota().isDisponible()) {	
-//			zonasSinFlotaTrue.add(plata.getNombre()+" "+plata.getFlota().getDestino());
-//			
-//		}else if(!castilla.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(castilla.getNombre()+" "+castilla.getFlota().getDestino());
-//			
-//		}else if(!aragon.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(aragon.getNombre()+" "+aragon.getFlota().getDestino());
-//			
-//		}else if(!borgoña.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(borgoña.getNombre()+" "+borgoña.getFlota().getDestino());
-//			
-//		}else if(!austria.getFlota().isDisponible()) {
-//			zonasSinFlotaTrue.add(austria.getNombre()+" "+austria.getFlota().getDestino());
-//		}
-//		
-//		return zonasSinFlotaTrue;
-//	}
 	
 
 	/**

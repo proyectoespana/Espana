@@ -16,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
 import Main.PanelControl;
 
@@ -49,6 +50,8 @@ public class Ventana_Flota_Aragon {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Aragón");
 		ventana.setSize(815, 300);
+		ventana.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

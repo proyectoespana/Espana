@@ -58,6 +58,7 @@ public class Ventana_RetornarFlotas {
 		ventana.setUndecorated(true);
 		ventana.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 		ventana.setDefaultCloseOperation(0);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

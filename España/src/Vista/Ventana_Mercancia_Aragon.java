@@ -34,6 +34,7 @@ public class Ventana_Mercancia_Aragon {
 		this.control=control;
 		ventana = new JFrame("Mercancia Aragon");
 		ventana.setSize(565, 190);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

@@ -48,6 +48,7 @@ public class Ventana_Flota_Austria {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Austria");
 		ventana.setSize(815, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

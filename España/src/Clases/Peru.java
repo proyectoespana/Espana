@@ -23,8 +23,8 @@ public class Peru extends Virreinatos {
 	 * @param patata Se introduce el objeto determinado que es
 	 * @throws Exception no se introducen otros objetos distintos 
 	 */
-	public Peru(String nombre,String continente, int poblacion,IntroducirDatos base) throws Exception {
-		super(nombre,continente, poblacion,base, 0, 4163, 9123, 1970, 4717,9628,10134,10864);
+	public Peru(String nombre,String continente, int poblacion) throws Exception {
+		super(nombre,continente, poblacion, 0, 4163, 9123, 1970, 4717,9628,10134,10864);
 		this.recoleccionOro = new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);
 		calcularProduccionMensual(this.recoleccionOro);
 		this.recoleccionMaiz = new Alimentos(ProductoNombre.Maiz, 0, 0, 0, 0, "Gramínea ", 0);

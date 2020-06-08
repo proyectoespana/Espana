@@ -3,24 +3,60 @@ package Vista;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 import Main.PanelControl;
+
+/**
+ * Clase del Panel Mapa
+ * @author Grupo
+ *
+ */
 
 public class MapaAmerica extends JPanel {
 	
+	//Atributos
+	
+	/**
+	 * Atributo que controla las funcionalidades de la interfaz
+	 */
+	
 	private PanelControl control;
+	
+	/**
+	 * Botones 
+	 */
+	
 	private JButton boton1;
 	private JButton boton2;
 	private JButton boton3;
 	private JButton boton4;
-	private boolean activacion;
+	
+	/**
+	 * Atributos que dan función a los botones. 
+	 */
+	
+	private InfoPlata pPlata;
+	private InfoPeru pPeru;
+	private InfoNuevaGranada pNuevaGranada;
+	private InfoNuevaEspaña pNuevaEspaña;
+	
+	/**
+	 * Atributo que es la imagen. 
+	 */
+	
+	private JLabel imagen;
+	
+	//Constructores
+	
+	/**
+	 * Constructor
+	 * @param control
+	 */
 	
 	public MapaAmerica(PanelControl control) {
 		this.control = control;
@@ -29,12 +65,18 @@ public class MapaAmerica extends JPanel {
 		setVisible(true);
 	}
 	
+	
+	//Métodos
+	/**
+	 * Método que inicializa los componentes en el panel.
+	 */
+	
 	public void iniciarComponentes() {
 		
-		InfoPlata pPlata = new InfoPlata();
-		InfoPeru pPeru = new InfoPeru();
-		InfoNuevaGranada pNuevaGranada = new InfoNuevaGranada();
-		InfoNuevaEspaña pNuevaEspaña = new InfoNuevaEspaña();
+		pPlata = new InfoPlata();
+		pPeru = new InfoPeru();
+		pNuevaGranada = new InfoNuevaGranada();
+		pNuevaEspaña = new InfoNuevaEspaña();
 		
 		add(pPlata);
 		add(pPeru);
@@ -63,71 +105,30 @@ public class MapaAmerica extends JPanel {
 		add(boton3);
 		add(boton4);
 		
-//		boton1.addMouseListener(new MouseListener() {
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				
-//				
-//			}
-//
-//			@Override
-//			public void mousePressed(MouseEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//				
-//			}
-//
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//				pC.setVisible(true);
-//        		pB.setVisible(false);
-//				
-//			}
-//
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//				pC.setVisible(false);
-//        		pB.setVisible(false);
-//				
-//			}
-//			
-//		});
-		
-		
-		
 		ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	JButton source = (JButton) e.getSource();
             	
             	if(source == boton1) {
-					activacion = true;
 					pPlata.setVisible(true);
 					pPeru.setVisible(false);
 					pNuevaGranada.setVisible(false);
             		pNuevaEspaña.setVisible(false);
             		
             	}else if(source == boton2){
-					activacion = false;
 					pPlata.setVisible(false);
 					pPeru.setVisible(true);
 					pNuevaGranada.setVisible(false);
             		pNuevaEspaña.setVisible(false);
             		
             	}else if(source == boton3){
-					activacion = false;
 					pPlata.setVisible(false);
 					pPeru.setVisible(false);
 					pNuevaGranada.setVisible(true);
             		pNuevaEspaña.setVisible(false);
             		
             	}else {
-            		activacion = false;
             		pPlata.setVisible(false);
 					pPeru.setVisible(false);
 					pNuevaGranada.setVisible(false);
@@ -137,10 +138,6 @@ public class MapaAmerica extends JPanel {
                 
             }
         };
-		
-			
-//		}
-		
 		
 		boton1.addActionListener(listener);
 		boton2.addActionListener(listener);
@@ -152,14 +149,17 @@ public class MapaAmerica extends JPanel {
 		setBounds(70, 43, 530, 330);
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("imagenes/AmericaDef.jpg"));
-		lblNewLabel.setBounds(5, 5, 520, 320);
-		add(lblNewLabel);
+		imagen = new JLabel();
+		imagen.setHorizontalAlignment(SwingConstants.CENTER);
+		imagen.setIcon(new ImageIcon("imagenes/AmericaDef.jpg"));
+		imagen.setBounds(5, 5, 520, 320);
+		add(imagen);
 		
 	}
 	
+	/**
+	 * Método que comprueba las sublevaciones de los diversos países.
+	 */
 	
 	public void comprobarSublevacion() {
 		

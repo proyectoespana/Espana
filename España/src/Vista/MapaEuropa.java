@@ -1,30 +1,62 @@
 package Vista;
 
 import java.awt.Color;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 import Main.PanelControl;
 
+/**
+ * Clase del Panel Mapa
+ * @author Grupo
+ *
+ */
+
 public class MapaEuropa extends JPanel {
+	
+	//Atributos
+	
+	/**
+	 * Atributo que controla las funcionalidades de la interfaz
+	 */
 
 	private PanelControl control;
+	
+	/**
+	 * Botones 
+	 */
+	
 	private JButton boton1;
 	private JButton boton2;
 	private JButton boton3;
 	private JButton boton4;
-	private boolean activacion;
+	
+	/**
+	 * Atributos que dan función a los botones. 
+	 */
+	
+	private InfoCastilla pCastilla;
+	private InfoAragon pAragon;
+	private InfoBorgoña pBorgoña;
+	private InfoAustria pAustria;
+	
+	/**
+	 * Atributo que es la imagen. 
+	 */
+	
+	private JLabel imagen;
+	
+	//Constructores
+	
+	/**
+	 * Constructor
+	 * @param control
+	 */
 
 	public MapaEuropa(PanelControl control) {
 		this.control = control;
@@ -32,13 +64,19 @@ public class MapaEuropa extends JPanel {
 		iniciarComponentes();
 		setVisible(true);
 	}
+	
+	//Métodos
+	
+	/**
+	 * Método que inicializa los componentes en el panel.
+	 */
 
 	public void iniciarComponentes() {
 
-		InfoCastilla pCastilla = new InfoCastilla();
-		InfoAustria pBorgoña = new InfoAustria();
-		InfoAragon pAragon = new InfoAragon();
-		InfoBorgoña pAustria = new InfoBorgoña();
+		pCastilla = new InfoCastilla();
+		pAragon = new InfoAragon();
+		pBorgoña = new InfoBorgoña();
+		pAustria = new InfoAustria();
 
 		add(pCastilla);
 		add(pBorgoña);
@@ -57,8 +95,8 @@ public class MapaEuropa extends JPanel {
 
 		boton1.setBounds(101, 207, 20, 20);
 		boton2.setBounds(260, 201, 20, 20);
-		boton3.setBounds(270, 78, 20, 20);
-		boton4.setBounds(460, 144, 20, 20);
+		boton4.setBounds(270, 78, 20, 20);
+		boton3.setBounds(460, 144, 20, 20);
 
 		comprobarSublevacion();
 
@@ -67,69 +105,30 @@ public class MapaEuropa extends JPanel {
 		add(boton3);
 		add(boton4);
 
-		//		boton1.addMouseListener(new MouseListener() {
-		//
-		//			@Override
-		//			public void mouseClicked(MouseEvent e) {
-		//				
-		//				
-		//			}
-		//
-		//			@Override
-		//			public void mousePressed(MouseEvent e) {
-		//				// TODO Auto-generated method stub
-		//				
-		//			}
-		//
-		//			@Override
-		//			public void mouseReleased(MouseEvent e) {
-		//				
-		//			}
-		//
-		//			@Override
-		//			public void mouseEntered(MouseEvent e) {
-		//				pC.setVisible(true);
-		//        		pB.setVisible(false);
-		//				
-		//			}
-		//
-		//			@Override
-		//			public void mouseExited(MouseEvent e) {
-		//				pC.setVisible(false);
-		//        		pB.setVisible(false);
-		//				
-		//			}
-		//			
-		//		});
-
 		ActionListener listener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton source = (JButton) e.getSource();
 
 				if(source == boton1) {
-					activacion = true;
 					pCastilla.setVisible(true);
 					pAragon.setVisible(false);
 					pAustria.setVisible(false);
 					pBorgoña.setVisible(false);
 
 				}else if(source == boton2){
-					activacion = false;
 					pCastilla.setVisible(false);
 					pAragon.setVisible(true);
 					pAustria.setVisible(false);
 					pBorgoña.setVisible(false);
 
 				}else if(source == boton3){
-					activacion = false;
 					pCastilla.setVisible(false);
 					pAragon.setVisible(false);
 					pAustria.setVisible(true);
 					pBorgoña.setVisible(false);
 
 				}else {
-					activacion = false;
 					pCastilla.setVisible(false);
 					pAragon.setVisible(false);
 					pAustria.setVisible(false);
@@ -139,10 +138,6 @@ public class MapaEuropa extends JPanel {
 
 			}
 		};
-
-
-		//		}
-
 
 		boton1.addActionListener(listener);
 		boton2.addActionListener(listener);
@@ -155,13 +150,17 @@ public class MapaEuropa extends JPanel {
 		setBounds(70, 43, 530, 330);
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("imagenes/EuropaDef.jpg"));
-		lblNewLabel.setBounds(5, 5, 520, 320);
-		add(lblNewLabel);
+		imagen = new JLabel();
+		imagen.setHorizontalAlignment(SwingConstants.CENTER);
+		imagen.setIcon(new ImageIcon("imagenes/EuropaDef.jpg"));
+		imagen.setBounds(5, 5, 520, 320);
+		add(imagen);
 
 	}
+	
+	/**
+	 * Método que comprueba las sublevaciones de los diversos países.
+	 */
 
 	public void comprobarSublevacion() {
 
@@ -174,11 +173,11 @@ public class MapaEuropa extends JPanel {
 		}
 
 		if(control.getEspana().getBorgoña().isSublevaciones()) {
-			this.boton3.setEnabled(false);
+			this.boton4.setEnabled(false);
 		}
 
 		if(control.getEspana().getAustria().isSublevaciones()) {
-			this.boton4.setEnabled(false);
+			this.boton3.setEnabled(false);
 		}
 
 	}

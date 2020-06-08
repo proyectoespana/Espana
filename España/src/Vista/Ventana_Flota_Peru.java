@@ -49,6 +49,7 @@ public class Ventana_Flota_Peru {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Peru");
 		ventana.setSize(815, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

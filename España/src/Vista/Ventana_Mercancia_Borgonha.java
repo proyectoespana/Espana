@@ -44,6 +44,7 @@ public class Ventana_Mercancia_Borgonha {
 		this.control=control;
 		ventana = new JFrame("Mercancia Borgoña");
 		ventana.setSize(565, 300);
+		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

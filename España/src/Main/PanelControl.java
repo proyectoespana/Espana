@@ -30,9 +30,9 @@ public class PanelControl {
 
 
 	public PanelControl() throws Exception {
-		IntroducirDatos.conectar();
-		IntroducirDatos.borrar();
-		this.espana= new ReinoCompleto(base);
+//		IntroducirDatos.conectar();
+//		IntroducirDatos.borrar();
+		this.espana= new ReinoCompleto();
 		this.contadorTurnos=0;
 		this.zonasSinProductosDemandados= new HashSet<String>();
 		this.zonasSinFlotaTrue= new HashSet<String>();
@@ -47,7 +47,7 @@ public class PanelControl {
 	 */
 	protected void constructor() throws Exception {
 
-		this.espana= new ReinoCompleto(base);
+		this.espana= new ReinoCompleto();
 	}
 
 
@@ -267,7 +267,7 @@ public class PanelControl {
 		
 		codigoPais=codigoPais+pais.getMercancia().size();
 		
-		IntroducirDatos.insertarDatosMercancias(codigoPais.toUpperCase(),producto.toString(),cantidad,turno,pais.getNombre().toString());
+//		IntroducirDatos.insertarDatosMercancias(codigoPais.toUpperCase(),producto.toString(),cantidad,turno,pais.getNombre().toString());
 		
 		pais.verMercancias();
 	}
