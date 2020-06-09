@@ -50,6 +50,10 @@ public class Mercancia {
 //		}
 //	}
 
+	/**
+	 * Metodo encargado de añadair un producto a una mercancia
+	 * @param producto  parametro que se encarga de establecer que productos queremos almacenar juto a la cantidad total de la mercancia
+	 */
 	public void añadirProducto(Productos producto) {
 		this.producto= producto;
 		this.totalkg=producto.getCantidad();
@@ -69,9 +73,35 @@ public class Mercancia {
 //	}
 
 	
+	//getters
+
+	//hasCode para pruebas
 	@Override
-	public String toString() {
-		return nombre+" con un contenido disponible de "+totalkg+" kg y un contenido de "+producto.getNombre();
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
+		result = prime * result + totalkg;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mercancia other = (Mercancia) obj;
+		if (producto == null) {
+			if (other.producto != null)
+				return false;
+		} else if (!producto.equals(other.producto))
+			return false;
+		if (totalkg != other.totalkg)
+			return false;
+		return true;
 	}
 
 	public String getNombre() {
@@ -104,6 +134,11 @@ public class Mercancia {
 
 	public void setOrigen(String origen) {
 		this.origen = origen;
+	}
+	
+	@Override
+	public String toString() {
+		return nombre+" con un contenido disponible de "+totalkg+" kg y un contenido de "+producto.getNombre();
 	}
 
 }

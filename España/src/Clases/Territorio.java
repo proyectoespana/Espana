@@ -12,7 +12,7 @@ public abstract class Territorio {
 	public Territorio (String nombre,String continente){
 		this.nombre=nombre;
 		this.continente=continente;
-		this.flota= new Flota("Flota de ".concat(nombre));
+		this.flota= new Flota(nombre);
 	}
 
 	public Territorio(Territorio obj) {

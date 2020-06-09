@@ -201,6 +201,9 @@ public class NuevaEspaña extends Virreinatos {
 	//		}
 	//	}
 
+	/**
+	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;

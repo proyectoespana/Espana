@@ -121,7 +121,9 @@ public class Plata extends Virreinatos {
 			throw new IllegalArgumentException("Este reino no produce " + producto);
 		}
 	}
-	
+	/**
+	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;

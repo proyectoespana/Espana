@@ -131,7 +131,9 @@ public abstract class Reinos extends Territorio{
 			System.out.println("Exportacion "+this.importacionMercancia.get(key).getOrigen()+" numero "+key+" con "+this.importacionMercancia.get(key)+" a "+this.getNombre());
 		}
 	}
-
+/**
+ * Metodo encargado de recorrer la lista de las mercancias y mostrar su contenido
+ */
 	public void verMercancias() {
 		Iterator iterador = this.mercancia.keySet().iterator();
 		int key;
@@ -216,6 +218,9 @@ public abstract class Reinos extends Territorio{
 //		IntroducirDatos.insertarDatosProduccion(PanelControl.getContadorTurnos(), this.getNombre(), product.getNombre().toString(), produccionPrincipal, newCantidad, product.getCantidad());
 	}
 
+	/**
+	 * Metodo encargado de establecer las sublevaciones de cada reino
+	 */
 	public void sublevaciones() {
 
 	}
@@ -231,6 +236,9 @@ public abstract class Reinos extends Territorio{
 		}
 	}
 
+	/**
+	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 */
 	public boolean comprobarProductosDemandados() {
 		Iterator iterador = this.importacionMercancia.keySet().iterator();
 		int key;

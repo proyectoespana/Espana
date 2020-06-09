@@ -106,7 +106,9 @@ public class Castilla extends Europa {
 		}
 
 	}
-	
+	/**
+	 * Metodo encargado de calcular cuales de los producotos que no producen van a demandar
+	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;

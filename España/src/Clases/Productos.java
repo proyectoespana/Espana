@@ -58,11 +58,43 @@ public abstract class Productos {
 		this.costeTransporteMedio = productos.getCosteTransporteMedio();
 		this.costeMercadoExterno = productos.getCosteMercadoExterno();
 	}
-	
+	/**
+	 * Metodo encargado de mostrar los datos no principales de un producto
+	 * @return
+	 */
 	public String verDatosAvanzados() {
 		return this.nombre+"  coste de obtencion : "+this.costeObtencionMedia+ " coste Mercado Interno : "+this.costeMercadoInterno+" coste transporte : "+this.costeTransporteMedio+" coste mercado Externo "+ this.costeMercadoExterno ; 
 	}
+	
+	
+	//geter
 
+	//comparar objetos para las pruebas
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + cantidad;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Productos other = (Productos) obj;
+		if (cantidad != other.cantidad)
+			return false;
+		if (nombre != other.nombre)
+			return false;
+		return true;
+	}
+	
 	public ProductoNombre getNombre() {
 		return nombre;
 	}
