@@ -113,7 +113,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getNuevaEspaña().getProductosDemandados()[0]!=null) {
 				etiqueta1= new JLabel("Nueva España demanda: "+control.getEspana().getNuevaEspaña().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta1= new JLabel("Nueva España a obtenido su demanda");
+				etiqueta1= new JLabel("Nueva España ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -128,7 +128,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getNuevaGranda().getProductosDemandados()[0]!=null) {
 				etiqueta2= new JLabel("Nueva Granada demanda: "+control.getEspana().getNuevaGranda().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta2= new JLabel("Nueva Granada a obtenido su demanda");
+				etiqueta2= new JLabel("Nueva Granada ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -143,7 +143,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getPeru().getProductosDemandados()[0]!=null) {
 				etiqueta3= new JLabel("Peru demanda: "+control.getEspana().getPeru().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta3= new JLabel("Peru a obtenido su demanda");
+				etiqueta3= new JLabel("Perú ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -158,7 +158,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getPlata().getProductosDemandados()[0]!=null) {
 				etiqueta4= new JLabel("Plata demanda: "+control.getEspana().getPlata().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta4= new JLabel("Plata a obtenido su demanda");
+				etiqueta4= new JLabel("Plata ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -173,7 +173,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getCastilla().getProductosDemandados()[0]!=null) {
 				etiqueta5= new JLabel("Castilla demanda: "+control.getEspana().getCastilla().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta5= new JLabel("Castilla a obtenido su demanda");
+				etiqueta5= new JLabel("Castilla ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -188,7 +188,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getAragon().getProductosDemandados()[0]!=null) {
 				etiqueta6= new JLabel("Aragon demanda: "+control.getEspana().getAragon().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta6= new JLabel("Aragon a obtenido su demanda");
+				etiqueta6= new JLabel("Aragon ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -203,7 +203,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getBorgoña().getProductosDemandados()[0]!=null) {
 				etiqueta7= new JLabel("Borgoña demanda: "+control.getEspana().getBorgoña().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta7= new JLabel("Borgoña a obtenido su demanda");
+				etiqueta7= new JLabel("Borgoña ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);
@@ -218,7 +218,7 @@ public class Ventana_Demandas_Reinos {
 			if(control.getEspana().getAustria().getProductosDemandados()[0]!=null) {
 				etiqueta8= new JLabel("Austria demanda: "+control.getEspana().getAustria().getProductosDemandados()[0].toString());
 			}else {
-				etiqueta8= new JLabel("Austria a obtenido su demanda");
+				etiqueta8= new JLabel("Austria ha obtenido su demanda");
 			}
 
 			bounds=bounds+(20*contador);

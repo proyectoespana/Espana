@@ -212,7 +212,7 @@ public class Ventana_Principal extends JFrame {
 		MapaAmerica mA = new MapaAmerica(control);
 		
 		JButton botonEuropa = new JButton("Europa");
-		JButton botonAmerica = new JButton("America");
+		JButton botonAmerica = new JButton("América");
 		botonEuropa.setBounds(200, 5, 90, 30);
 		botonAmerica.setBounds(300, 5, 90, 30);
 		

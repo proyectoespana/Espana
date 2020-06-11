@@ -122,14 +122,14 @@ public class Ventana_RetornarFlotas {
 	 */
 
 	public void colocarEtiquetas() {
-		etiqueta1 = new JLabel("Castilla: "+" esta a una distacia de "+control.getEspana().getCastilla().getFlota().getDestino()+" km de su puerto");
-		etiqueta2 = new JLabel("Aragon: "+" esta a una distacia de "+control.getEspana().getAragon().getFlota().getDestino()+" km de su puerto");
-		etiqueta3 = new JLabel("Borgoña: "+" esta a una distacia de "+control.getEspana().getBorgoña().getFlota().getDestino()+" km de su puerto");
-		etiqueta4 = new JLabel("Austria: "+" esta a una distacia de "+control.getEspana().getAustria().getFlota().getDestino()+" km de su puerto");
-		etiqueta5 = new JLabel("Nueva España: "+" esta a una distacia de "+control.getEspana().getNuevaEspaña().getFlota().getDestino()+" km de su puerto");
-		etiqueta6 = new JLabel("Nueva Granada: "+" esta a una distacia de "+control.getEspana().getNuevaGranda().getFlota().getDestino()+" km de su puerto");
-		etiqueta7 = new JLabel("Peru: "+" esta a una distacia de "+control.getEspana().getPeru().getFlota().getDestino()+" km de su puerto");
-		etiqueta8 = new JLabel("Plata: "+" esta a una distacia de "+control.getEspana().getPlata().getFlota().getDestino()+" km de su puerto");
+		etiqueta1 = new JLabel("Castilla: "+" está a una distacia de "+control.getEspana().getCastilla().getFlota().getDestino()+" km de su puerto");
+		etiqueta2 = new JLabel("Aragon: "+" está a una distacia de "+control.getEspana().getAragon().getFlota().getDestino()+" km de su puerto");
+		etiqueta3 = new JLabel("Borgoña: "+" está a una distacia de "+control.getEspana().getBorgoña().getFlota().getDestino()+" km de su puerto");
+		etiqueta4 = new JLabel("Austria: "+" está a una distacia de "+control.getEspana().getAustria().getFlota().getDestino()+" km de su puerto");
+		etiqueta5 = new JLabel("Nueva España: "+" está a una distacia de "+control.getEspana().getNuevaEspaña().getFlota().getDestino()+" km de su puerto");
+		etiqueta6 = new JLabel("Nueva Granada: "+" está a una distacia de "+control.getEspana().getNuevaGranda().getFlota().getDestino()+" km de su puerto");
+		etiqueta7 = new JLabel("Peru: "+" está a una distacia de "+control.getEspana().getPeru().getFlota().getDestino()+" km de su puerto");
+		etiqueta8 = new JLabel("Plata: "+" está a una distacia de "+control.getEspana().getPlata().getFlota().getDestino()+" km de su puerto");
 		etiqueta9 = new JLabel("Lista de flotas: ");
 
 
@@ -284,7 +284,7 @@ public class Ventana_RetornarFlotas {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int opcion = JOptionPane.showConfirmDialog(null, "Si no ha marcado alguna Flota, no estara disponible el siguiente turno. ¿ Esta seguro de su decision ?");
+				int opcion = JOptionPane.showConfirmDialog(null, "Si no ha marcado alguna Flota, no estará disponible el siguiente turno. ¿ Está seguro de su decisión ?");
 
 				if(opcion==JOptionPane.YES_OPTION) {
 
@@ -369,7 +369,7 @@ public class Ventana_RetornarFlotas {
 
 					ventana.dispose();
 
-					JOptionPane.showMessageDialog(null,"Las Flotas Seleccionadas, volveran a su Puerto de Origen en el siguiente turno");
+					JOptionPane.showMessageDialog(null,"Las Flotas Seleccionadas, volverán a su Puerto de Origen en el siguiente turno");
 
 					control.iteradorZonasSinFLota();
 
