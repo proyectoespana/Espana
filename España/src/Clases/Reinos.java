@@ -10,15 +10,46 @@ import Main.PanelControl;
 
 public abstract class Reinos extends Territorio{
 
+	
 	private int poblacion;
+	/**
+	 * Atributo que indica el número de población en un reino
+	 */
 	private LinkedHashMap <Integer,Mercancia> importacionMercancia;
+	/**
+	 * Atributo encargado de almacenar todas las mercancías que han sido enviadas de otros países
+	 */
 	private LinkedHashMap <Integer,Mercancia> mercancia;
+	/**
+	 * Atributo encargado de almacemar las mercancías que el usuario crea
+	 */
 	private double dineroTotal;
+	/**
+	 * Atributo encargado de alamcenar el dinero del Reino
+	 */
 	private boolean sublevaciones;
+	/**
+	 * Atributo encargado de especificar si el Reino está "disponible "o "no"
+	 */
 	private int idMercancias;
+	/**
+	 * Atributo encargado de establecer el id de las Mercancías
+	 */
 	private int idImportaciones;
+	/**
+	 * Atributo encargado de establecer el id de las importaciones
+	 */
 	private ProductoNombre [] productosDemandados;
-
+	/**
+	 * Atributo encargado de almacenar el número que productos que el Reino quiere 
+	 */
+	
+	/**
+	 * Constructor de Reinos
+	 * @param nombre Parámetro que establece el nombre del Reino
+	 * @param continente Parámetro que establece el nombre del continente del Reino
+	 * @param poblacion Parámetro que establece el número de población del Reino
+	 */
 	public Reinos(String nombre, String continente,int poblacion) {
 		super(nombre, continente);
 		this.poblacion= poblacion;
@@ -30,6 +61,10 @@ public abstract class Reinos extends Territorio{
 		this.idImportaciones=1;
 	}
 
+	/**
+	 * Constructor de copia
+	 * @param obj Objeto que copiar
+	 */
 	public Reinos(Reinos obj) {
 		super(obj);
 		this.poblacion=obj.getPoblacion();
@@ -40,8 +75,8 @@ public abstract class Reinos extends Territorio{
 
 
 	/**
-	 * Metodo que se encarga de calcular la cantidad kg que se produce en un determinado lugar  dependiendo de su nombre
-	 * @param product
+	 * Método que se encarga de calcular la cantidad de kg que se producen en un determinado lugar, dependiendo de su nombre
+	 * @param product nombre del Producto del que queremos calcular su producción
 	 * @throws Exception 
 	 */
 
@@ -55,8 +90,8 @@ public abstract class Reinos extends Territorio{
 		switch (product.getNombre()) {
 		case Patata: 
 			/**
-			 * La formula de los alimentos se basa en un numero de kg determinado que asumimos que una persona corriente consume de media al mes
-			 *  de un determinado producto * el numero de personas de su pais determinado + un numero aleatorio con el que se podrá comerciar con el resto de Países.
+			 * La fórmula de los alimentos se basa en un número de kg determinados que asumimos que una persona corriente consume de media al mes
+			 *  de un determinado producto por el número de personas de su país determinado mas un número aleatorio con el que se podrá comerciar con el resto de Países.
 			 */
 			product.setCantidad((4*this.poblacion)+random);
 			//El objetivo es meter los datos de la produccion integra en la base de datos produccion total
@@ -120,7 +155,7 @@ public abstract class Reinos extends Territorio{
 
 
 	/**
-	 * Metodo para ver las importaciones de cada zona
+	 * Método para ver las importaciones de cada zona
 	 */
 	public void verMercanciasImportacion() {
 		Iterator iterador = this.importacionMercancia.keySet().iterator();
@@ -132,7 +167,7 @@ public abstract class Reinos extends Territorio{
 		}
 	}
 /**
- * Metodo encargado de recorrer la lista de las mercancias y mostrar su contenido
+ * Método encargado de recorrer la lista de las mercancías y mostrar su contenido
  */
 	public void verMercancias() {
 		Iterator iterador = this.mercancia.keySet().iterator();
@@ -152,9 +187,9 @@ public abstract class Reinos extends Territorio{
 
 	}
 
-	/**Metodo encargado de transpasar las importaciones de una flota al pais al que se les a mandado 
+	/**Método encargado de traspasar las importaciones de una flota al país al que se les ha mandado 
 	 * 
-	 * @param barcos parametro encargado de pasar la flota que ha sido envidada por otro pais
+	 * @param barcos Parámetro encargado de pasar la flota que ha sido envidada por otro país
 	 */
 	public void llegadaImpotacion(Flota barcos) {
 		int key;
@@ -172,7 +207,7 @@ public abstract class Reinos extends Territorio{
 	}
 
 	/**
-	 * Metodo encargado de recorred  las importaciones y comprobar si estas contienen productos demandados
+	 * Método encargado de recorrer  las importaciones y comprobar si éstas, contienen productos demandados
 	 */
 	private void comprobarImportaciones() {
 		Iterator iterador = this.importacionMercancia.keySet().iterator();
@@ -192,8 +227,8 @@ public abstract class Reinos extends Territorio{
 	}
 
 	/**
-	 * Metodo encargado de calcular de forma automatcia el consumo de productos dentro de un pais
-	 * @param product parametro encargado de pasar el producto del que se quiere calcular el consumo 
+	 * Método encargado de calcular de forma automática el consumo de productos dentro de un reino
+	 * @param product parámetro encargado de pasar el producto del que se quiere calcular el consumo 
 	 * @throws SQLException 
 	 */
 	private void cosumoProductos(Productos product) throws SQLException {
@@ -219,14 +254,14 @@ public abstract class Reinos extends Territorio{
 	}
 
 	/**
-	 * Metodo encargado de establecer las sublevaciones de cada reino
+	 * Método encargado de establecer las sublevaciones de cada reino
 	 */
 	public void sublevaciones() {
 
 	}
 
 	/**
-	 * Metodo encargado de recorrer la lista de ProductosDemandamos y mostrar los mismo de cada Region
+	 * Método encargado de recorrer la lista de "ProductosDemandamos" y mostrar los mismos de cada Region
 	 */
 	public void verProductosDemandados() {
 		for(int i=0;i<this.productosDemandados.length;i++) {
@@ -237,7 +272,7 @@ public abstract class Reinos extends Territorio{
 	}
 
 	/**
-	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 * Método encargado de calcular cuáles de los productos que no producen van a demandar
 	 */
 	public boolean comprobarProductosDemandados() {
 		Iterator iterador = this.importacionMercancia.keySet().iterator();
@@ -267,7 +302,7 @@ public abstract class Reinos extends Territorio{
 	}
 	
 	/**
-	 * Metodo encargado de remplazar las posibles demandas de un reino que tiene las sublevaciones a false
+	 * Método encargado de reemplazar las posibles demandas de un reino que tiene las sublevaciones a "true"
 	 */
 	public void zonaNoDisponibleDemanda() {
 		this.productosDemandados=new ProductoNombre[0];

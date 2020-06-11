@@ -43,7 +43,6 @@ public class Ventana_Mercancia_NuevaEspaña {
 		this.control=control;
 		ventana = new JFrame("Mercancia Nueva España");
 		ventana.setSize(565, 300);
-		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);

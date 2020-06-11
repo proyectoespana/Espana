@@ -4,24 +4,38 @@ import java.util.Random;
 
 import BaseDeDatos.IntroducirDatos;
 
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class NuevaGranada extends Virreinatos {
 
+	
 	private MateriasPrimas recoleccionOro;
+	/**
+	 * atributo que almacena la cantidad de oro producida en el Reino
+	 */
 	private MateriasPrimas recoleccionPlata;
+	/**
+	 * atributo que almacena la cantidad de plata producida en el Reino
+	 */
 	private MateriasPrimas recoleccionTabaco;
+	/**
+	 * atributo que almacena la cantidad de tabaco producida en el Reino
+	 */
 	private MateriasPrimas recoleccionCafe;
-
-	 /**
-     * Constructor con 7 parametros
-     * @param nombre informa sobre el nombre
-     * @param continente Informa sobre el continente en el que se encuentra
-     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
-     * @param oro
-     * @param plata
-     * @param tabaco
-     * @param cafe
-     * @throws Exception
-     */
+	/**
+	 * atributo que almacena la cantidad de cafe producida en el Reino
+	 */
+	
+	/**
+	 * Constructor donde se pasarán por parámetros los atributos anteriores
+	 * @param nombre Informa sobre el nombre
+	 * @param continente Informa sobre el continente que se encuentra
+	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
+	 * @throws Exception
+	 */
 	public NuevaGranada(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288,6829,8186,8949);
 		this.recoleccionOro = new MateriasPrimas(ProductoNombre.Oro, 0, 0, 0, 0, 0, 10);
@@ -36,9 +50,9 @@ public class NuevaGranada extends Virreinatos {
 	}
 
 	/**
-     * Contructor de copia
-     * @param nuevaGranada
-     */
+	 * Contructor de copia
+	 * @param nuevaGranada
+	 */
 	public NuevaGranada(NuevaGranada nuevaGranada) {
 		super(nuevaGranada);
 		this.recoleccionOro = nuevaGranada.getRecoleccionOro();
@@ -47,11 +61,10 @@ public class NuevaGranada extends Virreinatos {
 		this.recoleccionCafe = nuevaGranada.getRecoleccionCafe();
 	}
 
-    /**
-     * Crean las mercancias 
-     * @param producto recogen un Objeto producto
-     * @param cantidad recoge la cantidad 
-     * @throws IllegalArgumentException que no se admite ese dato
+	  /**
+     * El usuario procede a crear mercancías de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
      */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
@@ -123,12 +136,12 @@ public class NuevaGranada extends Virreinatos {
 
 	}
 	/**
-	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 * Método, encargado de calcular cuáles de los producotos que no producen, van a demandar
 	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;
-		
+
 		for(int i=0;i<this.getProductosDemandados().length;i++) {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);

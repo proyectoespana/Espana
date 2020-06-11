@@ -19,22 +19,73 @@ import javax.swing.JPanel;
 import Main.PanelControl;
 
 public class Ventana_Sublevaciones {
+	/**
+	 * declaramos el panel donde se guardarán los diferentes elementos
+	 */
 	private JPanel panel;
+	/**
+	 * declaramos la etiqueta numero 1 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta1;
+	/**
+	 * declaramos la etiqueta numero 2 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta2;
+	/**
+	 * declaramos la etiqueta numero 3 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta3;
+	/**
+	 * declaramos la etiqueta numero 4 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta4;
+	/**
+	 * declaramos la etiqueta numero 5 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta5;
+	/**
+	 * declaramos la etiqueta numero 5 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta6;
+	/**
+	 * declaramos la etiqueta numero 7 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta7;
+	/**
+	 * declaramos una caja para poder seleccionar un elemento de entre todos los que puedan haber
+	 */
 	private JComboBox box2;
+	/**
+	 * declaramos una imagen
+	 */
 	private static ImageIcon imagen;
+	/**
+	 * declaramos una imagen
+	 */
 	private static ImageIcon imagen2;
+	/**
+	 * declaramos una imagen
+	 */
 	private static ImageIcon imagen3;
+	/**
+	 * declaramos una botón
+	 */
 	private JButton boton;
+	/**
+	 * declaramos la ventana donde se encontrarán todos los elementos que contiene el panel
+	 */
 	private JFrame ventana;
+	/**
+	 * declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
 	private PanelControl control;
+	/**
+	 * declaramos la barra de menu desplegable
+	 */
 	private JMenuBar menu;
+	/**
+	 * declaramos un submenu
+	 */
 	private JMenu jmenu;
 
 	static {
@@ -43,17 +94,24 @@ public class Ventana_Sublevaciones {
 		imagen3 = new ImageIcon("caja.gif");
 	}
 
-	
+
+	/**
+	 * Constructor de la clase
+	 * @param control de tipo PanelControl que administra los datos 
+	 */
 	public Ventana_Sublevaciones(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Borgoña");
 		ventana.setSize(815, 300);
-		ventana.setResizable(false);
 		iniciarComponentes();
+		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
-	
+
+	/**
+	 * Método que se encarga de iniciar los diferentes componentes que se pondrán en la ventana
+	 */
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
@@ -62,12 +120,19 @@ public class Ventana_Sublevaciones {
 		colocarBoton();
 	}
 
+	/**
+	 * Método que se encarga de inicializar el panel
+	 */
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
 
+	/**
+	 * Método que se encarga de inicializar las etiquetas y de añadirlas al panel
+	 * 
+	 */
 	public void colocarEtiquetas() {
 		etiqueta1 = new JLabel("Mercancias de Borgoña");
 		etiqueta2 = new JLabel("Mercancias");
@@ -90,15 +155,11 @@ public class Ventana_Sublevaciones {
 	/**
 	 * Recoremos las mercancias de la flota del Reino seleccionado y lo introducimos en forma de String en un JmenuItem.
 	 * Para posteriormente meterlo dentro del JMenu.
-	 * Para finalizar metemos el JMenu dentro del JMenuBar
-	 * 
+	 * Para finalizar metemos el JMenu dentro del JMenuBar y su vez al panel
 	 */
 	public void colocarBox() {
 		jmenu = new JMenu("  Mercancias almacenadas en la flota     ");
 		menu = new JMenuBar();
-
-		//		String [] mercanciasFlota=new  String[this.control.getEspana().getAragon().getFlota().getArrayMercancias().size()];
-
 		Iterator it=this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().keySet().iterator();
 
 		while(it.hasNext()) {
@@ -106,10 +167,6 @@ public class Ventana_Sublevaciones {
 			int id;
 			id=(int) it.next();
 
-
-			//			mercanciasFlota[posicion]=id+" "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ";
-
-			//			jmenuitem = new JMenuItem(mercanciasFlota[posicion]);
 			jmenuitem = new JMenuItem(id+" "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ");
 
 			jmenu.add(jmenuitem);
@@ -128,7 +185,7 @@ public class Ventana_Sublevaciones {
 	}
 
 	/**
-	 * Creamos un metodo que se encarga de comprobar antes de crear un Item de JComboBox tiene sublevacion false.
+	 * Método que se encarga de comprobar antes de crear un Item de JComboBox tiene sublevacion false.
 	 * Si el pais tiene sublevacion true no se mostrara impidiendo al usuario iteractuar con el mismo 
 	 */
 	public void recorrerPaises() {
@@ -157,7 +214,6 @@ public class Ventana_Sublevaciones {
 
 	/**
 	 * Una vez el usuario presiona el boton Embarcar las mercancias se transportaran al pais seleccionado y se pondra la Flota no disponible
-	 * 
 	 */
 	public void colocarBoton() {
 		boton = new JButton("Embarcar");
@@ -210,7 +266,6 @@ public class Ventana_Sublevaciones {
 
 
 					}catch (Exception o) {
-						// TODO: handle exception
 					}
 				}else {
 					JOptionPane.showMessageDialog(null,"No hay Mercancias disponibles para transportar");
@@ -222,6 +277,9 @@ public class Ventana_Sublevaciones {
 		boton.addActionListener(listener);
 	}
 
+	/**
+	 * Método para inicializar las imágenes
+	 */
 	public void colocarImagen() {
 
 		etiqueta5 = new JLabel();
@@ -242,5 +300,5 @@ public class Ventana_Sublevaciones {
 		etiqueta7.setBounds(165, 25, 100, 100);
 		panel.add(etiqueta7);
 	}
-	
+
 }

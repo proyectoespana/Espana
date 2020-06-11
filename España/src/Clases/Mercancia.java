@@ -7,30 +7,30 @@ import java.util.TreeMap;
  *Clase encargada de almacenar los productos en lotes de mercancias
  */
 public class Mercancia {
-/**
- * Mercancias necesarias a la hora de crear una mercancia
- */
+
+
 	private String nombre;
 	/**
-	 * Nombre de dicha mercancia
+	 * Nombre de dicha mercancía
 	 */
 	private Productos producto;
 	/**
-	 * Objeto Producto del  que se va almacenar
+	 * Objeto Producto, del  que se va almacenar
 	 */
 	private int totalkg;
 	/**
-	 * la cantidad total de peso que tiene dicha mercancia
+	 * La cantidad total de peso que tiene dicha mercancía
 	 */
 	private String origen;
 	/**
-	 * el nombre del pais de origen
+	 * El nombre del país de origen
 	 */
 	
 	
 	/**
 	 * 
-	 * @param nombre parametro que marca el nombre de dicha mercancia
+	 * @param nombre Parámetro que marca el nombre de dicha mercancía
+	 * @param origen Parámetro que marca el origen del producto
 	 */
 	public Mercancia(String nombre,String origen) {
 		this.nombre="Mercancia de "+nombre;
@@ -51,8 +51,8 @@ public class Mercancia {
 //	}
 
 	/**
-	 * Metodo encargado de añadair un producto a una mercancia
-	 * @param producto  parametro que se encarga de establecer que productos queremos almacenar juto a la cantidad total de la mercancia
+	 * Método encargado de añadir un producto a una mercancía
+	 * @param producto  Parámetro que se encarga de establecer qué productos queremos almacenar junto a la cantidad total de la mercancía
 	 */
 	public void añadirProducto(Productos producto) {
 		this.producto= producto;

@@ -4,24 +4,37 @@ import java.util.Random;
 
 import BaseDeDatos.IntroducirDatos;
 
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class NuevaEspaña extends Virreinatos {
 
 
-
+	
 	private Alimentos recoleccionMaiz;
+	/**
+	 * atributo que almacena la cantidad de maiz producida en el Reino
+	 */
 	private MateriasPrimas recoleccionOro;
+	/**
+	 * atributo que almacena la cantidad de oro producida en el Reino
+	 */
 	private Alimentos recoleccionTomate;
+	/**
+	 * atributo que almacena la cantidad de tomates producida en el Reino
+	 */
 	private Alimentos recoleccionTrigo;
-
+	/**
+	 * atributo que almacena la cantidad de trigo producida en el Reino
+	 */
+	
 	/**
 	 * 
-	 * @param nombre         parametro donde se introduce el nombre del Reino
-	 * @param continente	parametro donde se introduce el continente al que pertenece	
-	 * @param poblacion		parametro donde se introduce el numero de poblacion de cada Reino
-	 * @param maiz			parametro  donde se introduce el tipo de Alimento que produce ese Reino
-	 * @param cacao			parametro  donde se introduce el tipo de Alimento que produce ese Reino
-	 * @param tomate		parametro  donde se introduce el tipo de Alimento que produce ese Reino
-	 * @param oro			parametro  donde se introduce el tipo de Alimento que produce ese Reino
+	 @param nombre Informa sobre el nombre
+	 * @param continente Informa sobre el continente que se encuentra
+	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
 	 * @throws Exception	Excepcion se produce si en el metodo calcularProduccion se introduce un producto que no esta en la lista
 	 */
 	public NuevaEspaña(String nombre,String continente, int poblacion) throws Exception {
@@ -50,19 +63,18 @@ public class NuevaEspaña extends Virreinatos {
 	}
 
 	/**
-	 * Mustra el nombre del producto y la cantidad del mismo
+	 * Método que mustra el nombre del producto y la cantidad del mismo
 	 */
 	public String  verproduccionMensual() {
 		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionOro.toString() + "/ Produccion de de : "+this.recoleccionMaiz.toString() + "/ Produccion de de : "+this.recoleccionTomate.toString();
 	}
 
 
-	/**
-	 * El usuario procede a crear mercancias de los productos  recolectados
-	 * @param producto
-	 * @param cantidad
-	 * @throws Exception
-	 */
+	  /**
+     * El usuario procede a crear mercancías de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
+     */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
 		Productos newProduct;
@@ -202,7 +214,7 @@ public class NuevaEspaña extends Virreinatos {
 	//	}
 
 	/**
-	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 * Método, encargado de calcular cuáles de los productos que no producen, van a demandar
 	 */
 	private void calcularProductosDemandados() {
 		int valor;

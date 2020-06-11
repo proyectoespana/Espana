@@ -1,13 +1,31 @@
 package Clases;
 import java.util.HashMap;
 
-public abstract class Territorio {
 /**
  * 
+ * @author Grupo
+ *
  */
+public abstract class Territorio {
+
 	private String continente;
+	/**
+	 * Atributo que establece el nombre del continente
+	 */
 	private String nombre;
+	/**
+	 * Atributo que almacena el nombre de la zona
+	 */
 	private Flota flota;
+	/**
+	 * Atributo que almacena la Flota de cada zona
+	 */
+	
+	/**
+	 * Constructor de la clase
+	 * @param nombre nombre de la zona 
+	 * @param continente nombre del continente de la zona 
+	 */
 
 	public Territorio (String nombre,String continente){
 		this.nombre=nombre;
@@ -15,6 +33,10 @@ public abstract class Territorio {
 		this.flota= new Flota(nombre);
 	}
 
+	/**
+	 * Constructor de copia
+	 * @param obj Objeto que copiar
+	 */
 	public Territorio(Territorio obj) {
 		this.continente=obj.getContinente();
 		this.nombre=obj.getNombre();

@@ -46,25 +46,25 @@ public class PruebaEnviarFlota {
 		austria = new Austria("Austria", "Europa", 100, "Austria");
 
 		/**
-		 * Creamos una Mercancia similar a la que hemos importado en el "BeforeClase"
+		 * Creamos una Mercancía similar a la que hemos importado en el "BeforeClase"
 		 */
 		mercancia= new Mercancia("Mercancia Arroz", "Aragon");
 
 		/**
-		 * Creamos el contenido interno de la mercancia similar a del "BeforeClase"
+		 * Creamos el contenido interno de la mercancía similar a del "BeforeClase"
 		 */
 		Alimentos alimento2=new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Cereal", 0);
 		/**
-		 * Creamos la cantidad que vamos a transportar dicho dicha producto similar a al "BeforeClase" 
+		 * Creamos la cantidad que vamos a transportar de dicho producto similar a al "BeforeClase" 
 		 */
 		alimento2.setCantidad(500);
 		/**
-		 * Añadimos el Producto a la Mercancia
+		 * Añadimos el Producto a la Mercancía
 		 */
 		mercancia.añadirProducto(alimento2);
 
 		/**
-		 * Directamente lo metemos la la lista de Impotacinoes del Reino de Austria para comprobar si ambas listas son similares
+		 * Directamente lo metemos a la lista de Impotacinoes del Reino de Austria para comprobar si ambas listas son similares
 		 */
 		austria.getImportacionMercancia().put(1, mercancia);
 
@@ -79,10 +79,10 @@ public class PruebaEnviarFlota {
 	@Test(expected = java.lang.IllegalArgumentException.class)
 	public void testEnviarFlotaExcepcionNoDisponible() throws Exception {
 		/**
-		 * Probamos reintentar enviar la flota de Aragon a otro lugar
-		 * Saltara una excepcion dado que la flota no esta disponible porque
+		 * Probamos reintentar enviar la flota de Aragón a otro lugar
+		 * Saltará una excepción, dado que la flota no está disponible porque
 		 * en el "BeforeClass" hemos establecido que fuese a Austria, y hasta que esta
-		 * no vuelva a su puerto no podra zarpar de nuevo
+		 * no vuelva a su puerto no podrá zarpar de nuevo
 		 */
 		espana.enviarFlota(espana.getAragon(), espana.getBorgoña());
 

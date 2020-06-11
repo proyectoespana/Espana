@@ -10,20 +10,30 @@ import BaseDeDatos.IntroducirDatos;
  *
  */
 public class Aragon extends Europa {
+	
 	private Alimentos recoleccionTrigo;
+	/**
+	 * atributo que almacena la cantidad de trigo producida en el Reino
+	 */
 	private Alimentos recoleccionUvas;
+	/**
+	 * atributo que almacena la cantidad de uvas producidas en el Reino
+	 */
 	private Alimentos recoleccionMaiz;
+	/**
+	 * atributo que almacena la cantidad de Maíz producida en el Reino
+	 */
 	private Alimentos recoleccionArroz;
-
+	/**
+	 * atributo que almacena la cantidad de Arroz producida en el Reino
+	 */
 
 	/**
-     * Constructor donde se pasarán por parametros los atributos anteriores
+     * Constructor donde se pasarán por parámetros los atributos anteriores
      * @param nombre Informa sobre el nombre
      * @param continente Informa sobre el continente que se encuentra
-     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
-     * @param territorio 
-     * @param trigo Se introduce el objeto determinado que es
-     * @param uvas Se introduce el objeto determinado que es
+     * @param poblacion Informa sobre la cantidad de población que vive en el reino
+     * @param territorio Informa sobre el lugar donde está el Reino
      * @throws Exception
      */
 	public Aragon(String nombre,String continente,int poblacion,String territorio ) throws Exception {
@@ -39,6 +49,10 @@ public class Aragon extends Europa {
 		this.calcularProductosDemandados();
 	}
 
+	/**
+	 * Constructor de copia
+	 * @param Objeto a copiar
+	 */
 	public Aragon(Aragon a) {
 		super(a);
 		this.recoleccionTrigo=a.getRecoleccionTrigo();
@@ -48,7 +62,7 @@ public class Aragon extends Europa {
 	}
 
     /**
-     * El usuario procede a crear mercancias de los productos  recolectados
+     * El usuario procede a crear mercancías de los productos  recolectados
      * @param producto nombre del producto
      * @param cantidad cantidad del producto
      */
@@ -120,7 +134,7 @@ public class Aragon extends Europa {
 	}
 	
 	/**
-	 * Metodo encargado de calcular cuales de los producotos que no producen van a demandar
+	 * Método, encargado de calcular cuáles de los producotos que no producen, van a demandar
 	 */
 	private void calcularProductosDemandados() {
 		int valor;
@@ -136,7 +150,7 @@ public class Aragon extends Europa {
 	}
 
 	/**
-     * Método que devuelve la produccion mensual obtenida de los productos
+     * Método que devuelve la producción mensual obtenida de los productos
      * @return
      */
 	public String  verproduccionMensual() {

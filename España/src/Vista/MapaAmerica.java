@@ -65,8 +65,8 @@ public class MapaAmerica extends JPanel {
 		setVisible(true);
 	}
 	
-	
 	//Métodos
+	
 	/**
 	 * Método que inicializa los componentes en el panel.
 	 */

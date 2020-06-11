@@ -1,6 +1,4 @@
 package Vista;
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,31 +14,74 @@ import javax.swing.event.ChangeListener;
 
 import Clases.ProductoNombre;
 import Main.PanelControl;
-
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class Ventana_Mercancia_Aragon {
+	/**
+	 * declaramos el panel donde se guardarán los diferentes elementos
+	 */
 	private JPanel panel;
+	/**
+	 * declaramos la etiqueta numero 1 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta1;
+	/**
+	 * declaramos la etiqueta numero 2 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta2;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider1;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider2;
+	/**
+	 * declaramos un elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto1;
+	/**
+	 * declaramos un segundo elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto2;
+	/**
+	 * declaramos un boton
+	 */
 	private JButton boton;
+	/**
+	 * declaramos un segundo boton
+	 */
 	private JButton boton2;
+	/**
+	 * declaramos la ventana donde se encontrarán todos los elementos que contiene el panel
+	 */
 	private JFrame ventana;
+	/**
+	 * declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
 	private PanelControl control;
 
+	/**
+	 * Constructor de la clase
+	 * @param control de tipo PanelControl que administra los datos 
+	 */
 	public Ventana_Mercancia_Aragon(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Mercancia Aragon");
 		ventana.setSize(565, 190);
-		ventana.setResizable(false);
 		iniciarComponentes();
+		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 
-
+	/**
+	 * Método que se encarga de iniciar los diferentes componentes que se pondrán en la ventana
+	 */
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
@@ -49,12 +90,19 @@ public class Ventana_Mercancia_Aragon {
 		colocarBoton();
 	}
 
+	/**
+	 * Método que se encarga de inicializar el panel
+	 */
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
 
+	/**
+	 * Método que se encarga de inicializar las etiquetas y de añadirlas al panel
+	 * En este caso añade métodos recolección Uvas y recolección Trigo
+	 */
 	public void colocarEtiquetas() {
 		//trigo ------ x Kg
 		etiqueta1 = new JLabel(control.getEspana().getAragon().getRecoleccionUvas().getNombre()+" "+control.getEspana().getAragon().getRecoleccionUvas().getCantidad()+" kg");
@@ -67,17 +115,19 @@ public class Ventana_Mercancia_Aragon {
 
 	}
 
+	/**
+	 * Método que se encargar de inicializar los deslizadores y que a la hora de seleccionar un valor se reproduzca en la caja de texto
+	 * mediante el método stateChanged
+	 */
 	public void colocarSliders() {
 		slider1 = new JSlider();
 		slider1.setBounds(70, 30, 170, 30);
-		//		slider1.contains(0, 1000);
 		slider1.setMaximum(control.getEspana().getAragon().getRecoleccionUvas().getCantidad());
 		panel.add(slider1);
 
 		slider2 = new JSlider();
 
 		slider2.setBounds(70, 90, 170, 30);
-		//		slider2.contains(0, 1000);
 		slider2.setMaximum(control.getEspana().getAragon().getRecoleccionTrigo().getCantidad());
 		panel.add(slider2);
 
@@ -103,7 +153,10 @@ public class Ventana_Mercancia_Aragon {
 
 
 	}
-
+	
+	/**
+	 * Método para iniclializar las cajas de texto 
+	 */
 	public void colocarTexto() {
 		cajaTexto1 = new JTextField();
 		cajaTexto1.setBounds(270, 33, 50, 20);
@@ -116,7 +169,11 @@ public class Ventana_Mercancia_Aragon {
 		panel.add(cajaTexto2);
 
 	}
-
+	
+	/**
+	 * Método para mandar crear las mercancias con la cantidad seleccionada y en el caso que al crear la mercancia sea menor a lo provisto
+	 * aparece una ventana emergente como aviso que hay que crear la mercancia junto con una cantidad adecuada
+	 */
 	public void colocarBoton() {
 		boton = new JButton("Mercancia Uvas");
 		boton.setBounds(350, 20, 150, 40);
@@ -132,7 +189,7 @@ public class Ventana_Mercancia_Aragon {
 							etiqueta1.setText(control.getEspana().getAragon().getRecoleccionUvas().getNombre()+"."+control.getEspana().getAragon().getRecoleccionUvas().getCantidad()+" kg.");
 							slider1.setMaximum(control.getEspana().getAragon().getRecoleccionUvas().getCantidad());
 						}else {
-							JOptionPane.showMessageDialog(null," Tine que crear una mercancia superio a "+(control.getEspana().getAragon().getRecoleccionUvas().getCantidad()*50)/100+"");
+							JOptionPane.showMessageDialog(null," Tiene que crear una mercancia superior a "+(control.getEspana().getAragon().getRecoleccionUvas().getCantidad()*50)/100+"");
 						}
 					}
 				} catch (Exception e1) {
@@ -156,7 +213,7 @@ public class Ventana_Mercancia_Aragon {
 							etiqueta2.setText(control.getEspana().getAragon().getRecoleccionTrigo().getNombre()+"."+control.getEspana().getAragon().getRecoleccionTrigo().getCantidad()+" kg.");
 							slider2.setMaximum(control.getEspana().getAragon().getRecoleccionTrigo().getCantidad());
 						}else {
-							JOptionPane.showMessageDialog(null," Tine que crear una mercancia superio a "+(control.getEspana().getAragon().getRecoleccionTrigo().getCantidad()*50)/100+"");
+							JOptionPane.showMessageDialog(null," Tiene que crear una mercancia superior a "+(control.getEspana().getAragon().getRecoleccionTrigo().getCantidad()*50)/100+"");
 						}
 					}
 				} catch (Exception e1) {

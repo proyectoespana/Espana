@@ -34,14 +34,14 @@ public class PruebaCrearMercancia {
 	public void testCrearMercancia() throws Exception {
 
 		/**
-		 * Creo una mercancia de Arros de 500kg de los 1000 que tenemos disponibles
+		 * Creo una mercancía de Arroz de 500kg de los 1000 que tenemos disponibles
 		 */
 		espana.getAragon().crearMercancia(ProductoNombre.Arroz, 500);
 
 
 		/**
-		 * Creo una objeto mercancia no relacionado con el reino, 
-		 * En el que voy a meter los Atributos que debería de tener la mercancia que he creado anteriormente en el reino
+		 * Creo un objeto mercancía, no relacionado con el reino, 
+		 * En el que voy a meter los atributos que debería tener la mercancía que he creado anteriormente en el reino.
 		 */
 		mercancia= new Mercancia("Mercancia Arroz", "Aragon");
 
@@ -60,8 +60,8 @@ public class PruebaCrearMercancia {
 	public void testCrearMercanciaExcepcion() throws Exception {
 
 		/**
-		 * Creo una mercancia de Arros de 1500kg de los 1000 que tenemos disponibles
-		 * Por lo tanto saltara una excepcion no permitiendo que se realize la operacion
+		 * Creo una mercancia de Arroz, de 1500kg de los 1000, que tenemos disponibles
+		 * Por lo tanto, saltará una excepción no permitiendo que se realice la operación
 		 */
 		espana.getAragon().crearMercancia(ProductoNombre.Arroz, 1500);
 

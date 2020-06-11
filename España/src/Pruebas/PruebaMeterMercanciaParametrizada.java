@@ -24,10 +24,10 @@ public class PruebaMeterMercanciaParametrizada {
 	private int cantidad;
 
 	/**
-	 * Busco comprobar si dos flotas(con mercancias) son similares una creandola con el metodo de añadirMercancia de Flota y otras creandola de forma artificial
-	 * @param nombr parametro encargado de meter el nombre del producto
-	 * @param cantida parametro encargado de meter la cantidad de producto del que se va crear una mercancia
-	 * @param Flota parametro encargado de meter la flota resultante para compararla con la generada
+	 * Busco comprobar si dos flotas(con mercancías) son similares, una creándola con el método de "añadirMercancia" de Flota y otra creándola de forma artificial
+	 * @param nombr parámetro encargado de meter el nombre del producto
+	 * @param cantida parámetro encargado de meter la cantidad de producto del que se va crear una mercancía
+	 * @param Flota parámetro encargado de meter la flota resultante para compararla con la generada
 	 * @throws Exception
 	 */
 	public PruebaMeterMercanciaParametrizada(ProductoNombre nombr,int cantida,Flota flota) throws Exception {

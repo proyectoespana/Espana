@@ -28,11 +28,11 @@ public class PruebaEnviarFlotaParametrizada {
 	private int cantidad;
 
 /**
- * Busco comprobar si con el metodo "enviarFlota" haga que todas las mercancias metidas en un barco se envien al atriburo "importacionMercancias" del Pais seleccionado
- * @param paiss nombre del Pais al que quiero importar una o varias mercancias
+ * Busco comprobar si con el método "enviarFlota" haga que todas las mercancías metidas en un barco, se envíen al atributo "importacionMercancias" del País seleccionado
+ * @param paiss nombre del país al que quiero importar una o varias mercancías
  * @param name nombre del producto que quiero enviar
  * @param cantida cantidad del producto que quiero enviar
- * @param send La lista de mercancias impotadas que quiero comparar con las del pais seleccionado
+ * @param send La lista de mercancías impotadas que quiero comparar con las del país seleccionado
  * @throws Exception
  */
 	public PruebaEnviarFlotaParametrizada(Reinos paiss,ProductoNombre name,int cantida,LinkedHashMap <Integer,Mercancia> send) throws Exception {

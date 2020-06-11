@@ -41,8 +41,8 @@ public class PanelControl {
 	}
 	
 	/**
-	 * Metodo encargado de resetear los objetos de la clase 
-	 * (se utilizara para cambiar de turnos y que cada zona pida nuevos producotos y los genere)
+	 * Método encargado de resetear los objetos de la clase 
+	 * (se utilizará para cambiar de turnos y que cada zona pida nuevos productos y los genere)
 	 * @throws Exception
 	 */
 	protected void constructor() throws Exception {
@@ -52,7 +52,7 @@ public class PanelControl {
 
 
 	/**
-	 * Metodo encargado de recargar los constructores y poner si alguna zona tiene sublevaciones
+	 * Método encargado de recargar los constructores y poner si alguna zona tiene "sublevaciones"
 	 * @throws Exception
 	 */
 	public void cambiarTruno() throws Exception {		
@@ -99,7 +99,7 @@ public class PanelControl {
 
 	
 	/**
-	 * Metodo encargado de meter en una lista el nombre de las zonas en las que no se ha podido transpasar los productos que demandaban
+	 * Método encargado de meter en una lista el nombre de las zonas en las que no se ha podido traspasar los productos que demandaban
 	 * @param espana
 	 */
 	public void pasarTurno(ReinoCompleto espana) {
@@ -109,8 +109,8 @@ public class PanelControl {
 
 	
 	/**
-	 * Metodo encargado de recorrer la lista de Zonas en la que no se han satisfecho las demandas y una vez pasado el turno poner las sublevaciones a true
-	 * y las posibles demandas que tuviesen cancelarlas
+	 * Método encargado de recorrer la lista de zonas en la que no se han satisfecho las demandas"zonasSinProductosDemandados", y una vez pasado el turno, poner las sublevaciones a "true"
+	 * y las posibles demandas, que estos Reinos tuviesen, cancelarlas.
 	 * @param espana
 	 */
 	public void recorrerLista(ReinoCompleto espana) {
@@ -123,8 +123,8 @@ public class PanelControl {
 			switch (nombreZona.toUpperCase()) {
 			case "PERU":
 				/**
-				 * Una vez sabemos las zonas donde no se ha podido satifacer la demanda de productos se procede a poner las
-				 * sublevaciones a true y quitar las posibles demandas de productos que tuviese
+				 * Una vez sabemos las zonas donde no se ha podido satisfacer la demanda de productos en anteriores turnos, se procede a poner las
+				 * sublevaciones a "true" y quitar las posibles demandas de productos que tuviesen
 				 */
 				espana.getPeru().setSublevaciones(true);
 				recorrer(espana.getPeru());
@@ -164,7 +164,7 @@ public class PanelControl {
 	}
 	
 	/**
-	 * Metodo encargado de recorrer la lista de las zonas donde no se a retornado las flotas y poner estas a false en los paises correspondientes
+	 * Método encargado de recorrer la lista de las zonas donde no se ha retornado la "Flota" y poner estas a "false" en los países correspondientes.
 	 */
 	public void recorrerListaFlotas() {
 		Iterator it= zonasSinFlotaTrue.iterator();
@@ -224,10 +224,10 @@ public class PanelControl {
 	}
 	
 	/**
-	 * Metodo hermano de RecorreListaFlotas se encarga de separar del String generado el nombre del reino que no tiene la flota disponible y la distancia a
-	 * la que esta se encuentra
-	 * @param palabra
-	 * @return retorna una array de String donde la primera posicion es el Reino y la Segunda la distancia
+	 * Método hermano de RecorreListaFlotas se encarga de separar del String generado el nombre del reino que no tiene la flota disponible y la distancia a
+	 * la que ésta se encuentra
+	 * @param palabra parámetro que tiene el nombre del Reino y la distancia de su "Flota" unidos 
+	 * @return retorna una array de String donde la primera posición es el Reino y la Segunda la distancia
 	 */
 	private String[] StringToken(String palabra) {
 		StringTokenizer st = new StringTokenizer(palabra,",");
@@ -241,6 +241,10 @@ public class PanelControl {
 		return division;
 	}
 	
+	/**
+	 * Método encargado de una vez el Reino está con sublevación "True " quitarles posibles demandas de siguientes turnos
+	 * @param reino
+	 */
 	private void recorrer(Reinos reino) {
 		for(int i=0;i<reino.getProductosDemandados().length;i++) {
 			if(reino.getProductosDemandados()[i]!=null) {
@@ -250,6 +254,13 @@ public class PanelControl {
 		}
 	}
 	
+	/**
+	 * Método encargado de crear Mercancías directamente desde el Panel de Control
+	 * @param pais parámetro encargado de introducir el Reino del que se quiere crear una Mercancía
+	 * @param cantidad parámetro encargado de introducir la cantidad de dicha mercancía
+	 * @param producto parámetro encargado de introducir el nombre del Producto que queremos crear como Mercancía
+	 * @throws Exception 
+	 */
 	public void crearMercancias(Reinos pais,int cantidad,ProductoNombre producto) throws Exception {
 		String codigoPais;
 		pais.crearMercancia(producto, cantidad);
@@ -272,10 +283,18 @@ public class PanelControl {
 		pais.verMercancias();
 	}
 	
+	/**
+	 * Método encargado de introducir en "zonasSinFlotaTrue" los Reinos que no han devuelto sus flotas 
+	 * @param nombre nombre del Reino 
+	 */
 	public void meterZonaSinFlota(String nombre) {
 		this.zonasSinFlotaTrue.add(nombre);
 	}
 	
+	/**
+	 * Método encargado de eliminar en "zonasSinFlotaTrue" los Reinos que no han devuelto sus flotas 
+	 * @param nombre nombre del Reino 
+	 */
 	public void quitarReinoDeZonasSinFlota(String nombre) {
 			
 		if(this.zonasSinFlotaTrue.contains(nombre)) {
@@ -284,7 +303,7 @@ public class PanelControl {
 		}
 	
 	/**
-	 * Iterador para ver las flotas que no van a ser True el siguiente turno
+	 * Iterador para ver las flotas que no van a ser "True" o devueltas el siguiente turno
 	 */
 	public void iteradorZonasSinFLota() {
 		Iterator it = this.zonasSinFlotaTrue.iterator();

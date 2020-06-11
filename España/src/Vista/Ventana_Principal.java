@@ -3,8 +3,11 @@ package Vista;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,8 +24,15 @@ import javax.swing.border.LineBorder;
 
 import Main.PanelControl;
 
-public class Ventana_Principal extends JFrame {
+/**
+ * Clase Vista
+ * @author Grupo
+ *
+ */
 
+public class Ventana_Principal extends JFrame {
+	
+	//Atributos
 
 	/**
 	 * Panel general.
@@ -36,35 +46,44 @@ public class Ventana_Principal extends JFrame {
 	
 	private PanelControl control;
 	
+	//Cosntructores
+	
 	/**
 	 * Constructor de la Interfaz.
 	 * @param control
 	 */
 	
-	//Cosntructores
 	public Ventana_Principal(PanelControl control) {
 
 		this.control = control;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1020, 565);
-		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		setTitle("España");
-
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/barco.png"));
+		
 		iniciarComponentes();
+		
+		JLabel FONDO = new JLabel();
+		FONDO.setIcon(new ImageIcon("imagenes/mapamundi.png"));
+		FONDO.setBounds(0, 0, 2000, 600);
+		setResizable(false);
+		contentPane.add(FONDO);
 
 	}
+	
+	//Métodos
 
 	/**
 	 * Método el cual iniciamos todos los métodos e insertarlos en el JFrame.
 	 */
 	
-	//Metodos
 	public void iniciarComponentes() {
+		colocarImagenes();
 		siguienteTurno();
 		crearPanelFlotas();
 		crearPanelMapa();
@@ -73,7 +92,115 @@ public class Ventana_Principal extends JFrame {
 		crearBotonDemandas();
 		colocarEtiquetas();
 		colocarImagenMonarca();
+		
 	}
+	
+	/**
+     * Imagenes que definen lo que se hace en cada panel.
+     */
+	private void colocarImagenes() {
+		
+		JLabel imagen = new JLabel();
+		imagen.setHorizontalAlignment(SwingConstants.CENTER);
+		imagen.setIcon(new ImageIcon("imagenes/crearMercancia.jpg"));
+		imagen.setBounds(640, 105, 270, 60);
+		contentPane.add(imagen);
+		
+		JLabel imagen2 = new JLabel();
+		imagen2.setHorizontalAlignment(SwingConstants.CENTER);
+		imagen2.setIcon(new ImageIcon("imagenes/montarFlota.jpg"));
+		imagen2.setBounds(640, 255, 270, 60);
+		contentPane.add(imagen2);
+		
+		JLabel imagen3 = new JLabel();
+		imagen3.setHorizontalAlignment(SwingConstants.CENTER);
+		imagen3.setIcon(new ImageIcon("imagenes/enviarFlota.jpg"));
+		imagen3.setBounds(640, 405, 270, 60);
+		contentPane.add(imagen3);
+		
+		imagen.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				imagen.setVisible(false);
+				imagen2.setVisible(true);
+				imagen3.setVisible(true);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			
+		});
+		
+		imagen2.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				imagen.setVisible(true);
+				imagen2.setVisible(false);
+				imagen3.setVisible(true);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			
+		});
+		
+		imagen3.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				imagen.setVisible(true);
+				imagen2.setVisible(true);
+				imagen3.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			
+		});
+		
+	}
+	
 	
 	/**
 	 * Panel Mapa
@@ -121,11 +248,10 @@ public class Ventana_Principal extends JFrame {
 	 */
 
 	private void crearBotonDemandas() {
-		JButton boton = new JButton("Boton Circular");
-		ImageIcon imagen=new ImageIcon("Clickaraqui.jpg");
-		boton.setBounds(720, 25, 120, 40);
+		JButton boton = new JButton("Demandas");
+		boton.setBounds(720, 25, 110, 39);
 		boton.setFont(new Font("Serif", Font.PLAIN, 14));
-		boton.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_SMOOTH)));
+		boton.setIcon(new ImageIcon("imagenes/demandas.jpg"));
 		contentPane.add(boton);
 		ActionListener listener = new ActionListener() {
 			@Override
@@ -301,7 +427,7 @@ public class Ventana_Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_7;
 
 		JPanel panelAragonMercancia = new JPanel();
-		panelAragonMercancia.setBorder(new LineBorder(new Color(220, 20, 60), 2));
+		panelAragonMercancia.setBorder(new LineBorder(new Color(169, 169, 169), 2));
 		panelAragonMercancia.setBounds(635, 250, 280, 70);
 		contentPane.add(panelAragonMercancia);
 		panelAragonMercancia.setLayout(null);
@@ -441,12 +567,12 @@ public class Ventana_Principal extends JFrame {
 	
 	private void crearPanelFlotas() {
 		JPanel panelFlotas = new JPanel();
-		panelFlotas.setBorder(new LineBorder(Color.BLUE, 2));
+		panelFlotas.setBorder(new LineBorder(Color.GRAY, 2));
 		panelFlotas.setBounds(635, 400, 280, 70);
 		contentPane.add(panelFlotas);
 		panelFlotas.setLayout(null);
 
-		JLabel etiquetaFlotas = new JLabel("Montar Flotas");
+		JLabel etiquetaFlotas = new JLabel("Enviar Flotas");
 		etiquetaFlotas.setBounds(90, 3, 104, 20);
 		panelFlotas.add(etiquetaFlotas);
 
@@ -561,7 +687,9 @@ public class Ventana_Principal extends JFrame {
 	}
 	
 	/**
-	 * hacer javadoc
+	 * Etiqueta Imagen del Monarca
+	 * Esté metodo coloca la imagen de los diferentes monarcas.
+	 * A medida que se avanzan en los turnos se va cambiando de monarca.
 	 */
 	
 	private void colocarImagenMonarca() {
@@ -573,22 +701,20 @@ public class Ventana_Principal extends JFrame {
 		monarca.setBounds(328, 380, 175, 140);
 		add(monarca);
 		
-		//Cambiar número de turnos
-		
 		if(PanelControl.getContadorTurnos()<10) {
-			monarca.setIcon(new ImageIcon("imagenes/Odin.gif"));
+			monarca.setIcon(new ImageIcon("imagenes/CarlosI.gif"));
 			
 		}else if(PanelControl.getContadorTurnos()>=10) {
-			monarca.setIcon(new ImageIcon("imagenes/CarlosII.gif"));
-			
-		}else if(PanelControl.getContadorTurnos()>=15) {
 			monarca.setIcon(new ImageIcon("imagenes/FelipeII.gif"));
 			
 		}else if(PanelControl.getContadorTurnos()>=20) {
 			monarca.setIcon(new ImageIcon("imagenes/FelipeIII.gif"));
 			
-		}else if(PanelControl.getContadorTurnos()>=25) {
+		}else if(PanelControl.getContadorTurnos()>=30) {
 			monarca.setIcon(new ImageIcon("imagenes/FelipeIV.gif"));
+			
+		}else if(PanelControl.getContadorTurnos()>=40) {
+			monarca.setIcon(new ImageIcon("imagenes/CarlosII.gif"));
 			
 		}else
 			monarca.setIcon(new ImageIcon("imagenes/Odin.gif"));
@@ -601,11 +727,13 @@ public class Ventana_Principal extends JFrame {
 	 */
 	
 	private void siguienteTurno() {
+		
 		JButton botonSiguienteTurno = new JButton("Siguiente turno");
-		botonSiguienteTurno.setBounds(45, 405, 140, 60);
+		botonSiguienteTurno.setBounds(50, 405, 126, 54);
 		botonSiguienteTurno.setToolTipText("");
-		botonSiguienteTurno.setFont(new Font("Serif", Font.PLAIN, 11));
+		botonSiguienteTurno.setFont(new Font("Serif", Font.PLAIN, 16));
 		botonSiguienteTurno.setForeground(Color.RED);
+		botonSiguienteTurno.setIcon(new ImageIcon("imagenes/siguienteTurno.jpg"));
 		contentPane.add(botonSiguienteTurno);
 
 		ActionListener listener = new ActionListener() {

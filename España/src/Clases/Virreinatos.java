@@ -2,31 +2,57 @@ package Clases;
 
 import BaseDeDatos.IntroducirDatos;
 
-/*
- * GRUPO
+/**
+ * 
+ * @author Grupo
+ *
  */
 public abstract class Virreinatos extends Reinos {
 	
 	private int distanciaPeru;
+	/**
+	 * Informa de la distancia del Reino respecto a "Peru"
+	 */
 	private int distanciaPlata;
+	/**
+	 * Informa de la distancia del Reino respecto a "Plata"
+	 */
 	private int distanciaCastilla;
+	/**
+	 * Informa de la distancia del Reino respecto a "Castilla"
+	 */
 	private int distanciaNuevaGranada;
+	/**
+	 * Informa de la distancia del Reino respecto a "Nueva Granada"
+	 */
 	private int distanciaNuevaEspaña;
+	/**
+	 * Informa de la distancia del Reino respecto a "Nueva España"
+	 */
 	private int distanciaAragon;
+	/**
+	 * Informa de la distancia del Reino respecto a "Aragon"
+	 */
 	private int distanciaBorgoña;
+	/**
+	 * Informa de la distancia del Reino respecto a "Borgoña"
+	 */
 	private int distanciaAustria;
+	/**
+	 * Informa de la distancia del Reino respecto a "Austria"
+	 */
 
 	//Constructores
     /**
-     * Constructor con 8 parametros 
-     * @param nombre Da informacion sobre el nombre
-     * @param continente Informa sobre donde esta cada reino
+     * Constructor con 8 parámetros 
+     * @param nombre Da información sobre el nombre
+     * @param continente Informa sobre donde está cada reino
      * @param poblacion Informa sobre la cantidad de personas que habitan
-     * @param peru Indica la distancia sobre donde se encuentra el reino de Peru
-     * @param plata Indica la distancia sobre donde se encuentra el reino de la Plata
-     * @param castilla Indica la distancia sobre donde se encuentra el reino de Castilla
-     * @param granada Indica la distancia sobre donde se encuentra el reino de Granada
-     * @param nuevaEspaña Indica la distancia sobre donde se encuentra el reino de Granada
+     * @param peru Indica la distancia sobre donde se encuentra el Reino de Perú
+     * @param plata Indica la distancia sobre donde se encuentra el Reino de la Plata
+     * @param castilla Indica la distancia sobre donde se encuentra el Reino de Castilla
+     * @param granada Indica la distancia sobre donde se encuentra el Reino de Granada
+     * @param nuevaEspaña Indica la distancia sobre donde se encuentra el Reino de Nueva Granada
      */
 	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña,int aragon,int borgoña,int austria) {
 		super(nombre, continente, poblacion);

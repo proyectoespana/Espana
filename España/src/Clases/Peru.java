@@ -4,23 +4,37 @@ import java.util.Random;
 
 import BaseDeDatos.IntroducirDatos;
 
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class Peru extends Virreinatos {
 
+	
 	private MateriasPrimas recoleccionOro;
+	/**
+	 * atributo que almacena la cantidad de oro producida en el Reino
+	 */
 	private Alimentos recoleccionMaiz;
+	/**
+	 * atributo que almacena la cantidad de maiz producida en el Reino
+	 */
 	private Alimentos recoleccionTomate;
+	/**
+	 * atributo que almacena la cantidad de tomates producida en el Reino
+	 */
 	private Alimentos recoleccionPatata;
-
+	/**
+	 * atributo que almacena la cantidad de patatas producida en el Reino
+	 */
+	
 	//Constructores
 	/**
-	 * Constructor de 7 parametros
+	 * Constructor donde se pasarán por parámetros los atributos anteriores
 	 * @param nombre Informa sobre el nombre
-	 * @param continente Informa sobre el continente en el que se encuentra
-	 * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
-	 * @param oro Se introduce el objeto determinado que es
-	 * @param maiz Se introduce el objeto determinado que es
-	 * @param tomate Se introduce el objeto determinado que es
-	 * @param patata Se introduce el objeto determinado que es
+	 * @param continente Informa sobre el continente que se encuentra
+	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
 	 * @throws Exception no se introducen otros objetos distintos 
 	 */
 	public Peru(String nombre,String continente, int poblacion) throws Exception {
@@ -48,11 +62,10 @@ public class Peru extends Virreinatos {
 	}
 
 	//Metodos Publicos
-    /**
-     * Crean las mercancias 
-     * @param producto recogen un Objeto producto
-     * @param cantidad recoge la cantidad 
-     * @throws IllegalArgumentException que no se admite ese dato
+	   /**
+     * El usuario procede a crear mercancías de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
      */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
@@ -124,12 +137,12 @@ public class Peru extends Virreinatos {
 
 	}
 	/**
-	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 * Método, encargado de calcular cuáles de los productos que no producen, van a demandar
 	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;
-		
+
 		for(int i=0;i<this.getProductosDemandados().length;i++) {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);

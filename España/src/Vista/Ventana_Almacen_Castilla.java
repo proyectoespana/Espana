@@ -18,109 +18,118 @@ import javax.swing.ListModel;
 
 import Clases.Mercancia;
 import Main.PanelControl;
-
-public class Ventana_Almacen_Castilla {
-	private JPanel panel;
-	private JLabel etiqueta1;
-	private JLabel etiqueta2;
-	private JLabel etiqueta3;
-	private JLabel etiqueta4;
-	private JLabel etiqueta5;
-	private JLabel etiqueta6;
-	private JScrollPane scroll;
-	private JCheckBox box1;
-	private JCheckBox box2;
-	private JCheckBox box3;
-	private JButton boton;
-	private JFrame ventana;
-	private PanelControl control;
-	private JList lista;
-	private DefaultListModel modeloLista;
-	
 /**
- * Se crea el modelo lista y dentro de este se mete la lista 
  * 
- * @param control
+ * @author Grupo
+ *
  */
+public class Ventana_Almacen_Castilla {
+	/**
+	 * declaramos el panel donde se guardarán los diferentes elementos
+	 */
+	private JPanel panel;
+	/**
+	 * declaramos la etiqueta numero 1 donde se pondrá información en ella
+	 */
+	private JLabel etiqueta1;
+	/**
+	 * declaramos la etiqueta numero 2 donde se pondrá información en ella
+	 */
+	private JLabel etiqueta2;
+	/**
+	 * declaramos la etiqueta numero 3 donde se pondrá información en ella
+	 */
+	private JLabel etiqueta3;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder visualizar los datos
+	 */
+	private JScrollPane scroll;
+	/**
+	 * declaramos un boton
+	 */
+	private JButton boton;
+	/**
+	 * declaramos la ventana donde se encontrarán todos los elementos que contiene el panel
+	 */
+	private JFrame ventana;
+	/**
+	 *  declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
+	private PanelControl control;
+	/**
+	 * declaramos una lista donde se guardarán los diferentes datos 
+	 */
+	private JList lista;
+	/**
+	 * es un modelo para manejar mejor la lista
+	 */
+	private DefaultListModel modeloLista;
+
+	/**
+	 * Constructor de la clase
+	 * @param control de tipo PanelControl que administra los datos 
+	 */
 	public Ventana_Almacen_Castilla(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Almacén Castilla");
 		ventana.setSize(320, 350);
-		ventana.setResizable(false);
 		modeloLista=new DefaultListModel();
 		iniciarComponentes();
+		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 
-
+	/**
+	 * Método que se encarga de iniciar los diferentes componentes que se pondrán en la ventana
+	 */
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
 		colocarBoton();
 		colocarScroll();
 	}
-
+	
+	/**
+	 * Método que se encarga de inicializar el panel
+	 */
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
-
+	/**
+	 * Método que se encarga de inicializar las etiquetas y de añadirlas al panel
+	 */
 	public void colocarEtiquetas() {
 
 		etiqueta1 = new JLabel("Mercancia disponible Castilla");
 		etiqueta1.setBounds(70, 25, 200, 14);
 		panel.add(etiqueta1);
 
-		//		etiqueta2 = new JLabel("Mercancia 1");
-		//		etiqueta2.setBounds(120, 70, 129, 14);
-		//		panel.add(etiqueta2);
-		//		
-		//		etiqueta3 = new JLabel("Mercancia 2");
-		//		etiqueta3.setBounds(120, 140, 129, 14);
-		//		panel.add(etiqueta3);
-		//		
-		//		etiqueta4 = new JLabel("Mercancia 3");
-		//		etiqueta4.setBounds(120, 210, 129, 14);
-		//		panel.add(etiqueta4);
-
-		etiqueta5 = new JLabel("Peso disponible : "+String.valueOf(this.control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
-		etiqueta5.setBounds(60, 200, 200, 14);
-		panel.add(etiqueta5);
+		etiqueta2 = new JLabel("Peso disponible : "+String.valueOf(this.control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
+		etiqueta2.setBounds(60, 200, 200, 14);
+		panel.add(etiqueta2);
 
 		//Peso restante de la flota
-		etiqueta6 = new JLabel("Peso total introducido: "+String.valueOf(this.control.getEspana().getCastilla().getFlota().getPesoMaximo()-this.control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
-		etiqueta6.setBounds(60, 230, 200, 14);
-		panel.add(etiqueta6);
+		etiqueta3 = new JLabel("Peso total introducido: "+String.valueOf(this.control.getEspana().getCastilla().getFlota().getPesoMaximo()-this.control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
+		etiqueta3.setBounds(60, 230, 200, 14);
+		panel.add(etiqueta3);
 
 	}
-
-	public void colocarMarcadores() {
-		box1 = new JCheckBox();
-		box1.setBounds(95, 67, 20, 20);
-		panel.add(box1);
-
-		box2 = new JCheckBox();
-		box2.setBounds(95, 137, 20, 20);
-		panel.add(box2);
-
-		box3 = new JCheckBox();
-		box3.setBounds(95, 207, 20, 20);
-		panel.add(box3);
-
-	}
+	
 
 	/**
-	 * crearmos un vector con las diferentes mercancias del reino creadas anteriormente.
-	 * Despues metemos dicho vector dentro del "modeloLista"
+	 * Método que se encarga de inicializar el deslizador y de
+	 * crear un vector con las diferentes mercancias del reino creadas anteriormente.
+	 * Y después metemos dicho vector dentro del "modeloLista"
 	 */
 	public void colocarScroll() {
 		Iterator it =this.control.getEspana().getCastilla().getMercancia().keySet().iterator();
 		String mercancias[]= new String [this.control.getEspana().getCastilla().getMercancia().size()];
 
 		int posicion=0;
-		
+
 		while(it.hasNext()) {
 			int id;
 			id=(int) it.next();
@@ -156,7 +165,7 @@ public class Ventana_Almacen_Castilla {
 				int id;
 
 				id=lista.getSelectedIndex();
-				
+
 				if(id!=-1) {
 					String selectedText = (String)lista.getSelectedValue();
 					char numero=selectedText.charAt(0);
@@ -168,10 +177,10 @@ public class Ventana_Almacen_Castilla {
 						prueba(numero2);
 						control.getEspana().getCastilla().getFlota().verMercancias();
 						control.getEspana().getCastilla().verMercancias();
-						
-						etiqueta5.setText("Peso disponible : "+String.valueOf(control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
-						etiqueta6.setText("Peso total introducido: "+String.valueOf(control.getEspana().getCastilla().getFlota().getPesoMaximo()-control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
-						
+
+						etiqueta2.setText("Peso disponible : "+String.valueOf(control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
+						etiqueta3.setText("Peso total introducido: "+String.valueOf(control.getEspana().getCastilla().getFlota().getPesoMaximo()-control.getEspana().getCastilla().getFlota().getPesoTodasMercancias()));
+
 						modeloLista.remove(id);
 						lista.updateUI();
 					} catch (Exception e1) {
@@ -181,7 +190,7 @@ public class Ventana_Almacen_Castilla {
 				}else {
 					JOptionPane.showMessageDialog(null," Tiene que seleccionar antes una Mercancia ");
 				}
-				
+
 			}
 		};
 
@@ -189,7 +198,11 @@ public class Ventana_Almacen_Castilla {
 
 	}
 
-
+	/**
+	 * Método que 
+	 * @param id
+	 * @throws Exception
+	 */
 	public void prueba(int id) throws Exception {
 
 		this.control.getEspana().formarFlota(this.control.getEspana().getCastilla(), id);

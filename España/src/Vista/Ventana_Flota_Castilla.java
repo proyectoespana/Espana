@@ -3,7 +3,6 @@ package Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,11 +14,28 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import Main.PanelControl;
 
+/**
+ * Clase que abre una ventana respecto a las Flotas
+ * @author Grupo
+ *
+ */
+
 public class Ventana_Flota_Castilla {
+
+	//Atributos
+
+	/**
+	 * Panel donde se colocan los componentes 
+	 */
+
 	private JPanel panel;
+
+	/**
+	 * Etiquetas
+	 */
+
 	private JLabel etiqueta1;
 	private JLabel etiqueta2;
 	private JLabel etiqueta3;
@@ -27,22 +43,52 @@ public class Ventana_Flota_Castilla {
 	private JLabel etiqueta5;
 	private JLabel etiqueta6;
 	private JLabel etiqueta7;
+
+	/**
+	 * Lista de paÃ­ses
+	 */
+
 	private JComboBox box2;
-	private static ImageIcon imagen;
-	private static ImageIcon imagen2;
-	private static ImageIcon imagen3;
+
+	/**
+	 * ImÃ¡genes
+	 */
+
+	private ImageIcon imagen = new ImageIcon("imagenes/barcoNav.gif");
+	private ImageIcon imagen2 = new ImageIcon("imagenes/mundo.gif");
+	private ImageIcon imagen3 = new ImageIcon("imagenes/caja.gif");
+
+	/**
+	 * Botones 
+	 */
+
 	private JButton boton;
+
+	/**
+	 * Ventana  
+	 */
+
 	private JFrame ventana;
+
+	/**
+	 * Declaramos un atributo de tipo PanelControl que se encargarÃ¡ de administrar los datos
+	 */
+
 	private PanelControl control;
+
+	/**
+	 * MenÃº donde se guardan las mercancias
+	 */
+
 	private JMenuBar menu;
 	private JMenu jmenu;
-	
 
-	static {
-		imagen = new ImageIcon("imagenes/barcoNav.gif");
-		imagen2 = new ImageIcon("imagenes/mundo.gif");
-		imagen3 = new ImageIcon("imagenes/caja.gif");
-	}
+	//Constructores
+
+	/**
+	 * Constructor
+	 * @param control de tipo PanelControl que administra los datos
+	 */
 
 	public Ventana_Flota_Castilla(PanelControl control) {
 		this.control=control;
@@ -53,7 +99,13 @@ public class Ventana_Flota_Castilla {
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
-	
+
+	//MÃ©todos
+
+	/**
+	 * MÃ©todo que inicializa los componentes en el panel.
+	 */
+
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
@@ -62,11 +114,19 @@ public class Ventana_Flota_Castilla {
 		colocarBoton();
 	}
 
+	/**
+	 * MÃ©todo que coloca el panel en la ventana.
+	 */
+
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
+
+	/**
+	 * MÃ©todo que coloca las etiquetas en el panel.
+	 */
 
 	public void colocarEtiquetas() {
 		etiqueta1 = new JLabel("Mercancias de Castilla");
@@ -88,13 +148,15 @@ public class Ventana_Flota_Castilla {
 	}
 
 	/**
-	 * Recoremos las mercancias de la flota del Reino seleccionado y lo introducimos en forma de String en un JmenuItem.
+	 * MÃ©todo que guarda las mercancias y las coloca en un menÃº.
+	 * Recorremos las mercancias de la flota del Reino seleccionado y lo introducimos en forma de String en un JmenuItem.
 	 * Para posteriormente meterlo dentro del JMenu.
-	 * Para finalizar metemos el JMenu dentro del JMenuBar
+	 * Para finalizar metemos el JMenu dentro del JMenuBar.
 	 * 
 	 */
+
 	public void colocarBox() {
-		jmenu = new JMenu("  Mercancias almacenadas en la flota     ");
+		jmenu = new JMenu("      Mercancias almacenadas en la flota      ");
 		menu = new JMenuBar();
 
 		//		String [] mercanciasFlota=new  String[this.control.getEspana().getAragon().getFlota().getArrayMercancias().size()];
@@ -129,12 +191,13 @@ public class Ventana_Flota_Castilla {
 
 	/**
 	 * Creamos un metodo que se encarga de comprobar antes de crear un Item de JComboBox tiene sublevacion false.
-	 * Si el pais tiene sublevacion true no se mostrara impidiendo al usuario iteractuar con el mismo 
+	 * Si el pais tiene sublevacion true no se mostrara impidiendo al usuario iteractuar con el mismo.
 	 */
+
 	public void recorrerPaises() {
 
 		if(control.getEspana().getNuevaEspaña().isSublevaciones()==false) {
-			box2.addItem("Nueva EspaÃ±a");
+			box2.addItem("Nueva España");
 		}
 
 		if(control.getEspana().getNuevaGranda().isSublevaciones()==false) {
@@ -156,16 +219,18 @@ public class Ventana_Flota_Castilla {
 		if(control.getEspana().getBorgoña().isSublevaciones()==false) {
 			box2.addItem("Borgoña");
 		}
-		
+
 		if(control.getEspana().getAragon().isSublevaciones()==false) {
 			box2.addItem("Aragon");
 		}
 	}
 
 	/**
+	 * MÃ©todo que manda la flota al lugar destino seleccionado..
 	 * Una vez el usuario presiona el boton Embarcar las mercancias se transportaran al pais seleccionado y se pondra la Flota no disponible
 	 * 
 	 */
+
 	public void colocarBoton() {
 		boton = new JButton("Embarcar");
 		boton.setBounds(350, 180, 110, 40);
@@ -179,9 +244,9 @@ public class Ventana_Flota_Castilla {
 				if(control.getEspana().getCastilla().getFlota().getArrayMercancias().size()!=0) {
 					try {
 						switch (box2.getSelectedItem().toString().toUpperCase()) {
-						case "NUEVA ESPAÃ‘A":
+						case "NUEVA ESPAÑA":
 							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getNuevaEspaña());
-							System.out.println("Importaciones Nueva EspaÃ±a");
+							System.out.println("Importaciones Nueva España");
 							control.getEspana().getNuevaEspaña().verMercanciasImportacion();
 							break;
 						case "NUEVA GRANADA": 
@@ -204,9 +269,9 @@ public class Ventana_Flota_Castilla {
 							System.out.println("Importaciones Austria ");
 							control.getEspana().getAustria().verMercanciasImportacion();
 							break;
-						case "BORGOÃ‘A":
+						case "BORGOÑA":
 							control.getEspana().enviarFlota(control.getEspana().getCastilla(), control.getEspana().getBorgoña());
-							System.out.println("Importaciones BorgoÃ±a");
+							System.out.println("Importaciones Borgoña");
 							control.getEspana().getBorgoña().verMercanciasImportacion();
 							break;
 						case "ARAGON":
@@ -239,6 +304,10 @@ public class Ventana_Flota_Castilla {
 		boton.addActionListener(listener);
 	}
 
+	/**
+	 * MÃ©todo que colocar las imÃ¡genes en el panel.
+	 */
+
 	public void colocarImagen() {
 
 		etiqueta5 = new JLabel();
@@ -259,5 +328,5 @@ public class Ventana_Flota_Castilla {
 		etiqueta7.setBounds(165, 25, 100, 100);
 		panel.add(etiqueta7);
 	}
-	
+
 }

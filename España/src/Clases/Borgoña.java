@@ -11,19 +11,31 @@ import BaseDeDatos.IntroducirDatos;
  */
 public class Borgoña extends Europa{
 
+	
         private MateriasPrimas recoleccionHierro;
-        private Alimentos recoleccionArroz;
-        private Alimentos recoleccionTomates;
-        private Alimentos recoleccionPatatas;
-
         /**
-         * Constructor donde se pasarán por parametros los atributos anteriores
+    	 * atributo que almacena la cantidad de hierro producida en el Reino
+    	 */
+        private Alimentos recoleccionArroz;
+        /**
+    	 * atributo que almacena la cantidad de arroz producida en el Reino
+    	 */
+        private Alimentos recoleccionTomates;
+        /**
+    	 * atributo que almacena la cantidad de tomates producida en el Reino
+    	 */
+        private Alimentos recoleccionPatatas;
+        /**
+    	 * atributo que almacena la cantidad de patatas producida en el Reino
+    	 */
+        
+        
+        /**
+         * Constructor donde se pasarán por parámetros los atributos anteriores
          * @param nombre Informa sobre el nombre
          * @param continente Informa sobre el continente que se encuentra
-         * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
-         * @param territorio
-         * @param hierro Se introduce el objeto determinado que es
-         * @param arroz Se introduce el objeto determinado que es
+         * @param poblacion Informa sobre la cantidad de población que vive en el reino
+         * @param territorio Informa sobre el lugar donde está el Reino
          * @throws Exception
          */
         public Borgoña(String nombre,String continente,int poblacion,String territorio) throws Exception {
@@ -39,6 +51,10 @@ public class Borgoña extends Europa{
             this.calcularProductosDemandados();
         }
 
+        /**
+         * Constructor de copia
+         * @param objeto que hay que copiar
+         */
         public Borgoña(Borgoña a) {
             super(a);
             this.recoleccionArroz=a.getRecoleccionArroz();
@@ -48,7 +64,7 @@ public class Borgoña extends Europa{
         }
 
         /**
-         * El usuario procede a crear mercancias de los productos  recolectados
+         * El usuario procede a crear mercancías de los productos  recolectados
          * @param producto nombre del producto
          * @param cantidad cantidad del producto
          */
@@ -122,7 +138,7 @@ public class Borgoña extends Europa{
     	}
     	
     	/**
-    	 * Metodo encargado de calcular cuales de los producotos que no producen van a demandar
+    	 * Método, encargado de calcular cuáles de los productos que no producen, van a demandar
     	 */
     	private void calcularProductosDemandados() {
     		int valor;
@@ -132,13 +148,13 @@ public class Borgoña extends Europa{
     			do {
     				valor = new Random().nextInt(ProductoNombre.values().length);
     				productoNombre=ProductoNombre.values()[valor];
-    			}while(productoNombre==ProductoNombre.Hierro || productoNombre==ProductoNombre.Arroz|| productoNombre==ProductoNombre.Patata);			
+    			}while(productoNombre==ProductoNombre.Hierro || productoNombre==ProductoNombre.Arroz|| productoNombre==ProductoNombre.Patata || productoNombre==ProductoNombre.Tomate);			
     			this.getProductosDemandados()[i]=productoNombre;
     		}	
     	}
                
     	/**
-         * Método que devuelve la produccion mensual obtenida de los productos
+         * Método que devuelve la producción mensual obtenida de los productos
          * @return
          */
     	public String  verproduccionMensual() {

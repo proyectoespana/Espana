@@ -4,24 +4,37 @@ import java.util.Random;
 
 import BaseDeDatos.IntroducirDatos;
 
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class Plata extends Virreinatos {
-
+	
 	private MateriasPrimas recoleccionPlata;
-	private MateriasPrimas recoleccionTabaco;
-	private MateriasPrimas recoleccionCafe;
-	private Alimentos recoleccionPatata;
-
 	/**
-     * Constructor de 7 parametros
-     * @param nombre informa sobre el nombre
-     * @param continente Informa sobre el continente en el que se encuentra
-     * @param poblacion Informa sobre la cantidad de poblacion que vive en el reino
-     * @param plata Se introduce el objeto determinado que es
-     * @param tabaco Se introduce el objeto determinado que es
-     * @param cafe Se introduce el objeto determinado que es
-     * @param patata Se introduce el objeto determinado que es
-     * @throws Exception
-     */
+	 * atributo que almacena la cantidad de plata producida en el Reino
+	 */
+	private MateriasPrimas recoleccionTabaco;
+	/**
+	 * atributo que almacena la cantidad de tabaco producida en el Reino
+	 */
+	private MateriasPrimas recoleccionCafe;
+	/**
+	 * atributo que almacena la cantidad de cafe producida en el Reino
+	 */
+	private Alimentos recoleccionPatata;
+	/**
+	 * atributo que almacena la cantidad de patata producida en el Reino
+	 */
+	
+	/**
+	 * Constructor donde se pasarán por parámetros los atributos anteriores
+	 * @param nombre Informa sobre el nombre
+	 * @param continente Informa sobre el continente que se encuentra
+	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
+	 * @throws Exception
+	 */
 	public Plata(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
 		this.recoleccionPlata = new MateriasPrimas(ProductoNombre.Plata, 0, 0, 0, 0, 0, 10);
@@ -36,9 +49,9 @@ public class Plata extends Virreinatos {
 	}
 
 	/**
-     * Constructor de copia
-     * @param plata
-     */
+	 * Constructor de copia
+	 * @param plata
+	 */
 	public Plata(Plata plata) {
 		super(plata);
 		this.recoleccionPlata = plata.getRecoleccionPlata();
@@ -47,11 +60,10 @@ public class Plata extends Virreinatos {
 		this.recoleccionPatata = plata.getRecoleccionPatata();
 	}
 
-    /**
-     * Crean las mercancias 
-     * @param producto recogen un Objeto producto
-     * @param cantidad recoge la cantidad 
-     * @throws IllegalArgumentException que no se admite ese dato
+	  /**
+     * El usuario procede a crear mercancías de los productos  recolectados
+     * @param producto nombre del producto
+     * @param cantidad cantidad del producto
      */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
@@ -122,12 +134,12 @@ public class Plata extends Virreinatos {
 		}
 	}
 	/**
-	 * Metodo encargado de calcular cuales de los productos que no producen van a demandar
+	 * Método, encargado de calcular cuáles de los productos que no producen, van a demandar
 	 */
 	private void calcularProductosDemandados() {
 		int valor;
 		ProductoNombre productoNombre;
-		
+
 		for(int i=0;i<this.getProductosDemandados().length;i++) {
 			do {
 				valor = new Random().nextInt(ProductoNombre.values().length);

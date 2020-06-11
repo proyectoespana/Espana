@@ -49,8 +49,8 @@ public class InfoAragon extends JPanel{
 
 		imagen = new JLabel();
 		imagen.setHorizontalAlignment(SwingConstants.CENTER);
-		imagen.setIcon(new ImageIcon("imagenes/gatico.jpg"));
-		imagen.setBounds(10, 10, 140, 145);
+		imagen.setIcon(new ImageIcon("imagenes/tablonAragon.jpg"));
+		imagen.setBounds(0, 2, 148, 151);
 		add(imagen);
 
 	}

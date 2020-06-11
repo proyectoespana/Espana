@@ -49,8 +49,8 @@ public class InfoNuevaGranada extends JPanel{
 		
 		imagen = new JLabel();
 		imagen.setHorizontalAlignment(SwingConstants.CENTER);
-		imagen.setIcon(new ImageIcon("gatico.jpg"));
-		imagen.setBounds(10, 10, 140, 145);
+		imagen.setIcon(new ImageIcon("imagenes/tablonNuevaGranada.jpg"));
+		imagen.setBounds(1, 2, 148, 151);
 		add(imagen);
 		
 	}

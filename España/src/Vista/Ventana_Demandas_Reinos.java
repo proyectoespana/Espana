@@ -10,45 +10,88 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Main.PanelControl;
-
+/**
+ * 
+ * @author Grupo
+ *
+ */
 
 public class Ventana_Demandas_Reinos {
-
+	/**
+	 * declaramos el panel donde se guardarán los diferentes elementos
+	 */
 	private JPanel panel;
-	private JLabel etiqueta;
+	/**
+	 * declaramos la etiqueta numero 1 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta1;
+	/**
+	 * declaramos la etiqueta numero 2 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta2;
+	/**
+	 * declaramos la etiqueta numero 3 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta3;
+	/**
+	 * declaramos la etiqueta numero 4 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta4;
+	/**
+	 * declaramos la etiqueta numero 5 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta5;
+	/**
+	 * declaramos la etiqueta numero 6 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta6;
+	/**
+	 * declaramos la etiqueta numero 7 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta7;
+	/**
+	 * declaramos la etiqueta numero 8 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta8;
+	/**
+	 * declaramos la etiqueta numero 9 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta9;
-	private JLabel etiqueta10;
-	private JButton boton;
-	private JButton boton2;
-	private JButton boton3;
-	private JButton boton4;
+	/**
+	 * declaramos la ventana donde se encontrarán todos los elementos que contiene el panel
+	 */
 	private JFrame ventana;
+	/**
+	 * declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
 	private PanelControl control;
-	private ImageIcon icono;
 
+	/**
+	 * Constructor de la clase
+	 * @param control de tipo PanelControl que administra los datos 
+	 */
 	public Ventana_Demandas_Reinos(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Demandas Diferentes Reinos");
 		ventana.setSize(350, 520);
-		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 		iniciarComponentes();
+		ventana.setResizable(false);
 	}
+	
+	/**
+	 * Método que se encarga de iniciar los diferentes componentes que se pondrán en la ventana
+	 */
 	public void iniciarComponentes() {
 		colocarPanel();
 		recorrerDemandas();
 		aniadir();
 	}
 
+	/**
+	 * Método que se encarga de inicializar el panel
+	 */
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);	
@@ -56,7 +99,11 @@ public class Ventana_Demandas_Reinos {
 	}
 
 
-
+	/**
+	 * Método que recorre las diferentes demandas que tiene cada reino en cada turno de la partida,
+	 * el cual recoge las diferentes demandas y las añade a una etiqueta para que el usuario pueda
+	 * visualizarlas
+	 */
 	public void recorrerDemandas() {
 		int contador=0;
 		int bounds=10;
@@ -184,11 +231,15 @@ public class Ventana_Demandas_Reinos {
 	
 	}
 	
+	/**
+	 * Método que se encarga de inicializar la etiqueta numero 9 y de añadirla una imagen.
+	 * A su vez añade esta etiqueta al panel
+	 */
 	public void aniadir() {
 		panel.setLayout(new BorderLayout());
-		etiqueta10 = new JLabel(new ImageIcon("imagenes/papiro.png"));                  
-		etiqueta10.setBounds(-100, 0, 100, 100);	
-		panel.add(etiqueta10);
+		etiqueta9 = new JLabel(new ImageIcon("imagenes/papiro.png"));                  
+		etiqueta9.setBounds(-100, 0, 100, 100);	
+		panel.add(etiqueta9);
 	}
 
 

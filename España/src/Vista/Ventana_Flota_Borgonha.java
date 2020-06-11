@@ -3,7 +3,6 @@ package Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,11 +14,28 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import Main.PanelControl;
 
+/**
+ * Clase que abre una ventana respecto a las Flotas
+ * @author Grupo
+ *
+ */
+
 public class Ventana_Flota_Borgonha {
+
+	//Atributos
+
+	/**
+	 * Panel donde se colocan los componentes 
+	 */
+	
 	private JPanel panel;
+
+	/**
+	 * Etiquetas
+	 */
+
 	private JLabel etiqueta1;
 	private JLabel etiqueta2;
 	private JLabel etiqueta3;
@@ -27,23 +43,53 @@ public class Ventana_Flota_Borgonha {
 	private JLabel etiqueta5;
 	private JLabel etiqueta6;
 	private JLabel etiqueta7;
+
+	/**
+	 * Lista de países
+	 */
+
 	private JComboBox box2;
-	private static ImageIcon imagen;
-	private static ImageIcon imagen2;
-	private static ImageIcon imagen3;
+
+	/**
+	 * Imágenes
+	 */
+
+	private ImageIcon imagen = new ImageIcon("imagenes/barcoNav.gif");
+	private ImageIcon imagen2 = new ImageIcon("imagenes/mundo.gif");
+	private ImageIcon imagen3 = new ImageIcon("imagenes/caja.gif");
+
+	/**
+	 * Botones 
+	 */
+
 	private JButton boton;
+
+	/**
+	 * Ventana  
+	 */
+
 	private JFrame ventana;
+
+	/**
+	 * Declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
+
 	private PanelControl control;
+
+	/**
+	 * Menú donde se guardan las mercancias
+	 */
+
 	private JMenuBar menu;
 	private JMenu jmenu;
 
-	static {
-		imagen = new ImageIcon("imagenes/barcoNav.gif");
-		imagen2 = new ImageIcon("imagenes/mundo.gif");
-		imagen3 = new ImageIcon("imagenes/caja.gif");
-	}
+	//Constructores
 
-	
+	/**
+	 * Constructor
+	 * @param control de tipo PanelControl que administra los datos
+	 */
+
 	public Ventana_Flota_Borgonha(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Mercancia Flota Borgoña");
@@ -53,7 +99,13 @@ public class Ventana_Flota_Borgonha {
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
-	
+
+	//Métodos
+
+	/**
+	 * Método que inicializa los componentes en el panel.
+	 */
+
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
@@ -62,11 +114,19 @@ public class Ventana_Flota_Borgonha {
 		colocarBoton();
 	}
 
+	/**
+	 * Método que coloca el panel en la ventana.
+	 */
+
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
+
+	/**
+	 * Método que coloca las etiquetas en el panel.
+	 */
 
 	public void colocarEtiquetas() {
 		etiqueta1 = new JLabel("Mercancias de Borgoña");
@@ -88,16 +148,16 @@ public class Ventana_Flota_Borgonha {
 	}
 
 	/**
-	 * Recoremos las mercancias de la flota del Reino seleccionado y lo introducimos en forma de String en un JmenuItem.
+	 * Método que guarda las mercancias y las coloca en un menú.
+	 * Recorremos las mercancias de la flota del Reino seleccionado y lo introducimos en forma de String en un JmenuItem.
 	 * Para posteriormente meterlo dentro del JMenu.
-	 * Para finalizar metemos el JMenu dentro del JMenuBar
+	 * Para finalizar metemos el JMenu dentro del JMenuBar.
 	 * 
 	 */
-	public void colocarBox() {
-		jmenu = new JMenu("  Mercancias almacenadas en la flota     ");
-		menu = new JMenuBar();
 
-		//		String [] mercanciasFlota=new  String[this.control.getEspana().getAragon().getFlota().getArrayMercancias().size()];
+	public void colocarBox() {
+		jmenu = new JMenu("     Mercancias almacenadas en la flota       ");
+		menu = new JMenuBar();
 
 		Iterator it=this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().keySet().iterator();
 
@@ -106,10 +166,6 @@ public class Ventana_Flota_Borgonha {
 			int id;
 			id=(int) it.next();
 
-
-			//			mercanciasFlota[posicion]=id+" "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getAragon().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ";
-
-			//			jmenuitem = new JMenuItem(mercanciasFlota[posicion]);
 			jmenuitem = new JMenuItem(id+" "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getNombre()+" cantidad "+this.control.getEspana().getBorgoña().getFlota().getArrayMercancias().get(id).getTotalkg()+" kg ");
 
 			jmenu.add(jmenuitem);
@@ -127,10 +183,12 @@ public class Ventana_Flota_Borgonha {
 		panel.add(box2);
 	}
 
+
 	/**
 	 * Creamos un metodo que se encarga de comprobar antes de crear un Item de JComboBox tiene sublevacion false.
-	 * Si el pais tiene sublevacion true no se mostrara impidiendo al usuario iteractuar con el mismo 
+	 * Si el pais tiene sublevacion true no se mostrara impidiendo al usuario iteractuar con el mismo.
 	 */
+
 	public void recorrerPaises() {
 
 		if(control.getEspana().getNuevaEspaña().isSublevaciones()==false) {
@@ -152,11 +210,11 @@ public class Ventana_Flota_Borgonha {
 		if(control.getEspana().getAustria().isSublevaciones()==false) {
 			box2.addItem("Austria");
 		}
-		
+
 		if(control.getEspana().getCastilla().isSublevaciones()==false) {
 			box2.addItem("Castilla");
 		}
-		
+
 		if(control.getEspana().getAragon().isSublevaciones()==false) {
 			box2.addItem("Aragon");
 		}
@@ -164,9 +222,11 @@ public class Ventana_Flota_Borgonha {
 	}
 
 	/**
+	 * Método que manda la flota al lugar destino seleccionado..
 	 * Una vez el usuario presiona el boton Embarcar las mercancias se transportaran al pais seleccionado y se pondra la Flota no disponible
 	 * 
 	 */
+
 	public void colocarBoton() {
 		boton = new JButton("Embarcar");
 		boton.setBounds(350, 180, 110, 40);
@@ -240,6 +300,10 @@ public class Ventana_Flota_Borgonha {
 		boton.addActionListener(listener);
 	}
 
+	/**
+	 * Método que colocar las imágenes en el panel.
+	 */
+
 	public void colocarImagen() {
 
 		etiqueta5 = new JLabel();
@@ -260,5 +324,5 @@ public class Ventana_Flota_Borgonha {
 		etiqueta7.setBounds(165, 25, 100, 100);
 		panel.add(etiqueta7);
 	}
-	
+
 }

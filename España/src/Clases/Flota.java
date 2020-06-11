@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 /**
  * 
  * @author GRUPO
- *Clase encargada de una vez se creadas las mercancias estas puedan ser transportadas a otros destinos
+ *Clase encargada de una vez creadas las mercancías, éstas puedan ser transportadas a otros destinos
  */
 public class Flota {
 
@@ -15,29 +15,29 @@ public class Flota {
 	 */
 	private LinkedHashMap <Integer,Mercancia>arrayMercancias;
 	/**
-	 * lista con un numero identificador donde se almacenan las mercancias 
+	 * lista con un número identificador donde se almacenan las mercancías 
 	 */
 	private int pesoMaximo;
 	/**
-	 * Peso Maximo disponible para introducir mercancias
+	 * Peso Máximo disponible para introducir mercancías
 	 */
 	private int destino;
 	/**
-	 * km hacia el destino determinado
+	 * Km hacia el destino determinado
 	 */
 	private int pesoTodasMercancias;
 	/**
-	 * Peso de las mercancias hasta el momento 
+	 * Peso de las mercancías hasta el momento 
 	 */
 	private boolean disponible;
 	/**
-	 * atributo encargado de estipular si esa flota esta disponible para meter mercancia
+	 * atributo encargado de estipular si esa flota está disponible para meter mercancía
 	 */
 
 
 	/**
 	 * 
-	 * @param nombre
+	 * @param nombre nombre de la Flota
 	 */
 	public Flota(String nombre){
 		this.nombre="Flota de ".concat(nombre);
@@ -49,8 +49,9 @@ public class Flota {
 	}
 
 	/**
-	 * Metodo encargado de meter una mercancia determinada dentro de flota
-	 * @param arrayMercancias
+	 * Método encargado de meter una mercancía determinada dentro de flota
+	 * @param mercancias mercancía que queremos meter en la Flota
+	 * @return el peso disponible para seguir almacenando mercancías
 	 * @throws Exception
 	 */
 	public int añadirMercancia(Mercancia mercancia) throws Exception {
@@ -72,8 +73,8 @@ public class Flota {
 	}
 
 	/**
-	 * Se encarga de recorrer todas las mercancias almacenas para comprobar la cantidad de peso disponible
-	 * @return
+	 * Se encarga de recorrer todas las mercancías almacenadas para comprobar la cantidad de peso disponible
+	 * @return peso disponible
 	 * @throws Exception
 	 */
 	protected int calcularPesoMercancias() throws Exception {
@@ -93,7 +94,7 @@ public class Flota {
 		return this.pesoMaximo-pesoTodasMercancias;
 	}
 	/**
-	 * Metodo encagado de mostrar todas las mercancias dentro de un flota determinada
+	 * Método encargado de mostrar todas las mercancías dentro de un flota determinada
 	 */
 	public void verMercancias() {
 		Iterator iterador = this.arrayMercancias.keySet().iterator();
@@ -108,7 +109,7 @@ public class Flota {
 	}
 
 	/**
-	 * Metodo que se encarga de enviar la flota a una zona determinada
+	 * Método que se encarga de enviar la flota a una zona determinada
 	 * @param destino
 	 */
 	

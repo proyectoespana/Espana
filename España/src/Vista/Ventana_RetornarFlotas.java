@@ -4,29 +4,36 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JRootPane;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-
 import Main.PanelControl;
 
+/**
+ * Clase cuyo funcionamiento retorna las flotas de su destino.
+ * @author Grupo
+ *
+ */
+
 public class Ventana_RetornarFlotas {
+
+	//Atributos
+
+	/**
+	 * Panel donde se colocan los componentes 
+	 */
+
 	private JPanel panel;
+
+	/**
+	 * Etiquetas
+	 */
+
 	private JLabel etiqueta1;
 	private JLabel etiqueta2;
 	private JLabel etiqueta3;
@@ -36,6 +43,11 @@ public class Ventana_RetornarFlotas {
 	private JLabel etiqueta7;
 	private JLabel etiqueta8;
 	private JLabel etiqueta9;
+
+	/**
+	 * Lista de flotas que han partido.
+	 */
+
 	private JCheckBox radio1;
 	private JCheckBox radio2;
 	private JCheckBox radio3;
@@ -44,12 +56,29 @@ public class Ventana_RetornarFlotas {
 	private JCheckBox radio6;
 	private JCheckBox radio7;
 	private JCheckBox radio8;
-	private JButton boton;
-	private JFrame ventana;
-	private PanelControl control;
-	private ImageIcon imagen1;
-	private ImageIcon imagen2;
 
+	/**
+	 * Botón.  
+	 */
+
+	private JButton boton;
+
+	/**
+	 * Ventana  
+	 */
+
+	private JFrame ventana;
+
+	/**
+	 * Declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
+
+	private PanelControl control;
+
+	/**
+	 * Constructor
+	 * @param control de tipo PanelControl que administra los datos
+	 */
 
 	public Ventana_RetornarFlotas(PanelControl control) {
 		this.control=control;
@@ -58,21 +87,27 @@ public class Ventana_RetornarFlotas {
 		ventana.setUndecorated(true);
 		ventana.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 		ventana.setDefaultCloseOperation(0);
-		ventana.setResizable(false);
 		iniciarComponentes();
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 
+	//Métodos
+
+	/**
+	 * Método que inicializa los componentes en el panel.
+	 */
 
 	public void iniciarComponentes() {
 		colocarPanel();
-		//		reinosDisponible();
-		//		colocarImagen();
 		colocarEtiquetas();
 		colocarBoton();
 		colocarRadioButton();
 	}
+
+	/**
+	 * Método que coloca el panel en la ventana.
+	 */
 
 	public void colocarPanel() {
 		panel = new JPanel();
@@ -81,6 +116,10 @@ public class Ventana_RetornarFlotas {
 		ventana.setContentPane(panel);
 
 	}
+
+	/**
+	 * Método que coloca las etiquetas en el panel en el caso de que dicha flota haya partido.
+	 */
 
 	public void colocarEtiquetas() {
 		etiqueta1 = new JLabel("Castilla: "+" esta a una distacia de "+control.getEspana().getCastilla().getFlota().getDestino()+" km de su puerto");
@@ -149,150 +188,10 @@ public class Ventana_RetornarFlotas {
 
 	}
 
-	//	public void reinosDisponible() {
-	//		int contador=0;
-	//		int bounds=10;
-	//		int bondRadio=50;
-	//
-	//		if(control.getEspana().getNuevaEspaña().getFlota().isDisponible()==false) {
-	//			etiqueta1=new JLabel("Nueva España");
-	//			radio1 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta1.setBounds(65, bounds, 200, 100);
-	//			radio1.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta1);
-	//			panel.add(radio1);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getNuevaGranda().getFlota().isDisponible()==false) {
-	//			etiqueta2=new JLabel("Nueva Granada");
-	//			radio2 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta2.setBounds(65, bounds, 200, 100);
-	//			radio2.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta2);
-	//			panel.add(radio2);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getPeru().getFlota().isDisponible()==false) {
-	//			etiqueta3=new JLabel("Peru");
-	//			radio3 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta3.setBounds(65, bounds, 200, 100);
-	//			radio3.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta3);
-	//			panel.add(radio3);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getPlata().getFlota().isDisponible()==false) {
-	//			etiqueta4=new JLabel("Plata");
-	//			radio4 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta4.setBounds(65, bounds, 200, 100);
-	//			radio4.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta4);
-	//			panel.add(radio4);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getCastilla().getFlota().isDisponible()==false) {
-	//			etiqueta5=new JLabel("Castilla");
-	//			radio5 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta5.setBounds(65, bounds, 200, 100);
-	//			radio5.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta5);
-	//			panel.add(radio5);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getAragon().getFlota().isDisponible()==false) {
-	//			etiqueta6=new JLabel("Aragon");
-	//			radio6 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta6.setBounds(65, bounds, 200, 100);
-	//			radio6.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta6);
-	//			panel.add(radio6);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getAustria().getFlota().isDisponible()==false) {
-	//			etiqueta7=new JLabel("Austria");
-	//			radio7 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta7.setBounds(65, bounds, 200, 100);
-	//			radio7.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta7);
-	//			panel.add(radio7);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//
-	//		if(control.getEspana().getBorgoña().getFlota().isDisponible()==false) {
-	//			etiqueta8=new JLabel("Borgoña");
-	//			radio8 = new JCheckBox();
-	//
-	//			bondRadio=bondRadio+(30*contador);
-	//			bounds=bounds+(30*contador);
-	//
-	//			etiqueta8.setBounds(65, bounds, 200, 100);
-	//			radio8.setBounds(40, bondRadio, 20, 20);
-	//
-	//			contador++;
-	//			panel.add(etiqueta8);
-	//			panel.add(radio8);
-	//			bounds=10;
-	//			bondRadio=50;
-	//		}
-	//		contador=0;
-	//	}
-
-
+	/**
+	 * Método el cual se seleccionará la flota que quiera que vuelva al lugar de origen.
+	 * Una vez seleccionada y dada al boton se eliminará de la lista.
+	 */
 
 	public void colocarRadioButton() {
 		radio1 = new JCheckBox();
@@ -362,6 +261,10 @@ public class Ventana_RetornarFlotas {
 		panel.add(radio8);
 	}
 
+	/**
+	 * Método que retorna las flotas seleccionadas en los RadioButton.
+	 */
+
 	public void colocarBoton() {
 		boton = new JButton("Salir y Retornar Flotas");
 		boton.setBounds(130, 305, 180, 40);
@@ -380,11 +283,11 @@ public class Ventana_RetornarFlotas {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				int opcion = JOptionPane.showConfirmDialog(null, "Si no ha marcado alguna Flota, no estara disponible el siguiente turno. ¿ Esta seguro de su decision ?");
-				
+
 				if(opcion==JOptionPane.YES_OPTION) {
-					
+
 					if(!radio1.isSelected() && radio1.isVisible()) {
 						control.meterZonaSinFlota(control.getEspana().getCastilla().getNombre()+","+control.getEspana().getCastilla().getFlota().getDestino());
 
@@ -461,48 +364,33 @@ public class Ventana_RetornarFlotas {
 						radio8.setVisible(false);
 						etiqueta8.setVisible(false);
 					}
-					
+
 					ventana.setVisible(false);
-					
+
 					ventana.dispose();
 
 					JOptionPane.showMessageDialog(null,"Las Flotas Seleccionadas, volveran a su Puerto de Origen en el siguiente turno");
-					
+
 					control.iteradorZonasSinFLota();
-					
+
 					try {
 						control.cambiarTruno();
-						
+
 						if(control.getZonasSinProductosDemandados().size()==8) {
 							JOptionPane.showMessageDialog(null," Has aguantado "+control.getContadorTurnos()+" turnos");
 						}
-						
+
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				}
-			
+
 			}
 		};
 
 		boton.addActionListener(listener);
 	}
 
-	//	public void colocarImagen() {
-	//		imagen1= new ImageIcon("barcoNav.gif");
-	//		imagen2 = new ImageIcon("mundo.gif");
-	//		etiqueta5 = new JLabel();
-	//		Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(90, 90, 10));
-	//		etiqueta5.setIcon(fondo1);
-	//		etiqueta5.setBounds(120, 30, 100, 100);
-	//		panel.add(etiqueta5);
-	//
-	//		etiqueta6 = new JLabel();
-	//		Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(100, 100, 10));
-	//		etiqueta6.setIcon(fondo2);
-	//		etiqueta6.setBounds(120, 150, 200, 100);
-	//		panel.add(etiqueta6);
-	//	}
 }

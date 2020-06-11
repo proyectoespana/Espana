@@ -33,7 +33,6 @@ public class ReinoCompleto {
 	private Aragon aragon;
 	private Borgoña borgoña;
 	private Austria austria;
-	private IntroducirDatos base;
 
 	/**
 	 * 
@@ -60,10 +59,10 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de meter mercancias en una flota determinada
-	 * @param reino
-	 * @param idMercancia
-	 * @return
+	 * Método encargado de meter mercancías en una flota determinada
+	 * @param reino objeto del Reino
+	 * @param idMercancia el identificador de la Mercancía
+	 * @return el número de kg que todavía puede transportar
 	 * @throws Exception
 	 */
 	public String formarFlota(Reinos reino,int idMercancia) throws Exception {
@@ -81,8 +80,9 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de enviar una flota con mercancias a una determinada zona depositar toda la mercancia de la misma 
-	 * @param destino
+	 * Método encargado de enviar una flota con mercancías a una determinada zona depositar toda la mercancía de la misma 
+	 * @param destino zona a la que se envía la flota
+	 * @param reino zona desde la que se envía la flota
 	 * @throws Exception 
 	 */
 	public void enviarFlota(Reinos reino ,Reinos destino) throws Exception {
@@ -197,7 +197,12 @@ public class ReinoCompleto {
 		}
 	}
 	
-	
+	/**
+	 * Metodo encargado de instertar las importaciones a la Base de datos
+	 * @param origen
+	 * @param destino
+	 * @throws SQLException
+	 */
 	protected void enviarBaseDatosIdMercancias(Reinos origen,Reinos destino) throws SQLException {
 		Iterator it = origen.getFlota().getArrayMercancias().keySet().iterator();
 		int id;
@@ -226,19 +231,24 @@ public class ReinoCompleto {
 			
 //			IntroducirDatos.insertarImportaciones(codigoPais.toUpperCase(),origen.getNombre().toString(),destino.getNombre().toString(),turno);
 		}
-		System.out.println("hola");
 			
 	}
 
 	/**
-	 * Metodo encargado de poner disponible la flota de un determinado territorio
-	 * @param reino parametro encargado de introducir el pais en cuestion del que se quiere que se ponga la flota disponible
+	 * Método encargado de poner disponible la flota de un determinado territorio
+	 * @param reino parámetro encargado de introducir el país en cuestión del que se quiere que se ponga la flota disponible
 	 */
 	public void devolverFlota(Reinos reino) {
 		reino.getFlota().setDisponible(true);
 		reino.getFlota().setDestino(0);
 	}
 
+	/**
+	 * Método encargado de la importación de las Mercancias
+	 * @param origen Desde donde se envía la Importación
+	 * @param destino Lugar al que se envía 
+	 * @throws Exception 
+	 */
 	private void llegadaFlotaDestino(Reinos origen,Reinos destino) throws Exception {
 		if(!origen.equals(destino)) {
 			destino.llegadaImpotacion(origen.getFlota());
@@ -261,8 +271,8 @@ public class ReinoCompleto {
 	}
 	
 	/**
-	 * Metodo encargado de comprobar si todas las regiones tienen los productos demandados por las mismas
-	 * @return retorna una lista que contiene las zonas donde no se han satisfacido las necesidades que pedian
+	 * Método encargado de comprobar si todas las regiones tienen los productos demandados por las mismas
+	 * @return retorna una lista que contiene las zonas donde no se han satisfecho las necesidades que pedían
 	 */
 	public HashSet pasarTurno() {
 		//uso de HashSet para que no haya repeticiones
@@ -290,9 +300,9 @@ public class ReinoCompleto {
 	}
 	
 	/**
-	 * Metodo hermano del de PasarTurno, su principal funcion es ir al metodo "comprobarProductosDemandados" de cada zona y comprobar si es true or false
-	 * @param reino  se pasa como parametro el pais en cuestion del que se quiere comprobar su metodo 
-	 * @return retorna el nombre de la zona si en la misma no se han satisfacido las necesidades y en cambio "nada" si en esa zona no hay necesidad de productos
+	 * Método hermano del  "PasarTurno", su principal función es ir al método "comprobarProductosDemandados" de cada zona y comprobar si es "true" or "false"
+	 * @param reino  se pasa como parámetro el país en cuestión del que se quiere comprobar su método 
+	 * @return retorna el nombre de la zona, si en la misma no se han satisfecho las necesidades y en cambio "nada", si en esa zona no hay necesidad de productos
 	 */
 	private String comprobarProducotosDemandadosZonas(Reinos reino) {
 		
@@ -314,8 +324,8 @@ public class ReinoCompleto {
 	
 
 	/**
-	 * Metodo que se encarga de retornar las distancias de cada Reino del resto 
-	 * @param zona  se introduce el Reino en cuestion del que queremos saber sus distancias 
+	 * Método que se encarga de retornar las distancias de cada Reino del resto 
+	 * @param zona  se introduce el Reino en cuestión del que queremos saber sus distancias 
 	 * @return
 	 * @throws Exception
 	 */
@@ -334,7 +344,7 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de ver hacer una manera mas visual todos los productos del Reino Demandados
+	 * Método encargado de ver hacer una manera mas visual todos los productos del Reino Demandados
 	 */
 	public void verProductosDemandadosElReino() {
 		System.out.println("--- Nueva España ");
@@ -356,7 +366,7 @@ public class ReinoCompleto {
 	}
 
 	/**
-	 * Metodo encargado de ver hacer una manera mas visual todas las flotas creadas en el Reino
+	 * Método encargado de ver hacer una manera mas visual todas las flotas creadas en el Reino
 	 */
 	public void verFlotasConMercancias() {
 		System.out.println("--- Nueva España ");

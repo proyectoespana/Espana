@@ -49,8 +49,8 @@ public class InfoCastilla extends JPanel{
 		
 		imagen = new JLabel();
 		imagen.setHorizontalAlignment(SwingConstants.CENTER);
-		imagen.setIcon(new ImageIcon("gatico.jpg"));
-		imagen.setBounds(10, 10, 140, 145);
+		imagen.setIcon(new ImageIcon("imagenes/tablonCastilla.jpg"));
+		imagen.setBounds(2, 2, 146, 151);
 		add(imagen);
 		
 	}

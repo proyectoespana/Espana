@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * 
  * @author GRUPO
- *Clase padre de Alimentos y Materias Primas comparten atributos en comun 
+ *Clase padre de Alimentos y Materias Primas comparten atributos en común 
  */
 public abstract class Productos {
 	
@@ -14,7 +14,7 @@ public abstract class Productos {
 	 */
 	private double costeObtencionMedia;
 	/**
-	 * el precio de obtener dicho producto
+	 * El precio de obtener dicho producto
 	 */
 	private double costeMercadoInterno;
 	/**
@@ -35,11 +35,11 @@ public abstract class Productos {
 	
 	/**
 	 * 
-	 * @param nombre                Parametro encargado de introducir el nombre del producto
-	 * @param costeObtencionMedia   Parametro encargado de introducir el coste de obtencion del producto
-	 * @param costeMercadoInterno	Parametro encargado de introducir el coste de mercado interno
-	 * @param costeTransporteMedio  Parametro encargado de introducir el coste de Transporte Medio
-	 * @param costeMercadoExterno	Parametro encargado de introducir el precio que tiene en el mercado exterior 
+	 * @param nombre                Parámetro encargado de introducir el nombre del producto
+	 * @param costeObtencionMedia   Parámetro encargado de introducir el coste de obtención del producto
+	 * @param costeMercadoInterno	Parámetro encargado de introducir el coste de mercado interno
+	 * @param costeTransporteMedio  Parámetro encargado de introducir el coste de Transporte Medio
+	 * @param costeMercadoExterno	Parámetro encargado de introducir el precio que tiene en el mercado exterior 
 	 */
 	public Productos(ProductoNombre nombre ,double costeObtencionMedia, double costeMercadoInterno, double costeTransporteMedio, double costeMercadoExterno) {
 		this.nombre=nombre;
@@ -50,6 +50,10 @@ public abstract class Productos {
 
 	}
 	
+	/**
+	 * Constructor de copia
+	 * @param productos Objeto que copiar
+	 */
 	public Productos(Productos productos) {
 		this.nombre=productos.getNombre();
 		this.cantidad=productos.getCantidad();
@@ -59,7 +63,7 @@ public abstract class Productos {
 		this.costeMercadoExterno = productos.getCosteMercadoExterno();
 	}
 	/**
-	 * Metodo encargado de mostrar los datos no principales de un producto
+	 * Método encargado de mostrar los datos no principales de un producto
 	 * @return
 	 */
 	public String verDatosAvanzados() {

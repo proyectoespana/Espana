@@ -1,7 +1,4 @@
 package Vista;
-
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,39 +14,107 @@ import javax.swing.event.ChangeListener;
 
 import Clases.ProductoNombre;
 import Main.PanelControl;
-
+/**
+ * 
+ * @author Grupo
+ *
+ */
 public class Ventana_Mercancia_Borgonha {
 
+	/**
+	 * declaramos el panel donde se guardarán los diferentes elementos
+	 */
 	private JPanel panel;
+	/**
+	 * declaramos la etiqueta numero 1 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta1;
+	/**
+	 * declaramos la etiqueta numero 2 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta2;
+	/**
+	 * declaramos la etiqueta numero 3 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta3;
+	/**
+	 * declaramos la etiqueta numero 4 donde se pondrá información en ella
+	 */
 	private JLabel etiqueta4;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider1;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider2;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider3;
+	/**
+	 * declaramos un deslizador para moverlo a nuestro gusto para poder añadir datos
+	 */
 	private JSlider slider4;
+	/**
+	 * declaramos un elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto1;
+	/**
+	 * declaramos un segundo elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto2;
+	/**
+	 * declaramos un segundo elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto3;
+	/**
+	 * declaramos un segundo elemento para utilizarlo para la captura de datos
+	 */
 	private JTextField cajaTexto4;
+	/**
+	 * declaramos un boton
+	 */
 	private JButton boton;
+	/**
+	 * declaramos un segundo boton
+	 */
 	private JButton boton2;
+	/**
+	 * declaramos un tercero boton
+	 */
 	private JButton boton3;
+	/**
+	 * declaramos un cuarto boton
+	 */
 	private JButton boton4;
+	/**
+	 * declaramos la ventana donde se encontrarán todos los elementos que contiene el panel
+	 */
 	private JFrame ventana;
+	/**
+	 * declaramos un atributo de tipo PanelControl que se encargará de administrar los datos
+	 */
 	private PanelControl control;
 
+	/**
+	 * Constructor de la clase
+	 * @param control de tipo PanelControl que administra los datos 
+	 */
 	public Ventana_Mercancia_Borgonha(PanelControl control) {
 		this.control=control;
 		ventana = new JFrame("Mercancia Borgoña");
 		ventana.setSize(565, 300);
-		ventana.setResizable(false);
 		iniciarComponentes();
+		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 
+	/**
+	 * Método que se encarga de iniciar los diferentes componentes que se pondrán en la ventana
+	 */
 	public void iniciarComponentes() {
 		colocarPanel();
 		colocarEtiquetas();
@@ -58,12 +123,19 @@ public class Ventana_Mercancia_Borgonha {
 		colocarBoton();
 	}
 
+	/**
+	 * Método que se encarga de inicializar el panel
+	 */
 	public void colocarPanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		ventana.setContentPane(panel);
 	}
 
+	/**
+	 * Método que se encarga de inicializar las etiquetas y de añadirlas al panel
+	 * En este caso añade métodos recolección Tabaco, recolección Café, recolección Patatas y recolección Plata
+	 */
 	public void colocarEtiquetas() {
 		//Plata ------ x Kg
 		etiqueta1 = new JLabel(control.getEspana().getBorgoña().getRecoleccionHierro().getNombre()+" "+control.getEspana().getBorgoña().getRecoleccionHierro().getCantidad()+" kg");
@@ -83,7 +155,11 @@ public class Ventana_Mercancia_Borgonha {
 		panel.add(etiqueta4);
 
 	}
-
+	
+	/**
+	 * Método que se encargar de inicializar los deslizadores y que a la hora de seleccionar un valor se reproduzca en la caja de texto
+	 * mediante el método stateChanged
+	 */
 	public void colocarSliders() {
 		slider1 = new JSlider();
 		slider1.setBounds(70, 30, 170, 30);
@@ -163,6 +239,9 @@ public class Ventana_Mercancia_Borgonha {
 
 	}
 
+	/**
+	 * Método para iniclializar las cajas de texto 
+	 */
 	public void colocarTexto() {
 		cajaTexto1 = new JTextField();
 		cajaTexto1.setBounds(270, 33, 50, 20);
@@ -185,6 +264,10 @@ public class Ventana_Mercancia_Borgonha {
 		panel.add(cajaTexto4);
 	}
 
+	/**
+	 * Método para mandar crear las mercancias con la cantidad seleccionada y en el caso que al crear la mercancia sea menor a lo provisto
+	 * aparece una ventana emergente como aviso que hay que crear la mercancia junto con una cantidad adecuada
+	 */
 	public void colocarBoton() {
 		boton = new JButton("Mercancia Hierro");
 		boton.setBounds(350, 20, 150, 40);
@@ -258,7 +341,6 @@ public class Ventana_Mercancia_Borgonha {
 					}
 					
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
