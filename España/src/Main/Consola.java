@@ -64,7 +64,7 @@ public class Consola {
 
 	/**
 	 * Metodo encargado de meter en una lista el nombre de las zonas en las que no se ha podido transpasar los productos que demandaban
-	 * @param espana
+	 * @param espana parametro de españa
 	 */
 	public static void pasarTurno(ReinoCompleto espana) {
 		zonasSinProductosDemandados.addAll(espana.pasarTurno());			

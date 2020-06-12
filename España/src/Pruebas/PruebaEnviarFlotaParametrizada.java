@@ -33,7 +33,7 @@ public class PruebaEnviarFlotaParametrizada {
  * @param name nombre del producto que quiero enviar
  * @param cantida cantidad del producto que quiero enviar
  * @param send La lista de mercancías impotadas que quiero comparar con las del país seleccionado
- * @throws Exception
+ * @throws Exception envía Excepcion si hay algun error
  */
 	public PruebaEnviarFlotaParametrizada(Reinos paiss,ProductoNombre name,int cantida,LinkedHashMap <Integer,Mercancia> send) throws Exception {
 		this.pais=paiss;

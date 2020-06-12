@@ -53,7 +53,7 @@ public class PanelControl {
 
 	/**
 	 * Método encargado de recargar los constructores y poner si alguna zona tiene "sublevaciones"
-	 * @throws Exception
+	 * @throws Exception envía Excepcion 
 	 */
 	public void cambiarTruno() throws Exception {		
 
@@ -100,7 +100,7 @@ public class PanelControl {
 	
 	/**
 	 * Método encargado de meter en una lista el nombre de las zonas en las que no se ha podido traspasar los productos que demandaban
-	 * @param espana
+	 * @param espana paremetro de España
 	 */
 	public void pasarTurno(ReinoCompleto espana) {
 		zonasSinProductosDemandados.addAll(espana.pasarTurno());
@@ -111,7 +111,7 @@ public class PanelControl {
 	/**
 	 * Método encargado de recorrer la lista de zonas en la que no se han satisfecho las demandas"zonasSinProductosDemandados", y una vez pasado el turno, poner las sublevaciones a "true"
 	 * y las posibles demandas, que estos Reinos tuviesen, cancelarlas.
-	 * @param espana
+	 * @param espana parametro de Reino de España
 	 */
 	public void recorrerLista(ReinoCompleto espana) {
 		Iterator it= zonasSinProductosDemandados.iterator();
@@ -259,7 +259,7 @@ public class PanelControl {
 	 * @param pais parámetro encargado de introducir el Reino del que se quiere crear una Mercancía
 	 * @param cantidad parámetro encargado de introducir la cantidad de dicha mercancía
 	 * @param producto parámetro encargado de introducir el nombre del Producto que queremos crear como Mercancía
-	 * @throws Exception 
+	 * @throws Exception envía una Excepcion si no puede crear una Mercancia
 	 */
 	public void crearMercancias(Reinos pais,int cantidad,ProductoNombre producto) throws Exception {
 		String codigoPais;

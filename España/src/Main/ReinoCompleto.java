@@ -26,25 +26,41 @@ import Clases.Virreinatos;
 public class ReinoCompleto {
 
 	private NuevaEspaña nuevaEspaña;
+	/**
+	 * Reino Nueva España
+	 */
 	private NuevaGranada nuevaGranda;
+	/**
+	 * Reino Nueva Granada
+	 */
 	private Peru peru;
+	/**
+	 * Reino Peru
+	 */
 	private Plata plata;
+	/**
+	 * Reino Plata
+	 */
 	private Castilla castilla;
+	/**
+	 * Reino Castilla
+	 */
 	private Aragon aragon;
+	/**
+	 * Reino Aragon
+	 */
 	private Borgoña borgoña;
+	/**
+	 * Reino Borgoña
+	 */
 	private Austria austria;
+	/**
+	 * Reino Austria
+	 */
 
 	/**
 	 * 
-	 * @param nuevaEspaña se introduce el objeto de nueva España preciamente creado
-	 * @param nuevaGranda  se introduce el objeto de nueva Granada preciamente creado
-	 * @param peru se introduce el objeto de Peru preciamente creado
-	 * @param plata se introduce el objeto de Plata preciamente creado
-	 * @param castilla se introduce el objeto de Castilla preciamente creado
-	 * @param aragon se introduce el objeto de Aragon preciamente creado
-	 * @param borgoña se introduce el objeto de Borgoña preciamente creado
-	 * @param astria se introduce el objeto de Austria  preciamente creado
-	 * @throws Exception 
+	 * @throws Exception envia una Excepcion si no encuentra un Producto
 	 */
 
 	public ReinoCompleto() throws Exception {
@@ -63,7 +79,7 @@ public class ReinoCompleto {
 	 * @param reino objeto del Reino
 	 * @param idMercancia el identificador de la Mercancía
 	 * @return el número de kg que todavía puede transportar
-	 * @throws Exception
+	 * @throws Exception envía excepcion si la Flota no puede transportar determinados kg
 	 */
 	public String formarFlota(Reinos reino,int idMercancia) throws Exception {
 		int pesoDisponibleFlota;
@@ -83,7 +99,7 @@ public class ReinoCompleto {
 	 * Método encargado de enviar una flota con mercancías a una determinada zona depositar toda la mercancía de la misma 
 	 * @param destino zona a la que se envía la flota
 	 * @param reino zona desde la que se envía la flota
-	 * @throws Exception 
+	 * @throws Exception envío de Excepcion si no se introduce el nombre correctamente
 	 */
 	public void enviarFlota(Reinos reino ,Reinos destino) throws Exception {
 
@@ -326,8 +342,8 @@ public class ReinoCompleto {
 	/**
 	 * Método que se encarga de retornar las distancias de cada Reino del resto 
 	 * @param zona  se introduce el Reino en cuestión del que queremos saber sus distancias 
-	 * @return
-	 * @throws Exception
+	 * @return distancia
+	 * @throws Exception envío de Excepcion si no existe la zona
 	 */
 	public String verDistancias(Reinos zona) throws Exception {
 

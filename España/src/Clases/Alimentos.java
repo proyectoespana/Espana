@@ -35,7 +35,7 @@ public class Alimentos extends Productos {
 	
 	/**
 	 * Constructor de copia
-	 * @param alimentos
+	 * @param alimentos parametro por el que se pasa el objeto a copiar
 	 */
 	public Alimentos(Alimentos alimentos) {
 		super(alimentos);

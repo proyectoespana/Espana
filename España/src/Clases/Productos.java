@@ -64,7 +64,7 @@ public abstract class Productos {
 	}
 	/**
 	 * Método encargado de mostrar los datos no principales de un producto
-	 * @return
+	 * @return datos avazados de los productos
 	 */
 	public String verDatosAvanzados() {
 		return this.nombre+"  coste de obtencion : "+this.costeObtencionMedia+ " coste Mercado Interno : "+this.costeMercadoInterno+" coste transporte : "+this.costeTransporteMedio+" coste mercado Externo "+ this.costeMercadoExterno ; 

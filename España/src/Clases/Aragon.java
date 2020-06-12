@@ -34,7 +34,7 @@ public class Aragon extends Europa {
      * @param continente Informa sobre el continente que se encuentra
      * @param poblacion Informa sobre la cantidad de población que vive en el reino
      * @param territorio Informa sobre el lugar donde está el Reino
-     * @throws Exception
+     * @throws Exception envía Excepcion si no se encuentra el Producto
      */
 	public Aragon(String nombre,String continente,int poblacion,String territorio ) throws Exception {
 		super(nombre,continente, poblacion,territorio,0, 1778, 1543, 624, 9483,6829,9628,11379);
@@ -51,7 +51,7 @@ public class Aragon extends Europa {
 
 	/**
 	 * Constructor de copia
-	 * @param Objeto a copiar
+	 * @param a  copiar
 	 */
 	public Aragon(Aragon a) {
 		super(a);
@@ -151,7 +151,7 @@ public class Aragon extends Europa {
 
 	/**
      * Método que devuelve la producción mensual obtenida de los productos
-     * @return
+     * @return devuelve la producción total de Reino
      */
 	public String  verproduccionMensual() {
 		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString()+ "/ Produccion de de : "+ this.recoleccionMaiz.toString()+ "/ Produccion de de : "+ this.recoleccionArroz.toString();

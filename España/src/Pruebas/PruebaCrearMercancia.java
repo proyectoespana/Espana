@@ -29,20 +29,25 @@ public class PruebaCrearMercancia {
 		espana.getAragon().setRecoleccionArroz(alimento);
 	}
 
-
+	/**
+	 * Creo una mercancía de Arroz de 500kg de los 1000 que tenemos disponibles.
+	 * Creo un objeto mercancía, no relacionado con el reino, 
+	 * En el que voy a meter los atributos que debería tener la mercancía que he creado anteriormente en el reino.
+	 * @throws Exception envía excepcion si no encuetra el Producto
+	 */
 	@Test
 	public void testCrearMercancia() throws Exception {
 
-		/**
-		 * Creo una mercancía de Arroz de 500kg de los 1000 que tenemos disponibles
-		 */
+//		/**
+//		 * Creo una mercancía de Arroz de 500kg de los 1000 que tenemos disponibles
+//		 */
 		espana.getAragon().crearMercancia(ProductoNombre.Arroz, 500);
 
 
-		/**
-		 * Creo un objeto mercancía, no relacionado con el reino, 
-		 * En el que voy a meter los atributos que debería tener la mercancía que he creado anteriormente en el reino.
-		 */
+//		/**
+//		 * Creo un objeto mercancía, no relacionado con el reino, 
+//		 * En el que voy a meter los atributos que debería tener la mercancía que he creado anteriormente en el reino.
+//		 */
 		mercancia= new Mercancia("Mercancia Arroz", "Aragon");
 
 		Alimentos alimento2=new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Cereal", 0);
@@ -54,15 +59,15 @@ public class PruebaCrearMercancia {
 		assertEquals(espana.getAragon().getMercancia().get(1), mercancia);
 
 	}
-	
-	
+
+	/**
+	 * Creo una mercancia de Arroz, de 1500kg de los 1000, que tenemos disponibles
+	 * Por lo tanto, saltará una excepción no permitiendo que se realice la operación
+	 */
 	@Test(expected = java.lang.IllegalArgumentException.class)
 	public void testCrearMercanciaExcepcion() throws Exception {
 
-		/**
-		 * Creo una mercancia de Arroz, de 1500kg de los 1000, que tenemos disponibles
-		 * Por lo tanto, saltará una excepción no permitiendo que se realice la operación
-		 */
+		
 		espana.getAragon().crearMercancia(ProductoNombre.Arroz, 1500);
 
 	}

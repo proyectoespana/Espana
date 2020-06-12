@@ -77,7 +77,7 @@ public abstract class Reinos extends Territorio{
 	/**
 	 * Método que se encarga de calcular la cantidad de kg que se producen en un determinado lugar, dependiendo de su nombre
 	 * @param product nombre del Producto del que queremos calcular su producción
-	 * @throws Exception 
+	 * @throws Exception envio de Excepcion
 	 */
 
 	public void calcularProduccionMensual(Productos product) throws Exception {
@@ -273,6 +273,7 @@ public abstract class Reinos extends Territorio{
 
 	/**
 	 * Método encargado de calcular cuáles de los productos que no producen van a demandar
+	 * @return retorna el true si estan todas las producciones satisfechas
 	 */
 	public boolean comprobarProductosDemandados() {
 		Iterator iterador = this.importacionMercancia.keySet().iterator();

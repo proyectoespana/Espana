@@ -52,7 +52,7 @@ public class NuevaEspaña extends Virreinatos {
 
 	/**
 	 * Constructor de Copia
-	 * @param obj
+	 * @param obj Objeto de copia
 	 */
 	public NuevaEspaña(NuevaEspaña obj) {
 		super(obj);

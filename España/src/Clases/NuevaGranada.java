@@ -34,7 +34,7 @@ public class NuevaGranada extends Virreinatos {
 	 * @param nombre Informa sobre el nombre
 	 * @param continente Informa sobre el continente que se encuentra
 	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
-	 * @throws Exception
+	 * @throws Exception envía una Excepcion si no encuetra el Producto
 	 */
 	public NuevaGranada(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 1970, 4707, 7258, 0, 4288,6829,8186,8949);
@@ -51,7 +51,7 @@ public class NuevaGranada extends Virreinatos {
 
 	/**
 	 * Contructor de copia
-	 * @param nuevaGranada
+	 * @param nuevaGranada Objeto de copia
 	 */
 	public NuevaGranada(NuevaGranada nuevaGranada) {
 		super(nuevaGranada);

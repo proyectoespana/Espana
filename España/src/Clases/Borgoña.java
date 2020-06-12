@@ -36,7 +36,7 @@ public class Borgoña extends Europa{
          * @param continente Informa sobre el continente que se encuentra
          * @param poblacion Informa sobre la cantidad de población que vive en el reino
          * @param territorio Informa sobre el lugar donde está el Reino
-         * @throws Exception
+         * @throws Exception envía excepcion si no se encuentra el Producto
          */
         public Borgoña(String nombre,String continente,int poblacion,String territorio) throws Exception {
             super(nombre,continente, poblacion ,territorio, 1566, 1147, 0, 1776, 9210,8186,10134,12248);
@@ -53,7 +53,7 @@ public class Borgoña extends Europa{
 
         /**
          * Constructor de copia
-         * @param objeto que hay que copiar
+         * @param a que hay que copiar
          */
         public Borgoña(Borgoña a) {
             super(a);
@@ -155,7 +155,7 @@ public class Borgoña extends Europa{
                
     	/**
          * Método que devuelve la producción mensual obtenida de los productos
-         * @return
+         * @return Produccion Mensual total de Borgoña
          */
     	public String  verproduccionMensual() {
     		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString()+ "/ Produccion de de : "+ this.recoleccionPatatas.toString()+ "/ Produccion de de : "+ this.recoleccionTomates.toString();

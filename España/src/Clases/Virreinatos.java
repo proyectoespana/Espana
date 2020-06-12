@@ -53,6 +53,9 @@ public abstract class Virreinatos extends Reinos {
      * @param castilla Indica la distancia sobre donde se encuentra el Reino de Castilla
      * @param granada Indica la distancia sobre donde se encuentra el Reino de Granada
      * @param nuevaEspaña Indica la distancia sobre donde se encuentra el Reino de Nueva Granada
+     * @param aragon Indica la distancia sobre donde se encuentra el Reino de Aragon
+     * @param borgoña Indica la distancia sobre donde se encuentra el Reino de Borgoña
+     * @param austria Indica la distancia sobre donde se encuentra el Reino de Austria
      */
 	public Virreinatos(String nombre, String continente, int poblacion,int peru,int plata,int castilla,int granada,int nuevaEspaña,int aragon,int borgoña,int austria) {
 		super(nombre, continente, poblacion);
@@ -68,7 +71,7 @@ public abstract class Virreinatos extends Reinos {
 
 	/**
      * Constructor de copia
-     * @param obj
+     * @param obj Objeto que copiar
      */
 	public Virreinatos(Virreinatos obj) {
 		super(obj);
@@ -84,7 +87,7 @@ public abstract class Virreinatos extends Reinos {
 	
 	/**
 	 * Devuelve la distancia respecto cada zoma
-	
+	 * @return distancia de cada zona 
 	 */
 	public String mostrarDistancias() {
 		return "Distancias respecto : Castilla "+this.distanciaCastilla+" km / Nueva España : "+this.distanciaNuevaEspaña+" km / NuevaGranada : " +this.distanciaNuevaGranada+" km/  Peru :"+this.distanciaPeru+" km/ Plata : "+this.distanciaPlata+" km ";

@@ -57,12 +57,15 @@ public abstract class Europa extends Reinos {
      * @param nombre Informa sobre el nombre
      * @param continente Informa sobre el continente que se encuentra
      * @param poblacion Informa sobre la cantidad de población que vive en el reino
-     * @param territorio 
+     * @param territorio informa del territorio que lo compone
      * @param aragon Se introduce la distancia de Aragón
      * @param austria Se introduce la distancia de Austria
      * @param borgoña Se introduce la distancia de Borgoña
      * @param castilla Se introduce la distancia de Castilla
      * @param nuevaEspaña Se introduce la distancia de Nueva España
+     * @param peru Se introduce la distancia de Perú
+     * @param nuevaGranada Se introduce la distancia de Nueva Granada
+     * @param plata Se introduce la distancia de Plata
      */
 	public Europa(String nombre,String continente, int poblacion,String territorio ,int aragon,int austria,int borgoña,int castilla,int nuevaEspaña,int nuevaGranada,int peru,int plata) {
 		super(nombre,continente, poblacion);

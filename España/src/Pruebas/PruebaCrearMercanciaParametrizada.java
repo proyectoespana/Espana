@@ -29,7 +29,7 @@ public class PruebaCrearMercanciaParametrizada {
 	 * @param nombr parámetro encargado de meter el nombre del producto
 	 * @param cantida parámetro encargado de meter la cantidad de producto del que se va crear una mercancáa
 	 * @param mercan parámetro encargado de meter la mercancía resultante para compararla con la generada
-	 * @throws Exception
+	 * @throws Exception envía Excepcion si no se encuentra el Producto
 	 */
 	public PruebaCrearMercanciaParametrizada(ProductoNombre nombr,int cantida,Mercancia mercan) throws Exception {
 		nombre=nombr;

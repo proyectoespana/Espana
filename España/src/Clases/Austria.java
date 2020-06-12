@@ -33,9 +33,9 @@ public class Austria extends Europa {
 	 * 
 	 * @param nombre Informa sobre el nombre
 	 * @param continente Informa sobre el continente que se encuentra
-	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
+	 * @param poblacion Informa sobre la cantidad de población que vive en el Reino
 	 * @param territorio Informa sobre el lugar donde está el Reino
-	 * @throws Exception 
+	 * @throws Exception envía Excepcion si no encuentra el Producto
 	 */
 	public Austria(String nombre,String continente,int poblacion,String territorio ) throws Exception {
 		super(nombre,continente, poblacion,territorio,1785, 0, 1147, 2382, 10145,8949,10864,12727);
@@ -52,6 +52,7 @@ public class Austria extends Europa {
 
 	/**
 	 * Constructor de copia
+	 * @param a Objeto a copiar
 	 */
 	public Austria(Austria a) {
 		super(a);
@@ -64,7 +65,7 @@ public class Austria extends Europa {
 	 * El usuario procede a crear mercancias de los productos  recolectados
 	 * @param producto nombre del producto
 	 * @param cantidad cantidad del producto
-	 * @throws Exception
+	 * @throws Exception envía Excepcion si no encuentra el Producto
 	 */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
@@ -168,7 +169,7 @@ public class Austria extends Europa {
 
 	/**
 	 * Método que devuelve la produccón mensual obtenida de los productos
-	 * @return
+	 * @return devuelve la produccion Mensual de Austria 
 	 */
 	public String  verproduccionMensual() {
 		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionHierro.toString() + "/ Produccion de de : "+ this.recoleccionArroz.toString() + "/ Produccion de de : "+this.recoleccionPlata.toString();

@@ -50,9 +50,9 @@ public class Flota {
 
 	/**
 	 * Método encargado de meter una mercancía determinada dentro de flota
-	 * @param mercancias mercancía que queremos meter en la Flota
+	 * @param mercancia mercancía que queremos meter en la Flota
 	 * @return el peso disponible para seguir almacenando mercancías
-	 * @throws Exception
+	 * @throws Exception envía excepcion si no puede crear la Mercancia
 	 */
 	public int añadirMercancia(Mercancia mercancia) throws Exception {
 		int pesoDisponible;
@@ -110,7 +110,7 @@ public class Flota {
 
 	/**
 	 * Método que se encarga de enviar la flota a una zona determinada
-	 * @param destino
+	 * @param destino distancia a la que esta su destino
 	 */
 	
 	public void enviarFLota(int destino) {

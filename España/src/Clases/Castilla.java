@@ -30,7 +30,7 @@ public class Castilla extends Europa {
      * @param continente Informa sobre el continente que se encuentra
      * @param poblacion Informa sobre la cantidad de población que vive en el reino
      * @param territorio Informa sobre el lugar donde está el Reino
-     * @throws Exception 
+     * @throws Exception envía Excepcion si no encuentra el Producto
      */
 	public Castilla(String nombre,String continente, int poblacion,String territorio) throws Exception {
 		super(nombre,continente, poblacion,territorio, 621,	2375, 1784, 0, 9020,7258,9123,10927);
@@ -45,7 +45,7 @@ public class Castilla extends Europa {
 
 	/**
 	 * Constructor de copia
-	 * @param obj
+	 * @param obj Objeto de copia
 	 */
 	public Castilla(Castilla obj) {
 		super(obj);
@@ -58,7 +58,7 @@ public class Castilla extends Europa {
      * El usuario procede a crear mercancías de los productos  recolectados
      * @param producto nombre del producto
      * @param cantidad cantidad del producto
-     * @throws Exception
+     * @throws Exception envia Excepcion si no encuentra el Producto
      */
 	public void crearMercancia(ProductoNombre producto,int cantidad)throws Exception {
 		Mercancia mercancia;
@@ -132,7 +132,7 @@ public class Castilla extends Europa {
 
 	/**
      * Método que devuelve la producción mensual obtenida de los productos
-     * @return
+     * @return devuelve la la Produccion Mensual de Castilla
      */
 	public String  verproduccionMensual() {
 		return super.verproduccionMensual()+"Produccion de : "+this.recoleccionTrigo.toString() + "/ Produccion de de : "+ this.recoleccionUvas.toString() + "/ Produccion de de : "+this.recoleccionHierro.toString();

@@ -33,80 +33,99 @@ public class PruebaMeterMercancia {
 		espana.formarFlota(espana.getAragon(), 1);
 	}
 
+	/**
+	 * Creo una Flota aparte del Reino dándole los atributos que tendría la Flota original.
+	 *  Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte, como con la Flota.
+	 *  Introduzco en la mercancía el Producto que voy a exportar.
+	 *  Introduzo la cantidad de dicho Producto.
+	 *   Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado.
+	 *   Procedo a meter la Mercancía en la Flota. 
+	 *    Y finalmente, comparo si ambas flotas son similares, teniendo en cuenta que para que sean similares, tiene que tener
+	 * el mismo conjunto de mercancias,el peso total de dichas mercancias  y si están o no disponibles.
+	 * @throws Envío de Excepcion si no se puede meter la Mercancia
+	 */
 	@Test
 	public void testMeterMercanciaEnFlota() throws Exception {
 		
-		/**
-		 * Creo una Flota aparte del Reino dándole los atributos que tendría la Flota original
-		 */
+//		/**
+//		 * Creo una Flota aparte del Reino dándole los atributos que tendría la Flota original
+//		 */
 		//nombre
 		Flota barco= new Flota("Flota de Aragon");
 		
-		/**
-		 * Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte, como con la Flota
-		 */
+//		/**
+//		 * Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte, como con la Flota
+//		 */
 		mercancia= new Mercancia("Mercancia Arroz", "Aragon");
 
-		/**
-		 * Introduzco en la mercancía el Producto que voy a exportar
-		 */
+//		/**
+//		 * Introduzco en la mercancía el Producto que voy a exportar
+//		 */
 		Alimentos alimento2=new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Cereal", 0);
 
-		/**
-		 * Introduzo la cantidad de dicho Producto
-		 */
+//		/**
+//		 * Introduzo la cantidad de dicho Producto
+//		 */
 		alimento2.setCantidad(500);
 
-		/**
-		 * Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado 
-		 */
+//		/**
+//		 * Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado 
+//		 */
 		mercancia.añadirProducto(alimento2);
 		
-		/**
-		 * Procedo a meter la Mercancía en la Flota
-		 */
+//		/**
+//		 * Procedo a meter la Mercancía en la Flota
+//		 */
 		barco.añadirMercancia(mercancia);
 		
-		/**
-		 * Y finalmente, comparo si ambas flotas son similares, teniendo en cuenta que para que sean similares, tiene que tener
-		 * el mismo conjunto de mercancias,el peso total de dichas mercancias  y si están o no disponibles.
-		 */
+//		/**
+//		 * Y finalmente, comparo si ambas flotas son similares, teniendo en cuenta que para que sean similares, tiene que tener
+//		 * el mismo conjunto de mercancias,el peso total de dichas mercancias  y si están o no disponibles.
+//		 */
 		assertEquals(espana.getAragon().getFlota(), barco);
 	}
 	
 	
+	/**
+	 * Creo una Flota aparte del Reino dandole los atributos que tendria la Flota original.
+	 * Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte como con la Flota.
+	 * Introduzco en la mercancía el Producto que voy a exportar.
+	 * Introduzo la cantidad de dicho Producto en este caso, muy superior a la que el barco puede transportar.
+	 * Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado.
+	 * Procedo a meter la Mercancía en la Flota y por ende, me saltará una Excepción por exceso de capacidad. 
+	 */
 	@Test(expected = java.lang.IllegalArgumentException.class)
 	public void testMeterMercanciaEnFlotaExcepcion() throws Exception {
 		
-		/**
-		 * Creo una Flota aparte del Reino dandole los atributos que tendria la Flota original
-		 */
+//		/**
+//		 * Creo una Flota aparte del Reino dandole los atributos que tendria la Flota original
+//		 */
 		//nombre
 		Flota barco= new Flota("Flota de Aragon");
 		
-		/**
-		 * Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte como con la Flota
-		 */
+//		/**
+//		 * Creo la misma mercancía que introduzco en el "BeforeClass" pero aparte como con la Flota
+//		 */
 		mercancia= new Mercancia("Mercancia Arroz", "Aragon");
 
-		/**
-		 * Introduzco en la mercancía el Producto que voy a exportar
-		 */
+//		/**
+//		 * Introduzco en la mercancía el Producto que voy a exportar
+//		 */
 		Alimentos alimento2=new Alimentos(ProductoNombre.Arroz, 0, 0, 0, 0, "Cereal", 0);
 
-		/**
-		 * Introduzo la cantidad de dicho Producto en este caso, muy superior a la que el barco puede transportar
-		 */
+//		/**
+//		 * Introduzo la cantidad de dicho Producto en este caso, muy superior a la que el barco puede transportar
+//		 */
 		alimento2.setCantidad(60000);
 
-		/**
-		 * Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado 
-		 */
+//		/**
+//		 * Creo finalmente, la Mercancía introduciéndole el producto que antes hemos creado 
+//		 */
 		mercancia.añadirProducto(alimento2);
 		
-		/**
-		 * Procedo a meter la Mercancía en la Flota y por ende, me saltará una Excepción por exceso de capacidad.
-		 */
+//		/**
+//		 * Procedo a meter la Mercancía en la Flota y por ende, me saltará una Excepción por exceso de capacidad.
+//		 */
 		barco.añadirMercancia(mercancia);
 		
 	}

@@ -28,7 +28,7 @@ public class PruebaMeterMercanciaParametrizada {
 	 * @param nombr parámetro encargado de meter el nombre del producto
 	 * @param cantida parámetro encargado de meter la cantidad de producto del que se va crear una mercancía
 	 * @param Flota parámetro encargado de meter la flota resultante para compararla con la generada
-	 * @throws Exception
+	 * @throws Exception envía Excepcion si no puede introducir Mercancia
 	 */
 	public PruebaMeterMercanciaParametrizada(ProductoNombre nombr,int cantida,Flota flota) throws Exception {
 		nombre=nombr;

@@ -51,7 +51,7 @@ public class Peru extends Virreinatos {
 	}
 	/**
 	 * Constructor de Copia
-	 * @param peru
+	 * @param peru Objeto de Copia
 	 */
 	public Peru(Peru peru) {
 		super(peru);

@@ -33,7 +33,7 @@ public class Plata extends Virreinatos {
 	 * @param nombre Informa sobre el nombre
 	 * @param continente Informa sobre el continente que se encuentra
 	 * @param poblacion Informa sobre la cantidad de población que vive en el reino
-	 * @throws Exception
+	 * @throws Exception envía Excepcion si no encuentra alguna produccion
 	 */
 	public Plata(String nombre,String continente, int poblacion) throws Exception {
 		super(nombre,continente, poblacion, 4190, 0, 10927, 4707, 7353,11379,12248,12727);
@@ -50,7 +50,7 @@ public class Plata extends Virreinatos {
 
 	/**
 	 * Constructor de copia
-	 * @param plata
+	 * @param plata Objeto de copia
 	 */
 	public Plata(Plata plata) {
 		super(plata);
